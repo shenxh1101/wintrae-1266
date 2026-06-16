@@ -1059,6 +1059,7 @@ class DashboardTrendPoint:
     total: int
     new_count: int
     resolved_count: int
+    pending_count: int
     error_count: int
     warning_count: int
     info_count: int
@@ -1069,6 +1070,7 @@ class DashboardTrendPoint:
             "total": self.total,
             "new_count": self.new_count,
             "resolved_count": self.resolved_count,
+            "pending_count": self.pending_count,
             "error_count": self.error_count,
             "warning_count": self.warning_count,
             "info_count": self.info_count,
@@ -1079,6 +1081,7 @@ class DashboardTrendPoint:
 class DashboardData:
     """进度看板数据"""
     points: List[DashboardTrendPoint] = field(default_factory=list)
+    current_status_summary: Dict[str, int] = field(default_factory=dict)
 
     @property
     def latest_total(self) -> int:
@@ -1092,25 +1095,40 @@ class DashboardData:
     def latest_resolved(self) -> int:
         return self.points[-1].resolved_count if self.points else 0
 
+    @property
+    def latest_pending(self) -> int:
+        return self.points[-1].pending_count if self.points else 0
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "points": [p.to_dict() for p in self.points],
+            "current_status_summary": self.current_status_summary,
             "summary": {
                 "days": len(self.points),
                 "latest_total": self.latest_total,
                 "latest_new": self.latest_new,
                 "latest_resolved": self.latest_resolved,
+                "latest_pending": self.latest_pending,
             }
         }
 
 
-def build_dashboard_trend(snapshots: List[ReportSnapshot]) -> DashboardData:
+def build_dashboard_trend(snapshots: List[ReportSnapshot],
+                          task_store: Optional["TaskStateStore"] = None,
+                          ) -> DashboardData:
     """从历史快照构建看板趋势数据。
 
-    输入按日期升序排列的快照列表。
+    Args:
+        snapshots: 按日期升序排列的快照列表
+        task_store: 可选的任务状态存储，用于计算当前待处理/处理中/已修复/已忽略数量
     """
     points: List[DashboardTrendPoint] = []
     prev_ids: Set[str] = set()
+
+    # 计算当前状态汇总（如果有 task_store）
+    status_summary: Dict[str, int] = {}
+    if task_store is not None:
+        status_summary = task_store.summary_by_status()
 
     for snap in snapshots:
         curr_ids = {i.stable_id for i in snap.issues}
@@ -1121,6 +1139,17 @@ def build_dashboard_trend(snapshots: List[ReportSnapshot]) -> DashboardData:
         warning_count = snap.issue_count.get("warning", 0)
         info_count = snap.issue_count.get("info", 0) + snap.issue_count.get("suggestion", 0)
 
+        # 待处理：用 task_store 计算（最后一个数据点），否则用 total 作为近似（历史数据无法回溯状态）
+        pending_count = 0
+        if task_store is not None and snap is snapshots[-1]:
+            pending_count = (
+                status_summary.get(TaskStatus.PENDING.value, 0)
+                + status_summary.get(TaskStatus.IN_PROGRESS.value, 0)
+            )
+        else:
+            # 历史数据：total 近似为"仍在待处理池中的问题"（未被解决/忽略）
+            pending_count = len(curr_ids)
+
         # 日期从 created_at 中提取
         date_str = snap.created_at[:10] if snap.created_at else "unknown"
 
@@ -1129,10 +1158,11 @@ def build_dashboard_trend(snapshots: List[ReportSnapshot]) -> DashboardData:
             total=len(curr_ids),
             new_count=new_count,
             resolved_count=resolved_count,
+            pending_count=pending_count,
             error_count=error_count,
             warning_count=warning_count,
             info_count=info_count,
         ))
         prev_ids = curr_ids
 
-    return DashboardData(points=points)
+    return DashboardData(points=points, current_status_summary=status_summary)

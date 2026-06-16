@@ -425,23 +425,33 @@ class ReportGenerator:
         lines.append("=" * 70)
         lines.append(f"📅 数据范围: {data.points[0].date} ~ {data.points[-1].date}")
         lines.append(f"📈 共 {len(data.points)} 天数据")
+
+        # 当前状态汇总
+        if data.current_status_summary:
+            lines.append("")
+            lines.append("📋 当前任务状态:")
+            for st, cnt in sorted(data.current_status_summary.items(), key=lambda x: -x[1]):
+                label = TASK_STATUS_LABELS.get(TaskStatus(st), st)
+                lines.append(f"   {label}: {cnt}")
+
         lines.append("")
 
         # 趋势表
         max_total = max(p.total for p in data.points) if data.points else 1
-        bar_width = 30
+        bar_width = 25
 
-        lines.append(f"{'日期':<12} {'总量':>6} {'新增':>6} {'已解决':>6}  趋势")
+        lines.append(f"{'日期':<12} {'总量':>5} {'新增':>5} {'已解决':>5} {'待处理':>5}  趋势")
         lines.append("-" * 70)
         for p in data.points:
             filled = int(p.total / max_total * bar_width) if max_total > 0 else 0
             bar = "█" * filled + "░" * (bar_width - filled)
-            lines.append(f"{p.date:<12} {p.total:>6} {p.new_count:>6} {p.resolved_count:>6}  {bar}")
+            lines.append(f"{p.date:<12} {p.total:>5} {p.new_count:>5} {p.resolved_count:>5} {p.pending_count:>5}  {bar}")
 
         lines.append("")
         lines.append(f"🔴 错误: {data.points[-1].error_count if data.points else 0}")
         lines.append(f"🟡 警告: {data.points[-1].warning_count if data.points else 0}")
         lines.append(f"🔵 提示: {data.points[-1].info_count if data.points else 0}")
+        lines.append(f"⏳ 待处理+处理中: {data.latest_pending}")
 
         return "\n".join(lines)
 
@@ -465,18 +475,30 @@ class ReportGenerator:
         lines.append(f"- **问题总量**: {latest.total}")
         lines.append(f"- **今日新增**: {latest.new_count}")
         lines.append(f"- **今日已解决**: {latest.resolved_count}")
+        lines.append(f"- **待处理+处理中**: ⏳ {latest.pending_count}")
         lines.append(f"- **错误数**: 🔴 {latest.error_count}")
         lines.append(f"- **警告数**: 🟡 {latest.warning_count}")
         lines.append(f"- **提示数**: 🔵 {latest.info_count}")
         lines.append("")
 
+        # 当前状态汇总
+        if data.current_status_summary:
+            lines.append("## 📋 任务状态分布")
+            lines.append("")
+            lines.append("| 状态 | 数量 |")
+            lines.append("|------|-----:|")
+            for st, cnt in sorted(data.current_status_summary.items(), key=lambda x: -x[1]):
+                label = TASK_STATUS_LABELS.get(TaskStatus(st), st)
+                lines.append(f"| {label} | {cnt} |")
+            lines.append("")
+
         # 趋势表
         lines.append("## 📅 每日趋势")
         lines.append("")
-        lines.append("| 日期 | 总量 | 新增 | 已解决 | 错误 | 警告 | 提示 |")
-        lines.append("|------|-----:|-----:|-------:|-----:|-----:|-----:|")
+        lines.append("| 日期 | 总量 | 新增 | 已解决 | 待处理 | 错误 | 警告 | 提示 |")
+        lines.append("|------|-----:|-----:|-------:|-------:|-----:|-----:|-----:|")
         for p in reversed(data.points):
-            lines.append(f"| {p.date} | {p.total} | {p.new_count} | {p.resolved_count} | {p.error_count} | {p.warning_count} | {p.info_count} |")
+            lines.append(f"| {p.date} | {p.total} | {p.new_count} | {p.resolved_count} | {p.pending_count} | {p.error_count} | {p.warning_count} | {p.info_count} |")
 
         return "\n".join(lines)
 
@@ -494,7 +516,7 @@ class ReportGenerator:
             <h2>📊 进度看板</h2>
             <p style="color:#6b7280">数据范围: {data.points[0].date} ~ {data.points[-1].date} ({len(data.points)}天)</p>
 
-            <div class="stats-grid" style="grid-template-columns:repeat(3, 1fr)">
+            <div class="stats-grid" style="grid-template-columns:repeat(4, 1fr)">
                 <div class="stat-card" style="background:#6366f1">
                     <div class="num">{latest.total}</div>
                     <div class="label">问题总量</div>
@@ -507,15 +529,40 @@ class ReportGenerator:
                     <div class="num">-{latest.resolved_count}</div>
                     <div class="label">今日已解决</div>
                 </div>
+                <div class="stat-card" style="background:#8b5cf6">
+                    <div class="num">{latest.pending_count}</div>
+                    <div class="label">待处理+处理中</div>
+                </div>
             </div>
         """
+
+        # 当前状态汇总
+        if data.current_status_summary:
+            html += """
+            <h3>📋 任务状态分布</h3>
+            <div class="stats-grid" style="grid-template-columns:repeat(4, 1fr)">
+            """
+            colors = {"pending": "#f59e0b", "in_progress": "#3b82f6",
+                      "fixed": "#10b981", "ignored": "#6b7280"}
+            for st, cnt in sorted(data.current_status_summary.items(), key=lambda x: -x[1]):
+                label = TASK_STATUS_LABELS.get(TaskStatus(st), st)
+                color = colors.get(st, "#6b7280")
+                html += f"""
+                <div class="stat-card" style="background:{color}">
+                    <div class="num">{cnt}</div>
+                    <div class="label">{label}</div>
+                </div>
+                """
+            html += """
+            </div>
+            """
 
         # 趋势表
         html += """
             <h3>📅 每日趋势</h3>
             <table>
                 <thead>
-                    <tr><th>日期</th><th>总量</th><th>新增</th><th>已解决</th><th>错误</th><th>警告</th><th>提示</th></tr>
+                    <tr><th>日期</th><th>总量</th><th>新增</th><th>已解决</th><th>待处理</th><th>错误</th><th>警告</th><th>提示</th></tr>
                 </thead>
                 <tbody>
         """
@@ -526,6 +573,7 @@ class ReportGenerator:
                     <td><strong>{p.total}</strong></td>
                     <td style="color:#f59e0b">+{p.new_count}</td>
                     <td style="color:#10b981">-{p.resolved_count}</td>
+                    <td style="color:#8b5cf6">{p.pending_count}</td>
                     <td style="color:#ef4444">{p.error_count}</td>
                     <td style="color:#f59e0b">{p.warning_count}</td>
                     <td style="color:#3b82f6">{p.info_count}</td>
@@ -665,21 +713,25 @@ class ReportGenerator:
         return "\n".join(lines)
 
     def _to_json(self, result: CheckResult) -> str:
-        """JSON格式输出（包含 diff 结果，如果有的话）"""
+        """JSON格式输出（包含 diff 结果和看板数据，如果有的话）"""
         data = result.to_dict()
         if self._diff_result is not None:
             data["diff"] = self._diff_result.to_dict()
         if self.task_store is not None:
             data["task_states"] = self.task_store.to_dict()
+        if self.dashboard_data is not None:
+            data["dashboard"] = self.dashboard_data.to_dict()
         return json.dumps(data, ensure_ascii=False, indent=2)
 
     def _to_yaml(self, result: CheckResult) -> str:
-        """YAML格式输出（包含 diff 结果，如果有的话）"""
+        """YAML格式输出（包含 diff 结果和看板数据，如果有的话）"""
         data = result.to_dict()
         if self._diff_result is not None:
             data["diff"] = self._diff_result.to_dict()
         if self.task_store is not None:
             data["task_states"] = self.task_store.to_dict()
+        if self.dashboard_data is not None:
+            data["dashboard"] = self.dashboard_data.to_dict()
         return yaml.dump(data, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
     def _to_markdown(self, result: CheckResult) -> str:
@@ -776,6 +828,13 @@ class ReportGenerator:
             lines.append("")
             for fp in result.files_scanned:
                 lines.append(f"- `{relative_path(fp)}`")
+            lines.append("")
+
+        # 内嵌进度看板
+        if self.dashboard_data is not None and self.dashboard_data.points:
+            lines.append("---")
+            lines.append("")
+            lines.append(self._render_dashboard_markdown())
             lines.append("")
 
         return "\n".join(lines)
@@ -909,6 +968,8 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
 
     <h2>📁 扫描的文件</h2>
     <ul class="files-list">{files_html}</ul>
+
+    {self._render_dashboard_html() if self.dashboard_data and self.dashboard_data.points else ''}
 </div>
 </body>
 </html>"""
