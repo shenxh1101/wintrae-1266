@@ -38,7 +38,8 @@ ISSUE_TYPE_LABELS = {
     IssueType.MISSING_IMAGE_ALT: "图片缺少说明",
     IssueType.BROKEN_LINK: "引用失效",
     IssueType.TERM_INCONSISTENT: "术语不一致",
-    IssueType.TERM_ALIAS_FOUND: "术语别名",
+    IssueType.TERM_ALIAS_FOUND: "术语别名/变体",
+    IssueType.TERM_FORBIDDEN: "术语禁用写法",
     IssueType.SUSPECTED_SYNONYM: "疑似同义词",
     IssueType.UNKNOWN_TERM: "未知术语",
 }
@@ -61,6 +62,7 @@ class TaskItem:
     description: str
     file_path: str
     line_number: Optional[int]
+    stable_id: str = ""
     assignee: str = ""
     status: str = "open"
     priority: str = "medium"
@@ -74,10 +76,13 @@ class TaskItem:
             self.tags = []
         if self.created_at is None:
             self.created_at = datetime.now().isoformat(timespec="seconds")
+        if not self.stable_id and self.id:
+            self.stable_id = self.id
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.id,
+            "stable_id": self.stable_id,
             "severity": self.severity,
             "type": self.type,
             "title": self.title,
@@ -125,6 +130,44 @@ class ReportGenerator:
                 f.write(content)
         return content
 
+    @staticmethod
+    def _format_ignore_stats(result: CheckResult) -> Optional[str]:
+        """格式化忽略统计信息（用于console/markdown顶部）"""
+        stats = result.ignore_stats
+        if not stats or stats.get("total", 0) == 0:
+            return None
+
+        total = stats["total"]
+        by_type = stats.get("by_type", {})
+        parts = [f"🔕 已忽略 {total} 条问题"]
+        if by_type:
+            type_parts = []
+            for itype, cnt in sorted(by_type.items(), key=lambda x: -x[1]):
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(itype), itype) if itype in [e.value for e in IssueType] else itype
+                type_parts.append(f"{type_label} {cnt}个")
+            if type_parts:
+                parts.append("（按类型：" + "、".join(type_parts) + "）")
+        by_rule = stats.get("by_rule", {})
+        if by_rule:
+            rule_parts = []
+            for pat, cnt in sorted(by_rule.items(), key=lambda x: -x[1]):
+                rule_parts.append(f"'{pat}'×{cnt}")
+            parts.append(" [匹配: " + ", ".join(rule_parts) + "]")
+        return "".join(parts)
+
+    @staticmethod
+    def _format_dedup_stats(result: CheckResult) -> Optional[str]:
+        """格式化去重统计信息"""
+        stats = result.dedup_stats
+        if not stats or stats.get("removed", 0) == 0:
+            return None
+
+        removed = stats["removed"]
+        groups = stats.get("merged_groups", 0)
+        if groups > 0:
+            return f"🗑️  合并去重：减少 {removed} 条（共合并 {groups} 组）"
+        return f"🗑️  合并去重：减少 {removed} 条"
+
     def _to_console(self, result: CheckResult) -> str:
         """控制台格式输出"""
         lines = []
@@ -134,7 +177,15 @@ class ReportGenerator:
         lines.append("")
         lines.append(f"📁 扫描文件数: {len(result.files_scanned)}")
         lines.append(f"⏱️  耗时: {format_time(result.duration)}")
+
+        dedup_info = self._format_dedup_stats(result)
+        ignore_info = self._format_ignore_stats(result)
+        if dedup_info:
+            lines.append(dedup_info)
+        if ignore_info:
+            lines.append(ignore_info)
         lines.append("")
+
         counts = result.issue_count
         total = sum(counts.values())
         lines.append(f"📊 问题统计: 总计 {total} 个")
@@ -163,7 +214,14 @@ class ReportGenerator:
                 for i, issue in enumerate(issues, 1):
                     loc = issue.location or "N/A"
                     type_label = ISSUE_TYPE_LABELS.get(issue.type, issue.type.value)
-                    lines.append(f"  {i}. [{type_label}] {issue.message}")
+                    sid = issue.stable_id or "N/A"
+                    needs_edit = ""
+                    meta = issue.metadata or {}
+                    if meta.get("needs_edit") is True:
+                        needs_edit = " [必须修改]"
+                    elif meta.get("needs_edit") is False:
+                        needs_edit = " [可选]"
+                    lines.append(f"  {i}. [{sid}] [{type_label}] {issue.message}{needs_edit}")
                     lines.append(f"     📍 {loc}")
                     if issue.suggestion:
                         lines.append(f"     💡 建议: {issue.suggestion}")
@@ -222,6 +280,13 @@ class ReportGenerator:
         lines.append(f"**生成时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         lines.append(f"**扫描文件数**: {len(result.files_scanned)}")
         lines.append(f"**耗时**: {format_time(result.duration)}")
+
+        dedup_info = self._format_dedup_stats(result)
+        ignore_info = self._format_ignore_stats(result)
+        if dedup_info:
+            lines.append(f"> {dedup_info}")
+        if ignore_info:
+            lines.append(f"> {ignore_info}")
         lines.append("")
 
         counts = result.issue_count
@@ -238,15 +303,16 @@ class ReportGenerator:
         if result.issues:
             lines.append("## 🔍 问题详情")
             lines.append("")
-            lines.append("| # | 级别 | 类型 | 描述 | 文件:行 | 建议 |")
-            lines.append("|---|------|------|------|---------|------|")
+            lines.append("| # | 稳定ID | 级别 | 类型 | 描述 | 文件:行 | 建议 |")
+            lines.append("|---|--------|------|------|------|---------|------|")
             for i, issue in enumerate(result.issues, 1):
                 sev_icon = TYPE_EMOJI_MAP[issue.severity.value]
                 type_label = ISSUE_TYPE_LABELS.get(issue.type, issue.type.value)
                 loc = issue.location or "-"
                 msg = issue.message.replace("|", "\\|")
                 sug = issue.suggestion.replace("|", "\\|") if issue.suggestion else "-"
-                lines.append(f"| {i} | {sev_icon} | {type_label} | {msg} | `{loc}` | {sug} |")
+                sid = issue.stable_id or "-"
+                lines.append(f"| {i} | `{sid}` | {sev_icon} | {type_label} | {msg} | `{loc}` | {sug} |")
             lines.append("")
 
         if result.suspected_synonyms:
@@ -286,15 +352,26 @@ class ReportGenerator:
         counts = result.issue_count
         total = sum(counts.values())
 
+        extra_info_parts = []
+        dedup_info = self._format_dedup_stats(result)
+        ignore_info = self._format_ignore_stats(result)
+        if dedup_info:
+            extra_info_parts.append(f"<p style='color:#6b7280;margin:0.25rem 0;'>{dedup_info}</p>")
+        if ignore_info:
+            extra_info_parts.append(f"<p style='color:#6b7280;margin:0.25rem 0;'>{ignore_info}</p>")
+        extra_info_html = "".join(extra_info_parts)
+
         issue_rows = ""
         for i, issue in enumerate(result.issues, 1):
             sev_label = SEVERITY_LABELS.get(issue.severity, issue.severity.value)
             sev_class = f"sev-{issue.severity.value}"
             type_label = ISSUE_TYPE_LABELS.get(issue.type, issue.type.value)
             loc = issue.location or "-"
+            sid = issue.stable_id or "-"
             issue_rows += f"""
             <tr class="{sev_class}">
                 <td>{i}</td>
+                <td><code style='background:#eef2ff;color:#3730a3'>{_escape_html(sid)}</code></td>
                 <td><span class="badge badge-{issue.severity.value}">{sev_label}</span></td>
                 <td>{type_label}</td>
                 <td>{_escape_html(issue.message)}</td>
@@ -329,6 +406,8 @@ class ReportGenerator:
 
         files_html = "".join(f"<li><code>{_escape_html(str(relative_path(fp)))}</code></li>" for fp in result.files_scanned)
 
+        issue_table_header = """<table><thead><tr><th>#</th><th>稳定ID</th><th>级别</th><th>类型</th><th>描述</th><th>位置</th><th>建议</th></tr></thead><tbody>"""
+
         return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -337,7 +416,7 @@ class ReportGenerator:
 <style>
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem; background: #f5f5f5; color: #333; }}
-.container {{ max-width: 1200px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }}
+.container {{ max-width: 1300px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }}
 h1 {{ color: #1a1a1a; margin-bottom: 1rem; border-bottom: 3px solid #3b82f6; padding-bottom: 0.5rem; }}
 h2 {{ color: #1a1a1a; margin: 1.5rem 0 1rem; padding-left: 0.75rem; border-left: 4px solid #3b82f6; }}
 .meta {{ background: #f0f9ff; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; }}
@@ -350,8 +429,8 @@ h2 {{ color: #1a1a1a; margin: 1.5rem 0 1rem; padding-left: 0.75rem; border-left:
 .stat-card.suggestion {{ background: #10b981; }}
 .stat-card .num {{ font-size: 2rem; font-weight: bold; }}
 .stat-card .label {{ font-size: 0.9rem; opacity: 0.9; }}
-table {{ width: 100%; border-collapse: collapse; margin: 1rem 0; }}
-th, td {{ padding: 0.75rem; text-align: left; border-bottom: 1px solid #e5e7eb; }}
+table {{ width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }}
+th, td {{ padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid #e5e7eb; }}
 th {{ background: #f9fafb; font-weight: 600; color: #374151; }}
 tr:hover {{ background: #f9fafb; }}
 tr.sev-error {{ background: #fef2f2; }}
@@ -374,6 +453,7 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         <p><strong>生成时间:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
         <p><strong>扫描文件数:</strong> {len(result.files_scanned)}</p>
         <p><strong>耗时:</strong> {format_time(result.duration)}</p>
+        {extra_info_html}
     </div>
 
     <h2>📊 问题统计</h2>
@@ -386,7 +466,7 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
     <p style="text-align: right; margin-top: 0.5rem;"><strong>总计: {total} 个问题</strong></p>
 
     <h2>🔍 问题详情</h2>
-    {"<table><thead><tr><th>#</th><th>级别</th><th>类型</th><th>描述</th><th>位置</th><th>建议</th></tr></thead><tbody>" + issue_rows + "</tbody></table>" if result.issues else '<div class="empty">✅ 未发现任何问题</div>'}
+    {"<table><thead><tr><th>#</th><th>稳定ID</th><th>级别</th><th>类型</th><th>描述</th><th>位置</th><th>建议</th></tr></thead><tbody>" + issue_rows + "</tbody></table>" if result.issues else '<div class="empty">✅ 未发现任何问题</div>'}
 
     {f'<h2>🤔 疑似同义词组</h2><table><thead><tr><th>#</th><th>术语组</th><th>相似度</th></tr></thead><tbody>{synonym_rows}</tbody></table>' if result.suspected_synonyms else ''}
 
@@ -403,12 +483,15 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         output = io.StringIO()
         writer = csv.writer(output)
         writer.writerow([
-            "序号", "严重级别", "类型", "消息", "文件路径", "行号",
-            "建议", "上下文",
+            "序号", "稳定ID", "严重级别", "类型", "消息", "文件路径", "行号",
+            "建议", "上下文", "必须修改",
         ])
         for i, issue in enumerate(result.issues, 1):
+            meta = issue.metadata or {}
+            needs_edit = meta.get("needs_edit", "")
             writer.writerow([
                 i,
+                issue.stable_id or "",
                 SEVERITY_LABELS.get(issue.severity, issue.severity.value),
                 ISSUE_TYPE_LABELS.get(issue.type, issue.type.value),
                 issue.message,
@@ -416,6 +499,7 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                 issue.line_number if issue.line_number else "",
                 issue.suggestion,
                 issue.context,
+                "是" if needs_edit is True else ("否" if needs_edit is False else ""),
             ])
         return output.getvalue()
 
@@ -425,7 +509,7 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         output: Optional[Path] = None,
         assignees: Optional[Dict[str, str]] = None,
     ) -> List[TaskItem]:
-        """生成可分配给编辑的任务清单"""
+        """生成可分配给编辑的任务清单（使用稳定ID）"""
         assignees = assignees or {}
         tasks: List[TaskItem] = []
 
@@ -437,7 +521,7 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         }
 
         for i, issue in enumerate(result.issues, 1):
-            task_id = f"TASK-{i:04d}"
+            sid = issue.stable_id or f"ISS-{i:06d}"
             type_label = ISSUE_TYPE_LABELS.get(issue.type, issue.type.value)
             file_name = issue.file_path.name if issue.file_path else "unknown"
             title = f"[{type_label}] {file_name}: {issue.message[:50]}"
@@ -445,6 +529,13 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                 title += "..."
 
             tags = [issue.type.value, issue.severity.value]
+            meta = issue.metadata or {}
+            if meta.get("needs_edit") is True:
+                tags.append("needs_edit")
+            elif meta.get("needs_edit") is False:
+                tags.append("optional")
+            if meta.get("variant_type"):
+                tags.append(f"variant:{meta['variant_type']}")
             if issue.file_path:
                 for k, v in assignees.items():
                     if k in str(issue.file_path).lower() or k in file_name.lower():
@@ -457,7 +548,8 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                     break
 
             tasks.append(TaskItem(
-                id=task_id,
+                id=sid,
+                stable_id=sid,
                 severity=issue.severity.value,
                 type=issue.type.value,
                 title=title,
@@ -487,12 +579,12 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                 with open(output, "w", encoding="utf-8", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
-                        "ID", "优先级", "严重程度", "类型", "标题", "描述",
+                        "ID", "稳定ID", "优先级", "严重程度", "类型", "标题", "描述",
                         "文件", "行号", "负责人", "状态", "建议", "标签",
                     ])
                     for t in tasks:
                         writer.writerow([
-                            t.id, t.priority, t.severity, t.type, t.title,
+                            t.id, t.stable_id, t.priority, t.severity, t.type, t.title,
                             t.description, t.file_path, t.line_number or "",
                             t.assignee, t.status, t.suggestion, ",".join(t.tags),
                         ])
@@ -513,6 +605,10 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         lines.append("")
         lines.append(f"**生成时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         lines.append(f"**任务总数**: {len(tasks)}")
+
+        ignore_info = self._format_ignore_stats(result)
+        if ignore_info:
+            lines.append(f"> {ignore_info}")
         lines.append("")
 
         by_priority: Dict[str, List[TaskItem]] = defaultdict(list)
@@ -555,11 +651,26 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         for t in tasks:
             sev_icon = SEVERITY_ICONS.get(Severity(t.severity), "")
             loc = f"`{t.file_path}:{t.line_number}`" if t.line_number else f"`{t.file_path}`"
-            lines.append(f"- [ ] **{t.id}** {sev_icon} {t.title}")
+            tags_str = ""
+            if t.tags:
+                visible_tags = [x for x in t.tags if x in ("needs_edit",) or x.startswith("variant:")]
+                if visible_tags:
+                    tag_labels = []
+                    for tg in visible_tags:
+                        if tg == "needs_edit":
+                            tag_labels.append("`[必须修改]`")
+                        elif tg.startswith("variant:"):
+                            vtype = tg.split(":", 1)[1]
+                            vmap = {"forbidden": "禁用", "allowed": "允许", "alias": "别名"}
+                            tag_labels.append(f"`[{vmap.get(vtype, vtype)}]`")
+                    tags_str = " " + " ".join(tag_labels)
+            lines.append(f"- [ ] **{t.id}** {sev_icon} {t.title}{tags_str}")
             lines.append(f"  - 📍 位置: {loc}")
             lines.append(f"  - 📝 描述: {t.description}")
             if t.suggestion:
                 lines.append(f"  - 💡 建议: {t.suggestion}")
+            if t.assignee:
+                lines.append(f"  - 👤 负责人: {t.assignee}")
             lines.append("")
 
 

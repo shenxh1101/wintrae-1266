@@ -10,12 +10,24 @@ import click
 import yaml
 
 from . import __version__
-from .config import CheckConfig, TermList, load_config, load_terms, save_config, save_terms
+from .config import (
+    DEFAULT_IGNORE_FILENAME,
+    CheckConfig,
+    IgnoreRules,
+    TermDefinition,
+    TermList,
+    add_ignore_rule,
+    load_config,
+    load_ignore_rules,
+    load_terms,
+    save_config,
+    save_ignore_rules,
+    save_terms,
+)
 from .refs import ReferenceChecker
 from .report import ReportGenerator
 from .scanner import BaseScanner
 from .terms import TermManager
-from .utils import parse_chapter_range
 
 
 def _build_config(
@@ -28,12 +40,13 @@ def _build_config(
     extensions: Optional[str],
     exclude: Optional[str],
     config_path: Optional[str],
+    ignore_file: Optional[str] = None,
 ) -> CheckConfig:
-    """根据命令行参数构建配置"""
+    """根据命令行参数构建配置（统一使用chapter_filter_str）"""
     cfg = load_config(Path(config_path) if config_path else None)
 
     if chapter_range:
-        cfg.chapter_range = parse_chapter_range(chapter_range)
+        cfg.chapter_filter_str = chapter_range
     if output_format:
         cfg.output_format = output_format
     if output:
@@ -46,8 +59,35 @@ def _build_config(
         cfg.extensions = [e if e.startswith(".") else f".{e}" for e in extensions.split(",")]
     if exclude:
         cfg.exclude_patterns = exclude.split(",")
+    if ignore_file:
+        cfg.ignore_file = Path(ignore_file)
 
     return cfg
+
+
+def _resolve_ignore_file(explicit: Optional[str], cfg: CheckConfig) -> Optional[Path]:
+    """决定实际使用的忽略规则文件路径"""
+    if explicit:
+        return Path(explicit)
+    if cfg.ignore_file:
+        return Path(cfg.ignore_file) if isinstance(cfg.ignore_file, str) else cfg.ignore_file
+    default = Path.cwd() / DEFAULT_IGNORE_FILENAME
+    if default.exists():
+        return default
+    return None
+
+
+def _load_ignore_safely(path: Optional[Path]) -> Optional[IgnoreRules]:
+    """安全加载忽略规则，文件不存在返回None"""
+    if path is None:
+        return None
+    if not path.exists():
+        return None
+    try:
+        return load_ignore_rules(path)
+    except Exception as e:
+        click.echo(f"⚠️  加载忽略规则文件失败: {e}", err=True)
+        return None
 
 
 def _get_folder(folder: Optional[str]) -> Path:
@@ -58,18 +98,22 @@ def _get_folder(folder: Optional[str]) -> Path:
 @click.group(help="📋 文档一致性检查工具 - 批量检查长篇文档的一致性问题")
 @click.version_option(__version__, "-V", "--version", prog_name="doccheck")
 @click.option("-c", "--config", "config_path", type=click.Path(), help="配置文件路径")
+@click.option("-i", "--ignore-file", type=click.Path(),
+              help=f"忽略规则文件路径 (默认: 查找当前目录下的 {DEFAULT_IGNORE_FILENAME})")
 @click.pass_context
-def main(ctx: click.Context, config_path: Optional[str]):
+def main(ctx: click.Context, config_path: Optional[str], ignore_file: Optional[str]):
     """文档一致性检查工具主入口"""
     ctx.ensure_object(dict)
     ctx.obj["config_path"] = config_path
+    ctx.obj["ignore_file"] = ignore_file
 
 
 # ==================== scan 命令 ====================
 
 @main.command("scan", help="🔍 扫描文档，检查章节编号、重复标题、专有名词一致性")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
-@click.option("-r", "--chapter-range", "chapter_range", help="章节范围，如 '1-10' 或 '5'")
+@click.option("-r", "--chapter-range", "chapter_range",
+              help="章节范围：'5'=仅第5章，'5-10'=第5到10章")
 @click.option("-f", "--format", "output_format",
               type=click.Choice(["console", "json", "yaml", "markdown", "md", "html", "csv"]),
               default=None, help="输出格式 (默认: console)")
@@ -78,6 +122,8 @@ def main(ctx: click.Context, config_path: Optional[str]):
 @click.option("-m", "--modified", type=int, help="只检查最近N天修改过的文件")
 @click.option("--extensions", help="文件扩展名，逗号分隔 (默认: .md,.markdown,.txt)")
 @click.option("--exclude", help="排除目录模式，逗号分隔")
+@click.option("--no-dedup", is_flag=True, help="禁用问题去重")
+@click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
 @click.option("-q", "--quiet", is_flag=True, help="静默模式，只输出结果摘要")
 @click.pass_context
 def scan_cmd(
@@ -90,22 +136,34 @@ def scan_cmd(
     modified: Optional[int],
     extensions: Optional[str],
     exclude: Optional[str],
+    no_dedup: bool,
+    no_ignore: bool,
     quiet: bool,
 ):
     """扫描文档并执行基础检查"""
     root = _get_folder(folder)
     cfg = _build_config(folder, chapter_range, output_format, output, terms_file,
-                        modified, extensions, exclude, ctx.obj.get("config_path"))
+                        modified, extensions, exclude,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+    cfg.enable_dedup = not no_dedup
+    cfg.enable_ignore = not no_ignore
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     if not quiet:
         click.echo(f"📁 扫描目录: {root}")
-        if cfg.chapter_range:
-            click.echo(f"📖 章节范围: {cfg.chapter_range}")
+        if cfg.chapter_filter_str:
+            from .utils import ChapterFilter
+            cf = ChapterFilter.parse(cfg.chapter_filter_str)
+            click.echo(f"📖 章节筛选: {cf.describe()}")
         if cfg.modified_within_days:
             click.echo(f"🕐 仅最近 {cfg.modified_within_days} 天修改的文件")
+        if ignore_rules and ignore_path:
+            click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
 
     terms = load_terms(cfg.terms_file)
-    scanner = BaseScanner(config=cfg, terms=terms)
+    scanner = BaseScanner(config=cfg, terms=terms, ignore_rules=ignore_rules)
     result = scanner.scan(root)
 
     fmt = cfg.output_format or "console"
@@ -169,9 +227,21 @@ def terms_list(
             lines.append(f"📚 术语清单 - 共 {len(term_list)} 个")
         lines.append("")
         for t in term_list:
-            alias_str = f" (别名: {', '.join(t.aliases)})" if t.aliases else ""
-            desc_str = f" - {t.description}" if t.description else ""
-            lines.append(f"  [{t.category}] {t.canonical}{alias_str}{desc_str}")
+            parts = [f"  [{t.category}] {t.canonical}"]
+            extra = []
+            if t.aliases:
+                extra.append(f"别名:{', '.join(t.aliases)}")
+            if t.allowed_variants:
+                extra.append(f"允许:{', '.join(t.allowed_variants)}")
+            if t.forbidden_writings:
+                extra.append(f"禁用:{', '.join(t.forbidden_writings)}")
+            if extra:
+                parts.append(f"（{' | '.join(extra)}）")
+            if t.description:
+                parts.append(f" - {t.description}")
+            if t.report_aliases:
+                parts.append(" [报告别名]")
+            lines.append("".join(parts))
         content = "\n".join(lines)
 
     if output:
@@ -188,11 +258,14 @@ def terms_list(
 @click.option("-c", "--category", default="general",
               type=click.Choice(["character", "location", "proper_noun", "general"]),
               help="术语类别")
-@click.option("-a", "--alias", multiple=True, help="别名 (可多次指定)")
+@click.option("-a", "--alias", multiple=True, help="别名 (对话用，默认不提示)")
+@click.option("--allow-variant", multiple=True, help="允许的变体写法 (可用，低优先级提示)")
+@click.option("--forbid", "--forbidden-writing", "forbidden", multiple=True,
+              help="禁用写法 (必须修改，ERROR级别)")
+@click.option("--report-aliases", is_flag=True, help="报告别名出现的位置（默认不报告别名）")
 @click.option("-d", "--description", default="", help="描述说明")
 @click.option("-s", "--severity", default="warning",
               type=click.Choice(["error", "warning", "info"]), help="违规严重程度")
-@click.option("--allow-variant", multiple=True, help="允许的变体写法 (可多次指定)")
 @click.option("-t", "--terms", "terms_file", type=click.Path(), help="术语清单文件路径")
 @click.pass_context
 def terms_add(
@@ -200,9 +273,11 @@ def terms_add(
     canonical: str,
     category: str,
     alias: tuple,
+    allow_variant: tuple,
+    forbidden: tuple,
+    report_aliases: bool,
     description: str,
     severity: str,
-    allow_variant: tuple,
     terms_file: Optional[str],
 ):
     """添加新术语"""
@@ -223,10 +298,20 @@ def terms_add(
         description=description,
         severity=severity,
         allowed_variants=list(allow_variant),
+        forbidden_writings=list(forbidden),
+        report_aliases=report_aliases,
     )
 
     save_path = manager.save(cfg.terms_file)
     click.echo(f"✅ 已添加术语: [{term_def.category}] {term_def.canonical}")
+    if term_def.aliases:
+        click.echo(f"   别名: {', '.join(term_def.aliases)}")
+    if term_def.allowed_variants:
+        click.echo(f"   允许变体: {', '.join(term_def.allowed_variants)}")
+    if term_def.forbidden_writings:
+        click.echo(f"   禁用写法: {', '.join(term_def.forbidden_writings)}")
+    if term_def.report_aliases:
+        click.echo("   ⚠️  别名出现位置将在报告中提示")
     click.echo(f"📄 术语清单: {save_path}")
 
 
@@ -258,13 +343,16 @@ def terms_remove(ctx: click.Context, canonical: str, terms_file: Optional[str], 
 
 @terms_group.command("check", help="检查术语使用一致性")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
-@click.option("-r", "--chapter-range", "chapter_range", help="章节范围")
+@click.option("-r", "--chapter-range", "chapter_range",
+              help="章节范围：'5'=仅第5章，'5-10'=第5到10章")
 @click.option("-t", "--terms", "terms_file", type=click.Path(exists=True), help="术语清单文件")
 @click.option("-m", "--modified", type=int, help="只检查最近N天修改的文件")
 @click.option("-f", "--format", "output_format",
               type=click.Choice(["console", "json", "yaml", "markdown", "md", "html", "csv"]),
               default=None, help="输出格式")
 @click.option("-o", "--output", type=click.Path(), help="输出文件路径")
+@click.option("--no-dedup", is_flag=True, help="禁用问题去重")
+@click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
 @click.pass_context
 def terms_check(
     ctx: click.Context,
@@ -274,13 +362,27 @@ def terms_check(
     modified: Optional[int],
     output_format: Optional[str],
     output: Optional[str],
+    no_dedup: bool,
+    no_ignore: bool,
 ):
     """检查术语使用一致性"""
     root = _get_folder(folder)
     cfg = _build_config(folder, chapter_range, output_format, output, terms_file,
-                        modified, None, None, ctx.obj.get("config_path"))
+                        modified, None, None,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+    cfg.enable_dedup = not no_dedup
+    cfg.enable_ignore = not no_ignore
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     click.echo(f"📚 术语一致性检查 - 目录: {root}")
+    if cfg.chapter_filter_str:
+        from .utils import ChapterFilter
+        cf = ChapterFilter.parse(cfg.chapter_filter_str)
+        click.echo(f"📖 章节筛选: {cf.describe()}")
+    if ignore_rules and ignore_path:
+        click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
 
     terms = load_terms(cfg.terms_file)
     if not terms.terms:
@@ -288,7 +390,7 @@ def terms_check(
         click.echo("   或使用 'doccheck terms suggest' 从文档中自动发现")
         sys.exit(1)
 
-    manager = TermManager(terms=terms, config=cfg)
+    manager = TermManager(terms=terms, config=cfg, ignore_rules=ignore_rules)
     result = manager.check_consistency(root)
 
     fmt = cfg.output_format or "console"
@@ -306,6 +408,7 @@ def terms_check(
 
 @terms_group.command("suggest", help="从文档中发现可能的新术语建议")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
+@click.option("-r", "--chapter-range", "chapter_range", help="章节范围")
 @click.option("-n", "--min-occurrences", type=int, default=3, help="最小出现次数 (默认: 3)")
 @click.option("-t", "--terms", "terms_file", type=click.Path(exists=True), help="现有术语清单")
 @click.option("--add-all", is_flag=True, help="自动添加所有建议术语")
@@ -313,19 +416,25 @@ def terms_check(
 def terms_suggest(
     ctx: click.Context,
     folder: Optional[str],
+    chapter_range: Optional[str],
     min_occurrences: int,
     terms_file: Optional[str],
     add_all: bool,
 ):
     """从文档中发现新术语建议"""
     root = _get_folder(folder)
-    cfg = _build_config(folder, None, None, None, terms_file, None, None, None, ctx.obj.get("config_path"))
+    cfg = _build_config(folder, chapter_range, None, None, terms_file,
+                        None, None, None,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     click.echo(f"🔍 扫描文档发现术语建议 - 目录: {root}")
 
     terms = load_terms(cfg.terms_file)
-    manager = TermManager(terms=terms, config=cfg)
-    scanner = BaseScanner(config=cfg, terms=terms)
+    manager = TermManager(terms=terms, config=cfg, ignore_rules=ignore_rules)
+    scanner = BaseScanner(config=cfg, terms=terms, ignore_rules=ignore_rules)
     result = scanner.scan(root)
 
     suggestions = manager.suggest_terms_from_scan(result, min_occurrences)
@@ -368,6 +477,7 @@ def terms_suggest(
 
 @terms_group.command("stats", help="显示术语使用统计")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
+@click.option("-r", "--chapter-range", "chapter_range", help="章节范围")
 @click.option("-t", "--terms", "terms_file", type=click.Path(exists=True), help="术语清单文件")
 @click.option("-f", "--format", "output_format",
               type=click.Choice(["console", "json", "yaml"]), default="console", help="输出格式")
@@ -376,16 +486,22 @@ def terms_suggest(
 def terms_stats(
     ctx: click.Context,
     folder: Optional[str],
+    chapter_range: Optional[str],
     terms_file: Optional[str],
     output_format: str,
     output: Optional[str],
 ):
     """显示术语使用统计"""
     root = _get_folder(folder)
-    cfg = _build_config(folder, None, output_format, output, terms_file, None, None, None, ctx.obj.get("config_path"))
+    cfg = _build_config(folder, chapter_range, output_format, output, terms_file,
+                        None, None, None,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     terms = load_terms(cfg.terms_file)
-    manager = TermManager(terms=terms, config=cfg)
+    manager = TermManager(terms=terms, config=cfg, ignore_rules=ignore_rules)
     stats = manager.get_term_stats(root)
 
     if output_format == "json":
@@ -401,6 +517,19 @@ def terms_stats(
         lines.append("按类别:")
         for cat, cnt in summary["by_category"].items():
             lines.append(f"  - {cat}: {cnt}")
+        vtype = summary.get("by_variant_type", {})
+        if vtype:
+            lines.append("按写法类型:")
+            vt_labels = {
+                "canonical": "标准写法",
+                "alias": "别名",
+                "allowed": "允许变体",
+                "forbidden": "禁用写法",
+                "untracked": "未收录",
+            }
+            for k, v in vtype.items():
+                if v > 0:
+                    lines.append(f"  - {vt_labels.get(k, k)}: {v} 次")
         lines.append(f"相关问题数: {summary['total_issues']}")
         lines.append("")
         lines.append("📚 各术语使用情况:")
@@ -411,10 +540,16 @@ def terms_stats(
             total = info.get("total_variant_occurrences", info.get("occurrences", 0))
             lines.append(f"{status_icon} [{cat}] {name}: {total} 次")
             if "canonical_occurrences" in info:
-                lines.append(f"     标准写法: {info['canonical_occurrences']} 次")
+                lines.append(f"     📌 标准写法: {info['canonical_occurrences']} 次")
             if info.get("alias_occurrences"):
                 for alias, cnt in info["alias_occurrences"].items():
-                    lines.append(f"     别名 {alias}: {cnt} 次")
+                    lines.append(f"     💬 别名 '{alias}': {cnt} 次")
+            if info.get("allowed_occurrences"):
+                for v, cnt in info["allowed_occurrences"].items():
+                    lines.append(f"     ✔️  允许 '{v}': {cnt} 次")
+            if info.get("forbidden_occurrences"):
+                for v, cnt in info["forbidden_occurrences"].items():
+                    lines.append(f"     ❌ 禁用 '{v}': {cnt} 次")
         content = "\n".join(lines)
 
     if output:
@@ -430,7 +565,8 @@ def terms_stats(
 
 @main.command("refs", help="🔗 检查文件引用、图片说明、链接有效性")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
-@click.option("-r", "--chapter-range", "chapter_range", help="章节范围")
+@click.option("-r", "--chapter-range", "chapter_range",
+              help="章节范围：'5'=仅第5章，'5-10'=第5到10章")
 @click.option("-m", "--modified", type=int, help="只检查最近N天修改的文件")
 @click.option("-f", "--format", "output_format",
               type=click.Choice(["console", "json", "yaml", "markdown", "md", "html", "csv"]),
@@ -439,6 +575,8 @@ def terms_stats(
 @click.option("--extensions", help="文件扩展名，逗号分隔")
 @click.option("--exclude", help="排除目录模式，逗号分隔")
 @click.option("--stats-only", is_flag=True, help="只显示统计摘要")
+@click.option("--no-dedup", is_flag=True, help="禁用问题去重")
+@click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
 @click.pass_context
 def refs_cmd(
     ctx: click.Context,
@@ -450,15 +588,29 @@ def refs_cmd(
     extensions: Optional[str],
     exclude: Optional[str],
     stats_only: bool,
+    no_dedup: bool,
+    no_ignore: bool,
 ):
     """检查引用和链接"""
     root = _get_folder(folder)
     cfg = _build_config(folder, chapter_range, output_format, output, None,
-                        modified, extensions, exclude, ctx.obj.get("config_path"))
+                        modified, extensions, exclude,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+    cfg.enable_dedup = not no_dedup
+    cfg.enable_ignore = not no_ignore
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     click.echo(f"🔗 引用检查 - 目录: {root}")
+    if cfg.chapter_filter_str:
+        from .utils import ChapterFilter
+        cf = ChapterFilter.parse(cfg.chapter_filter_str)
+        click.echo(f"📖 章节筛选: {cf.describe()}")
+    if ignore_rules and ignore_path:
+        click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
 
-    checker = ReferenceChecker(config=cfg)
+    checker = ReferenceChecker(config=cfg, ignore_rules=ignore_rules)
 
     if stats_only:
         stats = checker.get_reference_stats(root)
@@ -498,7 +650,8 @@ def refs_cmd(
 
 @main.command("report", help="📋 生成完整检查报告，支持导出任务清单")
 @click.argument("folder", required=False, type=click.Path(exists=True, file_okay=False))
-@click.option("-r", "--chapter-range", "chapter_range", help="章节范围")
+@click.option("-r", "--chapter-range", "chapter_range",
+              help="章节范围：'5'=仅第5章，'5-10'=第5到10章")
 @click.option("-m", "--modified", type=int, help="只检查最近N天修改的文件")
 @click.option("-t", "--terms", "terms_file", type=click.Path(exists=True), help="术语清单文件")
 @click.option("-f", "--format", "output_format",
@@ -514,6 +667,8 @@ def refs_cmd(
 @click.option("--include-scan/--no-scan", default=True, help="包含基础扫描")
 @click.option("--include-terms/--no-terms", default=True, help="包含术语检查")
 @click.option("--include-refs/--no-refs", default=True, help="包含引用检查")
+@click.option("--no-dedup", is_flag=True, help="禁用问题去重")
+@click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
 @click.pass_context
 def report_cmd(
     ctx: click.Context,
@@ -530,45 +685,77 @@ def report_cmd(
     include_scan: bool,
     include_terms: bool,
     include_refs: bool,
+    no_dedup: bool,
+    no_ignore: bool,
 ):
     """生成综合报告"""
     root = _get_folder(folder)
     cfg = _build_config(folder, chapter_range, output_format, output, terms_file,
-                        modified, extensions, exclude, ctx.obj.get("config_path"))
+                        modified, extensions, exclude,
+                        ctx.obj.get("config_path"), ctx.obj.get("ignore_file"))
+    cfg.enable_dedup = not no_dedup
+    cfg.enable_ignore = not no_ignore
+
+    ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
+    ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
     click.echo(f"📋 生成综合报告 - 目录: {root}")
+    if cfg.chapter_filter_str:
+        from .utils import ChapterFilter
+        cf = ChapterFilter.parse(cfg.chapter_filter_str)
+        click.echo(f"📖 章节筛选: {cf.describe()}")
+    if ignore_rules and ignore_path:
+        click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
 
     terms = load_terms(cfg.terms_file)
-    from .utils import CheckResult
+    from .utils import CheckResult, deduplicate_issues
     combined = CheckResult()
     import time as _time
     combined.start_time = _time.time()
 
     if include_scan:
         click.echo("  🔍 执行基础扫描...")
-        scanner = BaseScanner(config=cfg, terms=terms)
+        scanner = BaseScanner(config=cfg, terms=terms, ignore_rules=ignore_rules)
         result = scanner.scan(root)
         combined.issues.extend(result.issues)
         combined.first_occurrences.update(result.first_occurrences)
         combined.suspected_synonyms.extend(result.suspected_synonyms)
         combined.files_scanned = result.files_scanned
         combined.term_stats = result.term_stats
+        if result.ignore_stats:
+            combined.ignore_stats = _merge_stats(combined.ignore_stats, result.ignore_stats)
+        if result.dedup_stats:
+            combined.dedup_stats = _merge_stats(combined.dedup_stats, result.dedup_stats)
 
     if include_terms and terms.terms:
         click.echo("  📚 执行术语检查...")
-        manager = TermManager(terms=terms, config=cfg)
+        manager = TermManager(terms=terms, config=cfg, ignore_rules=ignore_rules)
         result = manager.check_consistency(root)
         combined.issues.extend(result.issues)
         if not combined.files_scanned:
             combined.files_scanned = result.files_scanned
+        if result.ignore_stats:
+            combined.ignore_stats = _merge_stats(combined.ignore_stats, result.ignore_stats)
+        if result.dedup_stats:
+            combined.dedup_stats = _merge_stats(combined.dedup_stats, result.dedup_stats)
 
     if include_refs:
         click.echo("  🔗 执行引用检查...")
-        checker = ReferenceChecker(config=cfg)
+        checker = ReferenceChecker(config=cfg, ignore_rules=ignore_rules)
         result = checker.check(root)
         combined.issues.extend(result.issues)
         if not combined.files_scanned:
             combined.files_scanned = result.files_scanned
+        if result.ignore_stats:
+            combined.ignore_stats = _merge_stats(combined.ignore_stats, result.ignore_stats)
+        if result.dedup_stats:
+            combined.dedup_stats = _merge_stats(combined.dedup_stats, result.dedup_stats)
+
+    if cfg.enable_dedup and (include_scan or include_terms or include_refs):
+        click.echo("  🧩 跨模块去重...")
+        deduped, dedup_stats = deduplicate_issues(combined.issues)
+        combined.issues = deduped
+        combined.dedup_stats = _merge_stats(combined.dedup_stats, dedup_stats)
 
     combined.end_time = _time.time()
     combined.sort_issues()
@@ -609,12 +796,27 @@ def report_cmd(
         sys.exit(1)
 
 
+def _merge_stats(base: Optional[dict], extra: dict) -> dict:
+    """合并两个统计字典（累加数值）"""
+    if base is None:
+        base = {}
+    for k, v in extra.items():
+        if isinstance(v, dict):
+            base[k] = _merge_stats(base.get(k, {}), v)
+        elif isinstance(v, int):
+            base[k] = base.get(k, 0) + v
+        else:
+            base[k] = v
+    return base
+
+
 # ==================== 辅助命令 ====================
 
-@main.command("init-config", help="⚙️  在当前目录生成默认配置文件")
+@main.command("init-config", help="⚙️  在当前目录生成默认配置文件和示例文件")
 @click.option("-f", "--force", is_flag=True, help="覆盖已存在的配置文件")
 @click.option("-t", "--with-terms", is_flag=True, help="同时创建示例术语清单")
-def init_config(force: bool, with_terms: bool):
+@click.option("-i", "--with-ignore", is_flag=True, help="同时创建示例忽略规则文件")
+def init_config(force: bool, with_terms: bool, with_ignore: bool):
     """生成默认配置文件"""
     cfg_path = Path.cwd() / ".doccheck.yaml"
     if cfg_path.exists() and not force:
@@ -631,23 +833,65 @@ def init_config(force: bool, with_terms: bool):
             click.echo(f"⚠️  术语清单已存在: {terms_path}")
         else:
             sample_terms = TermList()
-            from .config import TermDefinition
             sample_terms.add(TermDefinition(
-                canonical="张三",
+                canonical="李明轩",
                 category="character",
-                aliases=["小张", "张先生"],
-                description="男主角",
+                aliases=["明轩", "轩哥", "李教授"],
+                allowed_variants=["李明軒"],
+                forbidden_writings=["李明暄", "李鸣轩"],
+                description="男主角，年轻的考古学教授",
+                severity="warning",
+                report_aliases=False,
+            ))
+            sample_terms.add(TermDefinition(
+                canonical="云隐城",
+                category="location",
+                aliases=["云隐", "古城"],
+                forbidden_writings=["云影城"],
+                description="故事主要发生地，千年古城",
                 severity="warning",
             ))
             sample_terms.add(TermDefinition(
-                canonical="北京市",
-                category="location",
-                aliases=["北京", "京城"],
-                description="故事背景城市",
-                severity="warning",
+                canonical="龙纹玉佩",
+                category="proper_noun",
+                aliases=["玉佩"],
+                forbidden_writings=["龙纹玉配", "龙文玉佩"],
+                description="贯穿全文的关键道具",
+                severity="error",
+                report_aliases=True,
             ))
             save_terms(sample_terms, terms_path)
             click.echo(f"✅ 已创建示例术语清单: {terms_path}")
+
+    if with_ignore:
+        ignore_path = Path.cwd() / DEFAULT_IGNORE_FILENAME
+        if ignore_path.exists() and not force:
+            click.echo(f"⚠️  忽略规则文件已存在: {ignore_path}")
+        else:
+            sample_ignore = IgnoreRules()
+            add_ignore_rule(
+                sample_ignore,
+                pattern="chapter_05.md",
+                rule_type="substring",
+                description="跳过第5章的所有链接检查（草稿未完成）",
+                issue_types=["broken_link", "missing_image_alt"],
+            )
+            add_ignore_rule(
+                sample_ignore,
+                pattern="^附件\\d+",
+                rule_type="regex",
+                description="忽略附件类文档的术语检查",
+                issue_types=["term_alias_found", "term_forbidden"],
+            )
+            add_ignore_rule(
+                sample_ignore,
+                pattern="旧版本链接",
+                rule_type="substring",
+                description="确认保留的历史引用",
+                issue_types=["broken_link"],
+            )
+            save_ignore_rules(sample_ignore, ignore_path)
+            click.echo(f"✅ 已创建示例忽略规则文件: {ignore_path}")
 
 
 if __name__ == "__main__":

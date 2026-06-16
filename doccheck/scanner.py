@@ -2,22 +2,24 @@
 from __future__ import annotations
 
 import re
+import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .config import CheckConfig, TermList
+from .config import CheckConfig, TermList, IgnoreRules, load_ignore_rules
 from .document import Document, Heading, find_documents, load_document
 from .utils import (
+    ChapterFilter,
     CheckResult,
     FirstOccurrence,
     Issue,
     IssueType,
     Severity,
     SuspectedSynonym,
+    deduplicate_issues,
     extract_cjk_names,
     find_similar_strings,
-    in_chapter_range,
     is_recently_modified,
     string_similarity,
 )
@@ -26,13 +28,25 @@ from .utils import (
 class BaseScanner:
     """基础扫描器 - 负责加载文档并执行基础检查"""
 
-    def __init__(self, config: Optional[CheckConfig] = None, terms: Optional[TermList] = None):
+    def __init__(
+        self,
+        config: Optional[CheckConfig] = None,
+        terms: Optional[TermList] = None,
+        ignore_rules: Optional[IgnoreRules] = None,
+    ):
         self.config = config or CheckConfig()
         self.terms = terms or TermList()
+        self.ignore_rules = ignore_rules
+        self._chapter_filter = ChapterFilter.parse(self.config.chapter_filter_str)
         self._heading_index: Dict[Tuple[str, int], List[Tuple[Path, int]]] = defaultdict(list)
         self._chapter_numbers: Dict[int, List[Path]] = defaultdict(list)
         self._all_documents: List[Document] = []
         self._term_occurrences: Dict[str, List[Tuple[Path, int, str]]] = defaultdict(list)
+        self._all_issues_before_filter: List[Issue] = []
+
+    @property
+    def chapter_filter(self) -> ChapterFilter:
+        return self._chapter_filter
 
     def load_documents(self, root: Path) -> List[Document]:
         """加载目录下的所有文档"""
@@ -51,7 +65,7 @@ class BaseScanner:
             except Exception as e:
                 print(f"警告: 无法加载文件 {fp}: {e}")
                 continue
-            if not in_chapter_range(doc.chapter_index, self.config.chapter_range):
+            if not self._chapter_filter.matches(doc.chapter_index):
                 continue
             documents.append(doc)
         self._all_documents = documents
@@ -64,7 +78,7 @@ class BaseScanner:
 
         documents = self.load_documents(root)
         if not documents:
-            result.end_time = __import__("time").time()
+            result.end_time = time.time()
             return result
 
         for doc in documents:
@@ -75,7 +89,20 @@ class BaseScanner:
         self._check_duplicate_headings(result)
         self._analyze_terms(result)
 
-        result.end_time = __import__("time").time()
+        raw_issues = list(self._all_issues_before_filter) + list(result.issues)
+
+        if self.config.enable_dedup:
+            deduped, dedup_stats = deduplicate_issues(raw_issues)
+            result.dedup_stats = dedup_stats
+            raw_issues = deduped
+
+        if self.config.enable_ignore and self.ignore_rules is not None:
+            kept, ignore_stats = self.ignore_rules.filter_issues(raw_issues)
+            result.ignore_stats = ignore_stats
+            raw_issues = kept
+
+        result.issues = raw_issues
+        result.end_time = time.time()
         result.sort_issues()
         return result
 
@@ -112,7 +139,7 @@ class BaseScanner:
         for num, files in self._chapter_numbers.items():
             if len(files) > 1:
                 file_list = ", ".join(str(f) for f in files)
-                result.add_issue(Issue(
+                self._all_issues_before_filter.append(Issue(
                     type=IssueType.CHAPTER_NUMBER_DUPLICATE,
                     severity=Severity.ERROR,
                     message=f"章节编号重复: 第{num}章出现在多个文件中",
@@ -137,7 +164,7 @@ class BaseScanner:
             if next_num:
                 next_files = ", ".join(str(f) for f in self._chapter_numbers[next_num])
                 ctx_parts.append(f"后一章({next_num}): {next_files}")
-            result.add_issue(Issue(
+            self._all_issues_before_filter.append(Issue(
                 type=IssueType.CHAPTER_NUMBER_GAP,
                 severity=Severity.WARNING,
                 message=f"章节编号缺失: 缺少第{miss}章",
@@ -157,7 +184,7 @@ class BaseScanner:
             display_text = text if len(text) <= 30 else text[:27] + "..."
             loc_list = "; ".join(f"{f}:{ln}" for f, ln in locations)
             first_file, first_line = locations[0]
-            result.add_issue(Issue(
+            self._all_issues_before_filter.append(Issue(
                 type=IssueType.DUPLICATE_HEADING,
                 severity=Severity.WARNING if level <= 3 else Severity.INFO,
                 message=f"重复标题 (H{level}): \"{display_text}\" 出现了{len(locations)}次",
@@ -165,7 +192,12 @@ class BaseScanner:
                 line_number=first_line,
                 context=loc_list,
                 suggestion="考虑给重复标题添加限定词或重新组织结构以避免歧义",
-                metadata={"heading": text, "level": level, "count": len(locations)},
+                metadata={
+                    "heading": text,
+                    "level": level,
+                    "count": len(locations),
+                    "all_locations": [(str(f), ln) for f, ln in locations],
+                },
             ))
 
     def _collect_terms(self, doc: Document) -> None:
@@ -173,14 +205,12 @@ class BaseScanner:
         text = doc.content
         cjk_names = extract_cjk_names(text)
 
-        variant_map = self.terms.all_variants()
-        for canonical, _term_def in variant_map.items():
-            self._find_term_occurrences(doc, canonical)
-            for alias in _term_def.aliases:
-                self._find_term_occurrences(doc, alias)
+        known_forms = self.terms.all_known_forms()
+        for form in known_forms.keys():
+            self._find_term_occurrences(doc, form)
 
         for name in cjk_names:
-            if name.lower() not in variant_map:
+            if name.lower() not in {k.lower() for k in known_forms.keys()}:
                 self._find_term_occurrences(doc, name)
 
         uppercase_pattern = re.compile(r"\b[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){1,3}\b")
@@ -194,7 +224,6 @@ class BaseScanner:
         if not term or len(term) < 2:
             return
         pattern = re.compile(re.escape(term))
-        line_idx = 0
         for line_no, line in enumerate(doc.lines, 1):
             for match in pattern.finditer(line):
                 start = max(0, match.start() - 10)
@@ -207,7 +236,6 @@ class BaseScanner:
     def _analyze_terms(self, result: CheckResult) -> None:
         """分析收集到的术语"""
         occurrence_counts: Dict[str, int] = {}
-        variant_map = self.terms.all_variants()
 
         for term, occurrences in self._term_occurrences.items():
             if not occurrences:
@@ -221,41 +249,93 @@ class BaseScanner:
                 context=first_ctx,
             )
 
-        for term, occurrences in self._term_occurrences.items():
-            term_def = variant_map.get(term)
-            if term_def and term != term_def.canonical and term not in term_def.allowed_variants:
-                for file_path, line_no, ctx in occurrences[:5]:
-                    result.add_issue(Issue(
-                        type=IssueType.TERM_ALIAS_FOUND,
-                        severity=Severity.WARNING,
-                        message=f"术语不统一: 使用了别名 \"{term}\"，标准写法为 \"{term_def.canonical}\"",
-                        file_path=file_path,
-                        line_number=line_no,
-                        context=ctx,
-                        suggestion=f"将 \"{term}\" 替换为标准写法 \"{term_def.canonical}\"",
-                        metadata={
-                            "alias": term,
-                            "canonical": term_def.canonical,
-                            "category": term_def.category,
-                        },
-                    ))
+        checkable = self.terms.all_checkable_variants()
+
+        for variant, variant_info in checkable.items():
+            occurrences = self._term_occurrences.get(variant, [])
+            if not occurrences:
+                continue
+
+            severity_map = {
+                "error": Severity.ERROR,
+                "warning": Severity.WARNING,
+                "info": Severity.INFO,
+                "suggestion": Severity.SUGGESTION,
+            }
+            sev = severity_map.get(variant_info.severity, Severity.WARNING)
+
+            if variant_info.variant_type == "forbidden":
+                issue_type = IssueType.TERM_FORBIDDEN
+                label = "禁用写法"
+            elif variant_info.variant_type == "allowed":
+                issue_type = IssueType.TERM_ALIAS_FOUND
+                label = "允许变体"
+            elif variant_info.variant_type == "alias":
+                issue_type = IssueType.TERM_ALIAS_FOUND
+                label = "别名"
+            else:
+                issue_type = IssueType.TERM_ALIAS_FOUND
+                label = "非标准写法"
+
+            needs_flag = "必须修改" if variant_info.needs_edit else "建议统一"
+
+            total = len(occurrences)
+            msg = f"术语{label}: \"{variant}\" {needs_flag} → 标准写法为 \"{variant_info.canonical}\""
+            if total > 1:
+                msg += f"（共{total}处）"
+
+            first_file, first_line, first_ctx = occurrences[0]
+
+            all_locs = "; ".join(
+                f"{Path(fp).name}:{ln}" for fp, ln, _ in occurrences[:5]
+            )
+
+            suggestion = f"将 \"{variant}\" 替换为标准写法 \"{variant_info.canonical}\""
+            if variant_info.description:
+                suggestion += f"（{variant_info.description}）"
+
+            self._all_issues_before_filter.append(Issue(
+                type=issue_type,
+                severity=sev,
+                message=msg,
+                file_path=first_file,
+                line_number=first_line,
+                context=all_locs if total > 1 else first_ctx,
+                suggestion=suggestion,
+                metadata={
+                    "variant": variant,
+                    "canonical": variant_info.canonical,
+                    "category": variant_info.category,
+                    "variant_type": variant_info.variant_type,
+                    "needs_edit": variant_info.needs_edit,
+                    "total_occurrences": total,
+                    "all_locations": [(str(fp), ln) for fp, ln, _ in occurrences],
+                },
+            ))
 
         all_terms = [t for t, c in occurrence_counts.items() if c >= 2]
-        similar_pairs = find_similar_strings(all_terms, threshold=0.75, min_length=2)
+        similar_pairs = find_similar_strings(all_terms, threshold=0.8, min_length=2)
 
         synonym_groups: Dict[str, List[str]] = {}
         processed = set()
+        known_keys = set()
+        for variant in checkable.keys():
+            known_keys.add(variant.lower())
+        for tdef in self.terms.terms.values():
+            known_keys.add(tdef.canonical.lower())
+
         for a, b, sim in similar_pairs:
             if a in processed or b in processed:
                 continue
-            def_a = variant_map.get(a)
-            def_b = variant_map.get(b)
-            if def_a and def_b and def_a.canonical == def_b.canonical:
-                continue
-            if def_a and b in (def_a.aliases + [def_a.canonical]):
-                continue
-            if def_b and a in (def_b.aliases + [def_b.canonical]):
-                continue
+            if a.lower() in known_keys or b.lower() in known_keys:
+                info_a = self.terms.classify_any_variant(a)
+                info_b = self.terms.classify_any_variant(b)
+                if info_a and info_b and info_a.canonical.lower() == info_b.canonical.lower():
+                    continue
+                if info_a and info_a.variant_type in ("canonical", "substring_canonical"):
+                    continue
+                if info_b and info_b.variant_type in ("canonical", "substring_canonical"):
+                    continue
             key = min(a.lower(), b.lower())
             if key not in synonym_groups:
                 synonym_groups[key] = [a, b]
@@ -289,8 +369,10 @@ class BaseScanner:
             for t in terms_list:
                 if t == canonical_candidate:
                     continue
-                for file_path, line_no, ctx in self._term_occurrences.get(t, [])[:3]:
-                    result.add_issue(Issue(
+                occs = self._term_occurrences.get(t, [])
+                if occs:
+                    file_path, line_no, ctx = occs[0]
+                    self._all_issues_before_filter.append(Issue(
                         type=IssueType.SUSPECTED_SYNONYM,
                         severity=Severity.INFO,
                         message=f"疑似同义词: \"{t}\" 与 \"{canonical_candidate}\" 可能是同一概念的不同写法",

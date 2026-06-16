@@ -3,20 +3,22 @@ from __future__ import annotations
 
 import os
 import re
+import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
 
 from urllib.parse import unquote, urlparse
 
-from .config import CheckConfig
+from .config import CheckConfig, IgnoreRules
 from .document import Document, ImageRef, LinkRef, find_documents, load_document
 from .utils import (
+    ChapterFilter,
     CheckResult,
     Issue,
     IssueType,
     Severity,
-    in_chapter_range,
+    deduplicate_issues,
     is_recently_modified,
 )
 
@@ -24,11 +26,18 @@ from .utils import (
 class ReferenceChecker:
     """引用检查器"""
 
-    def __init__(self, config: Optional[CheckConfig] = None):
+    def __init__(
+        self,
+        config: Optional[CheckConfig] = None,
+        ignore_rules: Optional[IgnoreRules] = None,
+    ):
         self.config = config or CheckConfig()
+        self.ignore_rules = ignore_rules
+        self._chapter_filter = ChapterFilter.parse(self.config.chapter_filter_str)
         self._all_files: Set[Path] = set()
         self._all_anchors: Dict[Path, Set[str]] = defaultdict(set)
         self._all_documents: List[Document] = []
+        self._all_issues_before_filter: List[Issue] = []
 
     def check(self, root: Path) -> CheckResult:
         """执行完整的引用检查"""
@@ -42,7 +51,20 @@ class ReferenceChecker:
             self._check_document_images(doc, result)
             self._check_document_links(doc, root, result)
 
-        result.end_time = __import__("time").time()
+        raw_issues = list(self._all_issues_before_filter) + list(result.issues)
+
+        if self.config.enable_dedup:
+            deduped, dedup_stats = deduplicate_issues(raw_issues)
+            result.dedup_stats = dedup_stats
+            raw_issues = deduped
+
+        if self.config.enable_ignore and self.ignore_rules is not None:
+            kept, ignore_stats = self.ignore_rules.filter_issues(raw_issues)
+            result.ignore_stats = ignore_stats
+            raw_issues = kept
+
+        result.issues = raw_issues
+        result.end_time = time.time()
         result.sort_issues()
         return result
 
@@ -71,7 +93,7 @@ class ReferenceChecker:
                 doc = load_document(fp, encoding=self.config.encoding)
             except Exception:
                 continue
-            if not in_chapter_range(doc.chapter_index, self.config.chapter_range):
+            if not self._chapter_filter.matches(doc.chapter_index):
                 continue
             documents.append(doc)
             self._index_anchors(doc)
@@ -101,7 +123,7 @@ class ReferenceChecker:
         """检查文档中的图片"""
         for img in doc.images:
             if not img.has_caption:
-                result.add_issue(Issue(
+                self._all_issues_before_filter.append(Issue(
                     type=IssueType.MISSING_IMAGE_ALT,
                     severity=Severity.WARNING,
                     message=f"图片缺少说明文字 (alt text)",
@@ -145,7 +167,7 @@ class ReferenceChecker:
                 pass
 
         if not exists:
-            result.add_issue(Issue(
+            self._all_issues_before_filter.append(Issue(
                 type=IssueType.BROKEN_LINK,
                 severity=Severity.ERROR,
                 message=f"图片文件不存在: {img.src}",
@@ -174,7 +196,7 @@ class ReferenceChecker:
         anchors = self._all_anchors.get(doc.file_path.resolve(), set())
         normalized_anchor = self._normalize_anchor(anchor)
         if normalized_anchor not in anchors and anchor not in anchors:
-            result.add_issue(Issue(
+            self._all_issues_before_filter.append(Issue(
                 type=IssueType.BROKEN_LINK,
                 severity=Severity.WARNING,
                 message=f"锚点链接可能失效: #{anchor}",
@@ -216,7 +238,7 @@ class ReferenceChecker:
                 pass
 
         if resolved_path is None:
-            result.add_issue(Issue(
+            self._all_issues_before_filter.append(Issue(
                 type=IssueType.BROKEN_LINK,
                 severity=Severity.ERROR,
                 message=f"引用文件不存在: {target}",
@@ -233,7 +255,7 @@ class ReferenceChecker:
             normalized_anchor = self._normalize_anchor(anchor)
             file_anchors = self._all_anchors.get(resolved_path, set())
             if file_anchors and normalized_anchor not in file_anchors and anchor not in file_anchors:
-                result.add_issue(Issue(
+                self._all_issues_before_filter.append(Issue(
                     type=IssueType.BROKEN_LINK,
                     severity=Severity.WARNING,
                     message=f"跨文档锚点可能失效: {target}#{anchor}",
@@ -280,7 +302,8 @@ class ReferenceChecker:
             self._check_document_images(doc, temp_result)
             self._check_document_links(doc, root, temp_result)
 
-        for issue in temp_result.issues:
+        all_issues = list(self._all_issues_before_filter) + list(temp_result.issues)
+        for issue in all_issues:
             if issue.type == IssueType.MISSING_IMAGE_ALT:
                 stats["images_without_alt"] += 1
             elif issue.type == IssueType.BROKEN_LINK:

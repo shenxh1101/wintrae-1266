@@ -5,16 +5,17 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .config import CheckConfig, TermDefinition, TermList, save_terms
+from .config import CheckConfig, IgnoreRules, TermDefinition, TermList, save_terms
 from .document import Document, find_documents, load_document
 from .scanner import BaseScanner
 from .utils import (
+    ChapterFilter,
     CheckResult,
     FirstOccurrence,
     Issue,
     IssueType,
     Severity,
-    in_chapter_range,
+    deduplicate_issues,
     is_recently_modified,
 )
 
@@ -22,9 +23,15 @@ from .utils import (
 class TermManager:
     """术语管理器"""
 
-    def __init__(self, terms: Optional[TermList] = None, config: Optional[CheckConfig] = None):
+    def __init__(
+        self,
+        terms: Optional[TermList] = None,
+        config: Optional[CheckConfig] = None,
+        ignore_rules: Optional[IgnoreRules] = None,
+    ):
         self.terms = terms or TermList()
         self.config = config or CheckConfig()
+        self.ignore_rules = ignore_rules
 
     def add_term(
         self,
@@ -34,6 +41,8 @@ class TermManager:
         description: str = "",
         severity: str = "warning",
         allowed_variants: Optional[List[str]] = None,
+        forbidden_writings: Optional[List[str]] = None,
+        report_aliases: bool = False,
     ) -> TermDefinition:
         """添加术语"""
         term_def = TermDefinition(
@@ -43,6 +52,8 @@ class TermManager:
             description=description,
             severity=severity,
             allowed_variants=allowed_variants or [],
+            forbidden_writings=forbidden_writings or [],
+            report_aliases=report_aliases,
         )
         self.terms.add(term_def)
         return term_def
@@ -63,6 +74,8 @@ class TermManager:
         description: Optional[str] = None,
         severity: Optional[str] = None,
         allowed_variants: Optional[List[str]] = None,
+        forbidden_writings: Optional[List[str]] = None,
+        report_aliases: Optional[bool] = None,
     ) -> Optional[TermDefinition]:
         """更新术语"""
         existing = self.terms.get(canonical)
@@ -78,6 +91,10 @@ class TermManager:
             existing.severity = severity
         if allowed_variants is not None:
             existing.allowed_variants = allowed_variants
+        if forbidden_writings is not None:
+            existing.forbidden_writings = forbidden_writings
+        if report_aliases is not None:
+            existing.report_aliases = report_aliases
         return existing
 
     def list_terms(self, category: Optional[str] = None) -> List[TermDefinition]:
@@ -96,84 +113,24 @@ class TermManager:
         return save_path
 
     def check_consistency(self, root: Path) -> CheckResult:
-        """检查术语使用一致性"""
-        scanner = BaseScanner(config=self.config, terms=self.terms)
+        """检查术语使用一致性（复用BaseScanner的完整检查+术语分析）"""
+        scanner = BaseScanner(
+            config=self.config,
+            terms=self.terms,
+            ignore_rules=self.ignore_rules,
+        )
         result = scanner.scan(root)
-
-        file_paths = find_documents(
-            root,
-            extensions=self.config.extensions,
-            exclude_patterns=self.config.exclude_patterns,
-        )
-        documents: List[Document] = []
-        for fp in file_paths:
-            if self.config.modified_within_days is not None:
-                if not is_recently_modified(fp, self.config.modified_within_days):
-                    continue
-            try:
-                doc = load_document(fp, encoding=self.config.encoding)
-            except Exception:
-                continue
-            if not in_chapter_range(doc.chapter_index, self.config.chapter_range):
-                continue
-            documents.append(doc)
-
-        variant_map = self.terms.all_variants()
-        term_issues: Dict[str, Dict[Path, List[Tuple[int, str]]]] = defaultdict(
-            lambda: defaultdict(list)
-        )
-
-        import re
-        for doc in documents:
-            for variant, term_def in variant_map.items():
-                if variant == term_def.canonical or variant in term_def.allowed_variants:
-                    continue
-                pattern = re.compile(re.escape(variant))
-                for line_no, line in enumerate(doc.lines, 1):
-                    for match in pattern.finditer(line):
-                        start = max(0, match.start() - 15)
-                        end = min(len(line), match.end() + 15)
-                        context = line[start:end].strip()
-                        term_issues[variant][doc.file_path].append((line_no, context))
-
-        for variant, file_occurrences in term_issues.items():
-            term_def = variant_map[variant]
-            total = sum(len(occs) for occs in file_occurrences.values())
-            if total == 0:
-                continue
-            severity_map = {
-                "error": Severity.ERROR,
-                "warning": Severity.WARNING,
-                "info": Severity.INFO,
-            }
-            issue_severity = severity_map.get(term_def.severity, Severity.WARNING)
-            for file_path, occurrences in file_occurrences.items():
-                for line_no, ctx in occurrences[:10]:
-                    result.add_issue(Issue(
-                        type=IssueType.TERM_INCONSISTENT,
-                        severity=issue_severity,
-                        message=f"术语不一致: \"{variant}\" → 应使用标准写法 \"{term_def.canonical}\" [{term_def.category}]",
-                        file_path=file_path,
-                        line_number=line_no,
-                        context=ctx,
-                        suggestion=f"统一替换为 \"{term_def.canonical}\"" + (
-                            f"（{term_def.description}）" if term_def.description else ""
-                        ),
-                        metadata={
-                            "variant": variant,
-                            "canonical": term_def.canonical,
-                            "category": term_def.category,
-                            "total_occurrences_in_file": len(occurrences),
-                            "total_occurrences": total,
-                        },
-                    ))
 
         result.sort_issues()
         return result
 
     def get_term_stats(self, root: Path) -> Dict[str, Dict]:
-        """获取术语统计信息"""
-        scanner = BaseScanner(config=self.config, terms=self.terms)
+        """获取术语统计信息，区分不同变体类型"""
+        scanner = BaseScanner(
+            config=self.config,
+            terms=self.terms,
+            ignore_rules=self.ignore_rules,
+        )
         scanner.load_documents(root)
         result = scanner.scan(root)
 
@@ -182,6 +139,13 @@ class TermManager:
                 "total_terms": len(self.terms.terms),
                 "by_category": {},
                 "total_issues": len(result.issues),
+                "by_variant_type": {
+                    "canonical": 0,
+                    "alias": 0,
+                    "allowed": 0,
+                    "forbidden": 0,
+                    "untracked": 0,
+                },
             },
             "terms": {},
             "first_occurrences": {},
@@ -190,34 +154,58 @@ class TermManager:
         for cat in self.terms.categories:
             stats["summary"]["by_category"][cat] = len(self.terms.get_by_category(cat))
 
-        variant_map = self.terms.all_variants()
         canonical_counts: Dict[str, int] = defaultdict(int)
         alias_counts: Dict[str, Dict[str, int]] = defaultdict(dict)
+        allowed_counts: Dict[str, Dict[str, int]] = defaultdict(dict)
+        forbidden_counts: Dict[str, Dict[str, int]] = defaultdict(dict)
 
         for term, occurrences in scanner._term_occurrences.items():
-            term_def = variant_map.get(term)
-            if term_def:
-                if term == term_def.canonical:
-                    canonical_counts[term_def.canonical] += len(occurrences)
-                else:
-                    alias_counts[term_def.canonical][term] = len(occurrences)
-            else:
+            info = self.terms.classify_any_variant(term)
+            if info is None:
+                stats["summary"]["by_variant_type"]["untracked"] += len(occurrences)
                 if term not in stats["terms"]:
                     stats["terms"][term] = {
                         "status": "untracked",
                         "occurrences": len(occurrences),
                     }
+                continue
+
+            canonical = info.canonical
+            vtype = info.variant_type
+            count = len(occurrences)
+
+            if vtype == "canonical":
+                canonical_counts[canonical] += count
+                stats["summary"]["by_variant_type"]["canonical"] += count
+            elif vtype == "alias":
+                alias_counts[canonical][term] = count
+                stats["summary"]["by_variant_type"]["alias"] += count
+            elif vtype == "allowed":
+                allowed_counts[canonical][term] = count
+                stats["summary"]["by_variant_type"]["allowed"] += count
+            elif vtype == "forbidden":
+                forbidden_counts[canonical][term] = count
+                stats["summary"]["by_variant_type"]["forbidden"] += count
 
         for term_def in self.terms.terms.values():
-            stats["terms"][term_def.canonical] = {
+            c = term_def.canonical
+            stats["terms"][c] = {
                 "status": "tracked",
                 "category": term_def.category,
-                "canonical_occurrences": canonical_counts.get(term_def.canonical, 0),
+                "description": term_def.description,
+                "canonical_occurrences": canonical_counts.get(c, 0),
                 "aliases": term_def.aliases,
-                "alias_occurrences": dict(alias_counts.get(term_def.canonical, {})),
+                "alias_occurrences": dict(alias_counts.get(c, {})),
+                "allowed_variants": term_def.allowed_variants,
+                "allowed_occurrences": dict(allowed_counts.get(c, {})),
+                "forbidden_writings": term_def.forbidden_writings,
+                "forbidden_occurrences": dict(forbidden_counts.get(c, {})),
+                "report_aliases": term_def.report_aliases,
                 "total_variant_occurrences": (
-                    canonical_counts.get(term_def.canonical, 0)
-                    + sum(alias_counts.get(term_def.canonical, {}).values())
+                    canonical_counts.get(c, 0)
+                    + sum(alias_counts.get(c, {}).values())
+                    + sum(allowed_counts.get(c, {}).values())
+                    + sum(forbidden_counts.get(c, {}).values())
                 ),
             }
 
@@ -235,18 +223,23 @@ class TermManager:
         suggestions = []
         occurrence_counts = result.term_stats.get("occurrence_counts", {})
 
+        known_keys = set()
+        for tdef in self.terms.terms.values():
+            known_keys.add(tdef.canonical.lower())
+            for a in tdef.aliases:
+                known_keys.add(a.lower())
+            for v in tdef.allowed_variants:
+                known_keys.add(v.lower())
+            for f in tdef.forbidden_writings:
+                known_keys.add(f.lower())
+
         for term, count in occurrence_counts.items():
             if count < min_occurrences:
                 continue
-            existing = self.terms.get(term)
-            if existing:
+            if term.lower() in known_keys:
                 continue
-            is_alias = False
-            for t in self.terms.terms.values():
-                if term in t.aliases:
-                    is_alias = True
-                    break
-            if is_alias:
+            info = self.terms.classify_any_variant(term)
+            if info is not None:
                 continue
 
             first_occ = result.first_occurrences.get(term)

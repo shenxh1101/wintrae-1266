@@ -12,75 +12,116 @@ terms:
       - 李明
       - 明轩
       - 李先生
+    allowed_variants:
+      - 李明軒
+    forbidden_writings:
+      - 李明暄
+      - 李鸣轩
     description: 故事男主角，年轻的探险家
     severity: error
+    report_aliases: false
 
   - canonical: 苏婉清
     category: character
     aliases:
       - 婉清
       - 苏小姐
+    forbidden_writings:
+      - 苏宛清
+      - 苏婉青
     description: 女主角，博学的考古学家
     severity: error
+    report_aliases: false
 
   - canonical: 王大勇
     category: character
     aliases:
       - 老王
       - 大勇
+    forbidden_writings:
+      - 王大永
     description: 经验丰富的向导
     severity: warning
+    report_aliases: false
 
   - canonical: 云隐市
     category: location
     aliases:
       - 云隐
+    allowed_variants:
       - 云隐城
+    forbidden_writings:
+      - 云影市
+      - 云影城
     description: 故事发生的主要城市
     severity: error
+    report_aliases: false
 
   - canonical: 苍梧山
     category: location
     aliases:
       - 苍梧
+    allowed_variants:
       - 苍梧山脉
+    forbidden_writings:
+      - 仓吾山
     description: 神秘的古老山脉
     severity: warning
+    report_aliases: false
 
   - canonical: 碧落湖
     category: location
     aliases:
       - 碧落
+    forbidden_writings:
+      - 璧落湖
     description: 山脚下的碧蓝湖泊
     severity: warning
+    report_aliases: true
 
   - canonical: 龙渊古剑
     category: proper_noun
     aliases:
       - 龙渊剑
+    allowed_variants:
       - 龙渊
+    forbidden_writings:
+      - 龙圆古剑
+      - 龙源古剑
     description: 传说中的古代神剑
     severity: error
+    report_aliases: true
 
   - canonical: 九天玄玉
     category: proper_noun
     aliases:
       - 玄玉
       - 九天玉
+    forbidden_writings:
+      - 九天旋玉
+      - 九天玄雨
     description: 蕴含神秘力量的玉石
     severity: error
+    report_aliases: false
 
   - canonical: 星辰之力
     category: proper_noun
     aliases:
       - 星力
+    forbidden_writings:
+      - 星晨之力
     description: 来自星辰的神秘能量
     severity: warning
+    report_aliases: false
 
   - canonical: 古韵博物院
     category: organization
     aliases:
       - 博物院
+    allowed_variants:
       - 古韵博物馆
+    forbidden_writings:
+      - 古蕴博物院
     description: 收藏古代文物的研究机构
     severity: warning
+    report_aliases: false
