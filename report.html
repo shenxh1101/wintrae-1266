@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>文档一致性检查报告</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem; background: #f5f5f5; color: #333; }
+.container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+h1 { color: #1a1a1a; margin-bottom: 1rem; border-bottom: 3px solid #3b82f6; padding-bottom: 0.5rem; }
+h2 { color: #1a1a1a; margin: 1.5rem 0 1rem; padding-left: 0.75rem; border-left: 4px solid #3b82f6; }
+.meta { background: #f0f9ff; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; }
+.meta p { margin: 0.25rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.stat-card { padding: 1rem; border-radius: 6px; text-align: center; color: #fff; }
+.stat-card.error { background: #ef4444; }
+.stat-card.warning { background: #f59e0b; }
+.stat-card.info { background: #3b82f6; }
+.stat-card.suggestion { background: #10b981; }
+.stat-card .num { font-size: 2rem; font-weight: bold; }
+.stat-card .label { font-size: 0.9rem; opacity: 0.9; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+th { background: #f9fafb; font-weight: 600; color: #374151; }
+tr:hover { background: #f9fafb; }
+tr.sev-error { background: #fef2f2; }
+tr.sev-warning { background: #fffbeb; }
+.badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: #fff; }
+.badge-error { background: #ef4444; }
+.badge-warning { background: #f59e0b; }
+.badge-info { background: #3b82f6; }
+.badge-suggestion { background: #10b981; }
+code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.85rem; }
+ul.files-list { list-style: none; padding-left: 0; }
+ul.files-list li { padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }
+.empty { text-align: center; padding: 2rem; color: #9ca3af; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>📋 文档一致性检查报告</h1>
+    <div class="meta">
+        <p><strong>生成时间:</strong> 2026-06-17 02:19:09</p>
+        <p><strong>扫描文件数:</strong> 3</p>
+        <p><strong>耗时:</strong> 37ms</p>
+    </div>
+
+    <h2>📊 问题统计</h2>
+    <div class="stats-grid">
+        <div class="stat-card error"><div class="num">71</div><div class="label">错误</div></div>
+        <div class="stat-card warning"><div class="num">210</div><div class="label">警告</div></div>
+        <div class="stat-card info"><div class="num">0</div><div class="label">信息</div></div>
+        <div class="stat-card suggestion"><div class="num">0</div><div class="label">建议</div></div>
+    </div>
+    <p style="text-align: right; margin-top: 0.5rem;"><strong>总计: 281 个问题</strong></p>
+
+    <h2>🔍 问题详情</h2>
+    <table><thead><tr><th>#</th><th>级别</th><th>类型</th><th>描述</th><th>位置</th><th>建议</th></tr></thead><tbody>
+            <tr class="sev-error">
+                <td>1</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;云隐&quot; → 应使用标准写法 &quot;云隐市&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>统一替换为 &quot;云隐市&quot;（故事发生的主要城市）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>2</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>3</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>4</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:7</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>5</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:9</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>6</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>7</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>8</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>9</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊剑&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>10</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>11</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>12</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李先生&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>13</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>14</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苏小姐&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>15</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>16</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>17</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>18</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>引用失效</td>
+                <td>图片文件不存在: ./images/map_unknown.png</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:27</code></td>
+                <td>确认图片路径是否正确，或创建图片文件 ./images/map_unknown.png</td>
+            </tr>
+            <tr class="sev-error">
+                <td>19</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>20</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;云隐&quot; → 应使用标准写法 &quot;云隐市&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:31</code></td>
+                <td>统一替换为 &quot;云隐市&quot;（故事发生的主要城市）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>21</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苏小姐&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>22</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;云隐&quot; → 应使用标准写法 &quot;云隐市&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>统一替换为 &quot;云隐市&quot;（故事发生的主要城市）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>23</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;云隐城&quot; → 应使用标准写法 &quot;云隐市&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>统一替换为 &quot;云隐市&quot;（故事发生的主要城市）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>24</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>25</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;九天玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>26</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:3</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>27</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:3</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>28</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:3</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>29</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苏小姐&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:7</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>30</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:17</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>31</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:17</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>32</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:19</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>33</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:23</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>34</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:23</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>35</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:25</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>36</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:29</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>37</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:35</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>38</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:35</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>39</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:44</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>40</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:44</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>41</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:46</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>42</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:46</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>43</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:46</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>44</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李先生&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:54</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>45</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>引用失效</td>
+                <td>引用文件不存在: ../appendix/diary_1994.md</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:58</code></td>
+                <td>确认文件路径是否正确，目标文件可能已被移动或删除</td>
+            </tr>
+            <tr class="sev-error">
+                <td>46</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:60</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>47</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:60</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>48</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:60</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>49</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:5</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>50</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:5</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>51</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:5</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>52</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苏小姐&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:7</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>53</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:11</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>54</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:17</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>55</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>56</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:21</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>57</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;玄玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:21</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>58</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:39</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>59</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>60</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊剑&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>61</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>62</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;九天玉&quot; → 应使用标准写法 &quot;九天玄玉&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>统一替换为 &quot;九天玄玉&quot;（蕴含神秘力量的玉石）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>63</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊剑&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:51</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>64</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:51</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>65</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:57</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>66</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;婉清&quot; → 应使用标准写法 &quot;苏婉清&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:61</code></td>
+                <td>统一替换为 &quot;苏婉清&quot;（女主角，博学的考古学家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>67</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;李明&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:69</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>68</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;明轩&quot; → 应使用标准写法 &quot;李明轩&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:69</code></td>
+                <td>统一替换为 &quot;李明轩&quot;（故事男主角，年轻的探险家）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>69</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊剑&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:69</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>70</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;龙渊&quot; → 应使用标准写法 &quot;龙渊古剑&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:69</code></td>
+                <td>统一替换为 &quot;龙渊古剑&quot;（传说中的古代神剑）</td>
+            </tr>
+            <tr class="sev-error">
+                <td>71</td>
+                <td><span class="badge badge-error">错误</span></td>
+                <td>引用失效</td>
+                <td>引用文件不存在: ./chapter_05.md</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:71</code></td>
+                <td>确认文件路径是否正确，目标文件可能已被移动或删除</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>72</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>73</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>74</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>75</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>76</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>77</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>78</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>79</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>80</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:3</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>81</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>82</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>83</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>84</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>85</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>86</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>87</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>88</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>89</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>90</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>91</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>92</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>93</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>94</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>95</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>96</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>97</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>98</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>99</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>100</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>101</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>102</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>103</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>104</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;碧落&quot; → 应使用标准写法 &quot;碧落湖&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>统一替换为 &quot;碧落湖&quot;（山脚下的碧蓝湖泊）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>105</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;博物院&quot; → 应使用标准写法 &quot;古韵博物院&quot; [organization]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:5</code></td>
+                <td>统一替换为 &quot;古韵博物院&quot;（收藏古代文物的研究机构）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>106</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:7</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>107</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:7</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>108</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:7</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>109</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:7</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>110</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:9</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>111</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:9</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>112</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>113</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>114</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>115</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:11</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>116</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>117</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>118</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>119</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>120</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>121</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>122</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>123</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>124</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>125</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>126</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>127</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>128</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>129</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>130</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>131</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>132</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>133</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>134</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>135</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>136</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>137</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>138</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>139</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:13</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>140</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>141</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>142</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>143</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>144</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>145</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>146</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>147</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>148</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>149</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>150</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>151</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李先生&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;李先生&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>152</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>153</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:17</code></td>
+                <td>将 &quot;龙渊&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>154</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>155</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>156</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>157</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>158</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>159</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>160</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>161</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>162</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>163</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>164</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;老王&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>165</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:19</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>166</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>167</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>168</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>169</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>170</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>171</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>172</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>173</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>174</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>175</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>176</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>177</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>178</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>179</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>180</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>181</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>182</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>183</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>184</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>185</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>186</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>187</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>188</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧山脉&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:21</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>189</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;准备出发&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:23</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>190</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;准备出发&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:23</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>191</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>192</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>193</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>194</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>195</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>196</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>197</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;李明&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;李明&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>198</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>199</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>200</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;大勇&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;大勇&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>201</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>202</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>203</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>204</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;博物院&quot; → 应使用标准写法 &quot;古韵博物院&quot; [organization]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:25</code></td>
+                <td>统一替换为 &quot;古韵博物院&quot;（收藏古代文物的研究机构）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>205</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>206</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>207</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>208</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;明轩&quot;，标准写法为 &quot;李明轩&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;明轩&quot; 替换为标准写法 &quot;李明轩&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>209</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>210</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;碧落&quot;，标准写法为 &quot;碧落湖&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>将 &quot;碧落&quot; 替换为标准写法 &quot;碧落湖&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>211</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;碧落&quot; → 应使用标准写法 &quot;碧落湖&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:29</code></td>
+                <td>统一替换为 &quot;碧落湖&quot;（山脚下的碧蓝湖泊）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>212</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:31</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>213</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:31</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>214</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:31</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>215</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:31</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>216</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>217</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>218</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>219</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>220</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>221</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>222</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>223</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>224</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>225</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苏小姐&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;苏小姐&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>226</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>227</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>228</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>229</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>230</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;云隐城&quot;，标准写法为 &quot;云隐市&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;云隐城&quot; 替换为标准写法 &quot;云隐市&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>231</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;博物院&quot;，标准写法为 &quot;古韵博物院&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>将 &quot;博物院&quot; 替换为标准写法 &quot;古韵博物院&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>232</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;博物院&quot; → 应使用标准写法 &quot;古韵博物院&quot; [organization]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:37</code></td>
+                <td>统一替换为 &quot;古韵博物院&quot;（收藏古代文物的研究机构）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>233</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>234</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>235</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>236</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>237</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>238</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>239</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;婉清&quot;，标准写法为 &quot;苏婉清&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;婉清&quot; 替换为标准写法 &quot;苏婉清&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>240</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;苍梧&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>241</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>242</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>243</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>244</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>245</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_01.md:39</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>246</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>章节编号缺失</td>
+                <td>章节编号缺失: 缺少第3章</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md</code></td>
+                <td>检查是否遗漏了第3章，或者调整前后章节编号</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>247</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>章节编号缺失</td>
+                <td>章节编号缺失: 缺少第3章</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md</code></td>
+                <td>检查是否遗漏了第3章，或者调整前后章节编号</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>248</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:3</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>249</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:5</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>250</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;苍梧山脉&quot;，标准写法为 &quot;苍梧山&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:5</code></td>
+                <td>将 &quot;苍梧山脉&quot; 替换为标准写法 &quot;苍梧山&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>251</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:5</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>252</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧山脉&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:5</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>253</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:9</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>254</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;老王&quot;，标准写法为 &quot;王大勇&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:9</code></td>
+                <td>将 &quot;老王&quot; 替换为标准写法 &quot;王大勇&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>255</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;老王&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:9</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>256</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:17</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>257</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;玄玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:17</code></td>
+                <td>将 &quot;玄玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>258</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;博物院&quot; → 应使用标准写法 &quot;古韵博物院&quot; [organization]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:17</code></td>
+                <td>统一替换为 &quot;古韵博物院&quot;（收藏古代文物的研究机构）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>259</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;神秘的祠堂&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:21</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>260</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;神秘的祠堂&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:21</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>261</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:27</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>262</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;苍梧&quot; → 应使用标准写法 &quot;苍梧山&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_02.md:41</code></td>
+                <td>统一替换为 &quot;苍梧山&quot;（神秘的古老山脉）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>263</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:5</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>264</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;古城初探&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:13</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>265</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>重复标题</td>
+                <td>重复标题 (H2): &quot;古城初探&quot; 出现了2次</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:13</code></td>
+                <td>考虑给重复标题添加限定词或重新组织结构以避免歧义</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>266</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;老王&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:15</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>267</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>268</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>269</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>270</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>271</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>272</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;星力&quot;，标准写法为 &quot;星辰之力&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>将 &quot;星力&quot; 替换为标准写法 &quot;星辰之力&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>273</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;星力&quot; → 应使用标准写法 &quot;星辰之力&quot; [proper_noun]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:19</code></td>
+                <td>统一替换为 &quot;星辰之力&quot;（来自星辰的神秘能量）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>274</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;老王&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:27</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>275</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;大勇&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:37</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>276</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>277</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>278</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;龙渊剑&quot;，标准写法为 &quot;龙渊古剑&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>将 &quot;龙渊剑&quot; 替换为标准写法 &quot;龙渊古剑&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>279</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语别名</td>
+                <td>术语不统一: 使用了别名 &quot;九天玉&quot;，标准写法为 &quot;九天玄玉&quot;</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:47</code></td>
+                <td>将 &quot;九天玉&quot; 替换为标准写法 &quot;九天玄玉&quot;</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>280</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;老王&quot; → 应使用标准写法 &quot;王大勇&quot; [character]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:65</code></td>
+                <td>统一替换为 &quot;王大勇&quot;（经验丰富的向导）</td>
+            </tr>
+            <tr class="sev-warning">
+                <td>281</td>
+                <td><span class="badge badge-warning">警告</span></td>
+                <td>术语不一致</td>
+                <td>术语不一致: &quot;碧落&quot; → 应使用标准写法 &quot;碧落湖&quot; [location]</td>
+                <td><code>D:\TraeProjects\1266\docs\chapter_04.md:69</code></td>
+                <td>统一替换为 &quot;碧落湖&quot;（山脚下的碧蓝湖泊）</td>
+            </tr></tbody></table>
+
+    
+
+    <h2>📍 术语首次出现位置</h2><table><thead><tr><th>术语</th><th>文件</th><th>行号</th><th>上下文</th></tr></thead><tbody>
+            <tr>
+                <td><code>九天玄玉</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>13</td>
+                <td>：「这上面提到了**九天玄玉**，还有……**龙</td>
+            </tr>
+            <tr>
+                <td><code>九天玉</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>39</td>
+                <td>「这些资料显示，九天玉的最后一位守护者就住</td>
+            </tr>
+            <tr>
+                <td><code>云隐</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>3</td>
+                <td>苍梧山下，云隐市的春天总是来得格外</td>
+            </tr>
+            <tr>
+                <td><code>云隐城</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>37</td>
+                <td>出发当天，云隐城下着小雨。三人在车站</td>
+            </tr>
+            <tr>
+                <td><code>云隐市</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>3</td>
+                <td>苍梧山下，云隐市的春天总是来得格外早</td>
+            </tr>
+            <tr>
+                <td><code>博物院</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>有署名，只写着「古韵博物院 王大勇先生转交」。</td>
+            </tr>
+            <tr>
+                <td><code>古韵博物院</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>上没有署名，只写着「古韵博物院 王大勇先生转交」。</td>
+            </tr>
+            <tr>
+                <td><code>大勇</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>写着「古韵博物院 王大勇先生转交」。</td>
+            </tr>
+            <tr>
+                <td><code>婉清</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>9</td>
+                <td>来人是**苏婉清**，她穿着一身干练</td>
+            </tr>
+            <tr>
+                <td><code>明轩</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>**李明轩**正坐在碧落湖边的</td>
+            </tr>
+            <tr>
+                <td><code>星力</code></td>
+                <td><code>docs\chapter_04.md</code></td>
+                <td>19</td>
+                <td>些符文，是不是记载着星力的使用方法？」</td>
+            </tr>
+            <tr>
+                <td><code>星辰之力</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>31</td>
+                <td>1994年春，云隐，星辰之力的秘密」。</td>
+            </tr>
+            <tr>
+                <td><code>李先生</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>17</td>
+                <td>「龙渊古剑？」李先生重复了一遍，「传说中</td>
+            </tr>
+            <tr>
+                <td><code>李明</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>**李明轩**正坐在碧落湖边</td>
+            </tr>
+            <tr>
+                <td><code>李明轩</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>**李明轩**正坐在碧落湖边的</td>
+            </tr>
+            <tr>
+                <td><code>玄玉</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>13</td>
+                <td>这上面提到了**九天玄玉**，还有……**龙</td>
+            </tr>
+            <tr>
+                <td><code>王大勇</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>只写着「古韵博物院 王大勇先生转交」。</td>
+            </tr>
+            <tr>
+                <td><code>王大勇先生</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>只写着「古韵博物院 王大勇先生转交」。</td>
+            </tr>
+            <tr>
+                <td><code>碧落</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>**李明轩**正坐在碧落湖边的长椅上，手中捏</td>
+            </tr>
+            <tr>
+                <td><code>碧落湖</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>5</td>
+                <td>**李明轩**正坐在碧落湖边的长椅上，手中捏着</td>
+            </tr>
+            <tr>
+                <td><code>老王</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>19</td>
+                <td>老王从远处快步走来，他就</td>
+            </tr>
+            <tr>
+                <td><code>苍梧</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>3</td>
+                <td>苍梧山下，云隐市的春天总</td>
+            </tr>
+            <tr>
+                <td><code>苍梧山</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>3</td>
+                <td>苍梧山下，云隐市的春天总是</td>
+            </tr>
+            <tr>
+                <td><code>苍梧山脉</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>21</td>
+                <td>单。」大勇沉声道，「苍梧山脉深处，三十年前有一支</td>
+            </tr>
+            <tr>
+                <td><code>苏婉清</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>9</td>
+                <td>来人是**苏婉清**，她穿着一身干练</td>
+            </tr>
+            <tr>
+                <td><code>苏小姐</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>21</td>
+                <td>「苏小姐，你们要找的东西，恐</td>
+            </tr>
+            <tr>
+                <td><code>龙渊</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>13</td>
+                <td>玉**，还有……**龙渊剑**？」</td>
+            </tr>
+            <tr>
+                <td><code>龙渊剑</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>13</td>
+                <td>玉**，还有……**龙渊剑**？」</td>
+            </tr>
+            <tr>
+                <td><code>龙渊古剑</code></td>
+                <td><code>docs\chapter_01.md</code></td>
+                <td>17</td>
+                <td>「龙渊古剑？」李先生重复了一遍</td>
+            </tr></tbody></table>
+
+    <h2>📁 扫描的文件</h2>
+    <ul class="files-list"><li><code>docs\chapter_01.md</code></li><li><code>docs\chapter_02.md</code></li><li><code>docs\chapter_04.md</code></li></ul>
+</div>
+</body>
+</html>

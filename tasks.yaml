@@ -1,0 +1,4777 @@
+- id: TASK-0001
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  description: '术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "云隐市"（故事发生的主要城市）
+  context: 苍梧山下，云隐市的春天总是来得格外早。
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0002
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: '**李明轩**正坐在碧落湖边的长椅上，'
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0003
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: '**李明轩**正坐在碧落湖边的长椅上，手'
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0004
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 7
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 「李明，你怎么还在这里？」一个清脆的
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0005
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 9
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 来人是**苏婉清**，她穿着一身干练的探险服，
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0006
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 「婉清，你看这个。」明轩将信递了过去。
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0007
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 「婉清，你看这个。」明轩将信递了过去
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0008
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 婉清展开信纸，上面是一串晦涩的古文
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0009
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: '**九天玄玉**，还有……**龙渊剑**？」'
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0010
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: '**九天玄玉**，还有……**龙渊剑**？」'
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0011
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 了起来：「这上面提到了**九天玄玉**，还有……**龙渊剑**？
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0012
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "李先生" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李先生" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中的那把神剑
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0013
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「龙渊古剑？」李先生重复了一遍，「传
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0014
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 「苏小姐，你们要找的东西，恐怕不简单。
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0015
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清去博物院查
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0016
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清去博物院查阅
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0017
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 立即出发。李明轩去准备物资，苏婉清去博物院查阅资料，王大勇则去联
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0018
+  severity: error
+  type: broken_link
+  title: '[引用失效] chapter_01.md: 图片文件不存在: ./images/map_unknown.png'
+  description: '图片文件不存在: ./images/map_unknown.png'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 27
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 确认图片路径是否正确，或创建图片文件 ./images/map_unknown.png
+  context: '已尝试: D:\TraeProjects\1266\docs\images\map_unknown.png, D:\TraeProjects\1266\images\map_unknown.png'
+  tags:
+  - broken_link
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0019
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 明轩回到住处，翻出了父亲留下的那本
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0020
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  description: '术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 31
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "云隐市"（故事发生的主要城市）
+  context: 照片背面写着：「1994年春，云隐，星辰之力的秘密」。
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0021
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 隐城下着小雨。三人在车站汇合，苏小姐带来了从博物院档案室找到的珍贵
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0022
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  description: '术语不一致: "云隐" → 应使用标准写法 "云隐市" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "云隐市"（故事发生的主要城市）
+  context: 出发当天，云隐城下着小雨。三人在车站汇合，苏
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0023
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "云隐城" → 应使用标准写法 "云隐市" [location]'
+  description: '术语不一致: "云隐城" → 应使用标准写法 "云隐市" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "云隐市"（故事发生的主要城市）
+  context: 出发当天，云隐城下着小雨。三人在车站汇合，苏小
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0024
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 者就住在苍梧山脚下的古村里。」婉清指着地图上的标记说道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0025
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "九天玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "九天玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 「这些资料显示，九天玉的最后一位守护者就住在苍梧山脚
+  tags:
+  - term_inconsistent
+  - error
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0026
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 3
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 经过三个小时的山路跋涉，李明轩、苏婉清和王大勇终于到达了地
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0027
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 3
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 经过三个小时的山路跋涉，李明轩、苏婉清和王大勇终于到达了地图
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0028
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 3
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 三个小时的山路跋涉，李明轩、苏婉清和王大勇终于到达了地图上标记的
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0029
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 7
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 子看起来至少有五百年历史了。」苏小姐推了推眼镜，兴奋地打量着四周。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0030
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 17
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 一些关于**玄玉**的事情。」婉清礼貌地说道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0031
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 17
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 韵博物院的，想打听一些关于**玄玉**的事情。」婉清礼貌地说道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0032
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 19
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 听到「玄玉」两个字，老人的脸色瞬间变了。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0033
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 23
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩注意到村子中央有一座格外气派
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0034
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 23
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩注意到村子中央有一座格外气派的
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0035
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 25
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 「王先生，你看那座祠堂。」明轩指着前方说道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0036
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 29
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 人走近祠堂，发现大门虚掩着。苏婉清轻轻推开门，里面的景象让所有人
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0037
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 35
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 这是……**龙渊**的图腾？」婉清声音颤抖着说道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0038
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 35
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「这是……**龙渊**的图腾？」婉清声音颤抖着说
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0039
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 44
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 天玄玉**，两把神剑分别名为「龙渊」和「虎魄」
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0040
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 44
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: '- 玉佩就是**九天玄玉**，两把神剑分别名为「龙渊」'
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0041
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 46
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩仔细观察着壁画，发现最后一幅
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0042
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 46
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩仔细观察着壁画，发现最后一幅画
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0043
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 46
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 发现最后一幅画描绘的是一群人将玄玉和其中一把剑藏在了山洞中，山洞
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0044
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "李先生" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李先生" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 54
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 「不干净？」李先生疑惑地问道。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0045
+  severity: error
+  type: broken_link
+  title: '[引用失效] chapter_02.md: 引用文件不存在: ../appendix/diary_1994.md'
+  description: '引用文件不存在: ../appendix/diary_1994.md'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 58
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 确认文件路径是否正确，目标文件可能已被移动或删除
+  context: '链接文本: 探险队日记'
+  tags:
+  - broken_link
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0046
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 60
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 苏婉清和明轩对视一眼，都看到了对方眼中的坚
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0047
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 60
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 苏婉清和明轩对视一眼，都看到了对方眼
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0048
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 60
+  assignee: 李编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 前方有什么危险，他们都必须找到玄玉。
+  tags:
+  - term_inconsistent
+  - error
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0049
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 5
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩、苏婉清和王大勇三人站在一个
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0050
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 5
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 李明轩、苏婉清和王大勇三人站在一个巨
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0051
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 5
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 李明轩、苏婉清和王大勇三人站在一个巨大的地下
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0052
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "苏小姐" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 7
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 「这是……」苏小姐的声音在颤抖。
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0053
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 11
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: '**龙渊古剑**的传说，似乎比他们想象'
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0054
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 17
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 明轩注意到地面上的石板刻满了奇怪的
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0055
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 「婉清，你看这些符文，是不是记载着星
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0056
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 21
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 苏婉清蹲下身，仔细地辨认着：「像是某
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0057
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "玄玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 21
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 某种祭祀仪式的流程……**九天玄玉**在这里被当作圣物供奉。」
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0058
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 39
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 苏婉清点了点头。
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0059
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 玉**……**龙渊剑**……」明轩喃喃自语。
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0060
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「**九天玉**……**龙渊剑**……」明轩喃喃自语。
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0061
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「**九天玉**……**龙渊剑**……」明轩喃喃自语。
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0062
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "九天玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  description: '术语不一致: "九天玉" → 应使用标准写法 "九天玄玉" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "九天玄玉"（蕴含神秘力量的玉石）
+  context: 「**九天玉**……**龙渊剑**……」明
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0063
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 51
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「吾乃龙渊剑第四十七代守护者。」人影开口道
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0064
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 51
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 「吾乃龙渊剑第四十七代守护者。」人影开口
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0065
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 57
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 明轩深吸一口气，想起了父亲日记中的
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0066
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  description: '术语不一致: "婉清" → 应使用标准写法 "苏婉清" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 61
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "苏婉清"（女主角，博学的考古学家）
+  context: 苏婉清上前一步：「剑在心中。持剑者的
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0067
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "李明" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 69
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 玉佩和古剑缓缓飘落到三人面前。李明轩握住了龙渊剑的剑柄，一股暖流
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0068
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  description: '术语不一致: "明轩" → 应使用标准写法 "李明轩" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 69
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "李明轩"（故事男主角，年轻的探险家）
+  context: 佩和古剑缓缓飘落到三人面前。李明轩握住了龙渊剑的剑柄，一股暖流从
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0069
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊剑" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 69
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 缓飘落到三人面前。李明轩握住了龙渊剑的剑柄，一股暖流从剑身涌入他的
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0070
+  severity: error
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  description: '术语不一致: "龙渊" → 应使用标准写法 "龙渊古剑" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 69
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 统一替换为 "龙渊古剑"（传说中的古代神剑）
+  context: 缓飘落到三人面前。李明轩握住了龙渊剑的剑柄，一股暖流从剑身涌入他
+  tags:
+  - term_inconsistent
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0071
+  severity: error
+  type: broken_link
+  title: '[引用失效] chapter_04.md: 引用文件不存在: ./chapter_05.md'
+  description: '引用文件不存在: ./chapter_05.md'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 71
+  assignee: 王编辑
+  status: open
+  priority: high
+  suggestion: 确认文件路径是否正确，目标文件可能已被移动或删除
+  context: '链接文本: 第5章 归途与新生'
+  tags:
+  - broken_link
+  - error
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0072
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 苍梧山下，云隐市的春天总是来得格外
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0073
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 苍梧山下，云隐市的春天总是来得格外
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0074
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 苍梧山下，云隐市的春天总
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0075
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 苍梧山下，云隐市的春天总
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0076
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 苍梧山下，云隐市的春天总是来得格外
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0077
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 苍梧山下，云隐市的春天总是来得格外
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0078
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 苍梧山下，云隐市的春天总
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0079
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 苍梧山下，云隐市的春天总
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0080
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 3
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: 苍梧山下，云隐市的春天总是来得格外
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0081
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0082
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0083
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边的'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0084
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边的'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0085
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0086
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0087
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0088
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0089
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0090
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0091
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0092
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0093
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0094
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边的'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0095
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: '**李明轩**正坐在碧落湖边的'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0096
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0097
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0098
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0099
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0100
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏'
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0101
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0102
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0103
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0104
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  description: '术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "碧落湖"（山脚下的碧蓝湖泊）
+  context: '**李明轩**正坐在碧落湖边的长椅上，手中捏着一封奇怪'
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0105
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  description: '术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 5
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "古韵博物院"（收藏古代文物的研究机构）
+  context: 。信封上没有署名，只写着「古韵博物院 王大勇先生转交」。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0106
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 7
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 「李明，你怎么还在这里？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0107
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 7
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 「李明，你怎么还在这里？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0108
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 7
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 「李明，你怎么还在这里？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0109
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 7
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 「李明，你怎么还在这里？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0110
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 9
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 来人是**苏婉清**，她穿着一身干练
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0111
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 9
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 来人是**苏婉清**，她穿着一身干练
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0112
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 「婉清，你看这个。」明轩将信递了过去。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0113
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 「婉清，你看这个。」明轩将
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0114
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 「婉清，你看这个。」明轩将信递了过去。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0115
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 11
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 「婉清，你看这个。」明轩将
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0116
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 婉清展开信纸，上面是一串
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0117
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0118
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0119
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0120
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0121
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0122
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0123
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0124
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0125
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0126
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0127
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0128
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 婉清展开信纸，上面是一串
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0129
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0130
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0131
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0132
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0133
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0134
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0135
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 玉**，还有……**龙渊剑**？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0136
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0137
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0138
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0139
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 13
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: 这上面提到了**九天玄玉**，还有……**龙
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0140
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0141
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0142
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0143
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0144
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0145
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 「龙渊古剑？」李先生重复了
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0146
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 「龙渊古剑？」李先生重复了
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0147
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0148
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0149
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0150
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0151
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李先生"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李先生" 替换为标准写法 "李明轩"
+  context: 「龙渊古剑？」李先生重复了一遍，「传说中
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0152
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 「龙渊古剑？」李先生重复了
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0153
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 17
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊" 替换为标准写法 "龙渊古剑"
+  context: 「龙渊古剑？」李先生重复了
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0154
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0155
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0156
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0157
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0158
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 处快步走来，他就是王大勇，在这一带做了三十年
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0159
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0160
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0161
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0162
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王从远处快步走来，他就
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0163
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 处快步走来，他就是王大勇，在这一带做了三十年
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0164
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 老王从远处快步走来，他就是王大勇，
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0165
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 19
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 老王从远处快步走来，他就是王大勇，在这一带做了三十年向导。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0166
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0167
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0168
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0169
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 东西，恐怕不简单。」大勇沉声道，「苍梧山脉深
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0170
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0171
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0172
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0173
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0174
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0175
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0176
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0177
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0178
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 「苏小姐，你们要找的东西，恐
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0179
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 东西，恐怕不简单。」大勇沉声道，「苍梧山脉深
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0180
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0181
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0182
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0183
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0184
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0185
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 单。」大勇沉声道，「苍梧山脉深处，三十年前有一支
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0186
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 你们要找的东西，恐怕不简单。」大勇沉声道，「苍梧山脉深处，三十年
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0187
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: ，恐怕不简单。」大勇沉声道，「苍梧山脉深处，三十年前有一支探险队
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0188
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苍梧山脉" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧山脉" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 21
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: ，恐怕不简单。」大勇沉声道，「苍梧山脉深处，三十年前有一支探险队进去
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0189
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_01.md: 重复标题 (H2): "准备出发" 出现了2次'
+  description: '重复标题 (H2): "准备出发" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 23
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_01.md:23; D:\TraeProjects\1266\docs\chapter_01.md:33
+  tags:
+  - duplicate_heading
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0190
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_01.md: 重复标题 (H2): "准备出发" 出现了2次'
+  description: '重复标题 (H2): "准备出发" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 23
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_01.md:23; D:\TraeProjects\1266\docs\chapter_01.md:33
+  tags:
+  - duplicate_heading
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0191
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0192
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0193
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 李明轩去准备物资，苏婉清去博物院查阅资料，王
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0194
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 去博物院查阅资料，王大勇则去联系当地的挑夫。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0195
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 去准备物资，苏婉清去博物院查阅资料，王大勇则去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0196
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 去准备物资，苏婉清去博物院查阅资料，王大勇则去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0197
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "李明"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "李明" 替换为标准写法 "李明轩"
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0198
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 三人决定立即出发。李明轩去准备物资，苏婉清去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0199
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 李明轩去准备物资，苏婉清去博物院查阅资料，王
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0200
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "大勇"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "大勇" 替换为标准写法 "王大勇"
+  context: 去博物院查阅资料，王大勇则去联系当地的挑夫。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0201
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 去准备物资，苏婉清去博物院查阅资料，王大勇则去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0202
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 去准备物资，苏婉清去博物院查阅资料，王大勇则去
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0203
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 资，苏婉清去博物院查阅资料，王大勇则去联系当地的挑夫。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0204
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  description: '术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 25
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "古韵博物院"（收藏古代文物的研究机构）
+  context: 发。李明轩去准备物资，苏婉清去博物院查阅资料，王大勇则去联系当地的
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0205
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 明轩回到住处，翻出了父亲
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0206
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: 和几个年轻人站在**碧落**湖边。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0207
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: 和几个年轻人站在**碧落**湖边。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0208
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  description: '术语不统一: 使用了别名 "明轩"，标准写法为 "李明轩"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "明轩" 替换为标准写法 "李明轩"
+  context: 明轩回到住处，翻出了父亲
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0209
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: 和几个年轻人站在**碧落**湖边。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0210
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  description: '术语不统一: 使用了别名 "碧落"，标准写法为 "碧落湖"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "碧落" 替换为标准写法 "碧落湖"
+  context: 和几个年轻人站在**碧落**湖边。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0211
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  description: '术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 29
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "碧落湖"（山脚下的碧蓝湖泊）
+  context: 是他的父亲和几个年轻人站在**碧落**湖边。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0212
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 31
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 着：「1994年春，云隐，星辰之力的秘密」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0213
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 31
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 着：「1994年春，云隐，星辰之力的秘密」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0214
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 31
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 着：「1994年春，云隐，星辰之力的秘密」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0215
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 31
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 着：「1994年春，云隐，星辰之力的秘密」。
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0216
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 雨。三人在车站汇合，苏小姐带来了从博物院档案室
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0217
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 雨。三人在车站汇合，苏小姐带来了从博物院档案室
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0218
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0219
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0220
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0221
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0222
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0223
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 汇合，苏小姐带来了从博物院档案室找到的珍贵文献
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0224
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 雨。三人在车站汇合，苏小姐带来了从博物院档案室
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0225
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "苏小姐"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苏小姐" 替换为标准写法 "苏婉清"
+  context: 雨。三人在车站汇合，苏小姐带来了从博物院档案室
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0226
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0227
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0228
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0229
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0230
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  description: '术语不统一: 使用了别名 "云隐城"，标准写法为 "云隐市"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "云隐城" 替换为标准写法 "云隐市"
+  context: 出发当天，云隐城下着小雨。三人在车站
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0231
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  description: '术语不统一: 使用了别名 "博物院"，标准写法为 "古韵博物院"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "博物院" 替换为标准写法 "古韵博物院"
+  context: 汇合，苏小姐带来了从博物院档案室找到的珍贵文献
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0232
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  description: '术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 37
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "古韵博物院"（收藏古代文物的研究机构）
+  context: 三人在车站汇合，苏小姐带来了从博物院档案室找到的珍贵文献。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0233
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 梧山脚下的古村里。」婉清指着地图上的标记说道
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0234
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 最后一位守护者就住在苍梧山脚下的古村里。」婉
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0235
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0236
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0237
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0238
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0239
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  description: '术语不统一: 使用了别名 "婉清"，标准写法为 "苏婉清"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "婉清" 替换为标准写法 "苏婉清"
+  context: 梧山脚下的古村里。」婉清指着地图上的标记说道
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0240
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧" 替换为标准写法 "苍梧山"
+  context: 最后一位守护者就住在苍梧山脚下的古村里。」婉
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0241
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0242
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0243
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0244
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_01.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「这些资料显示，九天玉的最后一位守护者就住
+  tags:
+  - term_alias_found
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0245
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_01.md: 术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_01.md
+  line_number: 39
+  assignee: 张编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: ，九天玉的最后一位守护者就住在苍梧山脚下的古村里。」婉清指着地图
+  tags:
+  - term_inconsistent
+  - warning
+  - area:张编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0246
+  severity: warning
+  type: chapter_number_gap
+  title: '[章节编号缺失] chapter_02.md: 章节编号缺失: 缺少第3章'
+  description: '章节编号缺失: 缺少第3章'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: null
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 检查是否遗漏了第3章，或者调整前后章节编号
+  context: '前一章(2): D:\TraeProjects\1266\docs\chapter_02.md | 后一章(4): D:\TraeProjects\1266\docs\chapter_04.md'
+  tags:
+  - chapter_number_gap
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0247
+  severity: warning
+  type: chapter_number_gap
+  title: '[章节编号缺失] chapter_02.md: 章节编号缺失: 缺少第3章'
+  description: '章节编号缺失: 缺少第3章'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: null
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 检查是否遗漏了第3章，或者调整前后章节编号
+  context: '前一章(2): D:\TraeProjects\1266\docs\chapter_02.md | 后一章(4): D:\TraeProjects\1266\docs\chapter_04.md'
+  tags:
+  - chapter_number_gap
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0248
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 3
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 的山路跋涉，李明轩、苏婉清和王大勇终于到达了地图上标记的古村。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0249
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 5
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 村子坐落在**苍梧山脉**的半山腰，房屋都
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0250
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  description: '术语不统一: 使用了别名 "苍梧山脉"，标准写法为 "苍梧山"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 5
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "苍梧山脉" 替换为标准写法 "苍梧山"
+  context: 村子坐落在**苍梧山脉**的半山腰，房屋都
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0251
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 5
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: 村子坐落在**苍梧山脉**的半山腰，房屋都是用当
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0252
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "苍梧山脉" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧山脉" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 5
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: 村子坐落在**苍梧山脉**的半山腰，房屋都是用当地的
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0253
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 9
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王点了点头：「我听说这
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0254
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  description: '术语不统一: 使用了别名 "老王"，标准写法为 "王大勇"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 9
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "老王" 替换为标准写法 "王大勇"
+  context: 老王点了点头：「我听说这
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0255
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 9
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 老王点了点头：「我听说这里叫『守玉
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0256
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 17
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: ，想打听一些关于**玄玉**的事情。」婉清礼
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0257
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_02.md: 术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "玄玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 17
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 将 "玄玉" 替换为标准写法 "九天玄玉"
+  context: ，想打听一些关于**玄玉**的事情。」婉清礼
+  tags:
+  - term_alias_found
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0258
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  description: '术语不一致: "博物院" → 应使用标准写法 "古韵博物院" [organization]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 17
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "古韵博物院"（收藏古代文物的研究机构）
+  context: 「老人家，我们是古韵博物院的，想打听一些关于**玄玉**
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0259
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_02.md: 重复标题 (H2): "神秘的祠堂" 出现了2次'
+  description: '重复标题 (H2): "神秘的祠堂" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 21
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_02.md:21; D:\TraeProjects\1266\docs\chapter_02.md:37
+  tags:
+  - duplicate_heading
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0260
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_02.md: 重复标题 (H2): "神秘的祠堂" 出现了2次'
+  description: '重复标题 (H2): "神秘的祠堂" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 21
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_02.md:21; D:\TraeProjects\1266\docs\chapter_02.md:37
+  tags:
+  - duplicate_heading
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0261
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 27
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 王大勇眯起眼睛：「奇怪，我三十年前来
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0262
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_02.md: 术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  description: '术语不一致: "苍梧" → 应使用标准写法 "苍梧山" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_02.md
+  line_number: 41
+  assignee: 李编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "苍梧山"（神秘的古老山脉）
+  context: '- 上古时期，一颗陨石降落在苍梧山中'
+  tags:
+  - term_inconsistent
+  - warning
+  - area:李编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0263
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 5
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 李明轩、苏婉清和王大勇三人站在一个巨大的地下洞穴入口
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0264
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_04.md: 重复标题 (H2): "古城初探" 出现了2次'
+  description: '重复标题 (H2): "古城初探" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 13
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_04.md:13; D:\TraeProjects\1266\docs\chapter_04.md:55
+  tags:
+  - duplicate_heading
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0265
+  severity: warning
+  type: duplicate_heading
+  title: '[重复标题] chapter_04.md: 重复标题 (H2): "古城初探" 出现了2次'
+  description: '重复标题 (H2): "古城初探" 出现了2次'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 13
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 考虑给重复标题添加限定词或重新组织结构以避免歧义
+  context: D:\TraeProjects\1266\docs\chapter_04.md:13; D:\TraeProjects\1266\docs\chapter_04.md:55
+  tags:
+  - duplicate_heading
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0266
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 15
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 老王握紧了手中的猎枪，警惕地观察着
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0267
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0268
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0269
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0270
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0271
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0272
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  description: '术语不统一: 使用了别名 "星力"，标准写法为 "星辰之力"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "星力" 替换为标准写法 "星辰之力"
+  context: 些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0273
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "星力" → 应使用标准写法 "星辰之力" [proper_noun]'
+  description: '术语不一致: "星力" → 应使用标准写法 "星辰之力" [proper_noun]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 19
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "星辰之力"（来自星辰的神秘能量）
+  context: 清，你看这些符文，是不是记载着星力的使用方法？」
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0274
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 27
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 些石像的剑……形状都不一样。」老王低声说道。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0275
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "大勇" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 37
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 「要开门吗？」大勇问道，手已经放在了石门上。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0276
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: '*九天玉**……**龙渊剑**……」明轩喃喃自'
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0277
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「**九天玉**……**龙渊剑*
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0278
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  description: '术语不统一: 使用了别名 "龙渊剑"，标准写法为 "龙渊古剑"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "龙渊剑" 替换为标准写法 "龙渊古剑"
+  context: '*九天玉**……**龙渊剑**……」明轩喃喃自'
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0279
+  severity: warning
+  type: term_alias_found
+  title: '[术语别名] chapter_04.md: 术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  description: '术语不统一: 使用了别名 "九天玉"，标准写法为 "九天玄玉"'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 47
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 将 "九天玉" 替换为标准写法 "九天玄玉"
+  context: 「**九天玉**……**龙渊剑*
+  tags:
+  - term_alias_found
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0280
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  description: '术语不一致: "老王" → 应使用标准写法 "王大勇" [character]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 65
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "王大勇"（经验丰富的向导）
+  context: 三人沉默了片刻，最后由老王代表所有人回答：「守护。守护那
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'
+- id: TASK-0281
+  severity: warning
+  type: term_inconsistent
+  title: '[术语不一致] chapter_04.md: 术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  description: '术语不一致: "碧落" → 应使用标准写法 "碧落湖" [location]'
+  file_path: D:\TraeProjects\1266\docs\chapter_04.md
+  line_number: 69
+  assignee: 王编辑
+  status: open
+  priority: medium
+  suggestion: 统一替换为 "碧落湖"（山脚下的碧蓝湖泊）
+  context: ，一股暖流从剑身涌入他的身体，碧落湖畔的往事在他脑海中一一浮现。
+  tags:
+  - term_inconsistent
+  - warning
+  - area:王编辑
+  created_at: '2026-06-17T02:19:09'

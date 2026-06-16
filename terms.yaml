@@ -1,0 +1,86 @@
+categories:
+  - character
+  - location
+  - proper_noun
+  - general
+  - organization
+
+terms:
+  - canonical: 李明轩
+    category: character
+    aliases:
+      - 李明
+      - 明轩
+      - 李先生
+    description: 故事男主角，年轻的探险家
+    severity: error
+
+  - canonical: 苏婉清
+    category: character
+    aliases:
+      - 婉清
+      - 苏小姐
+    description: 女主角，博学的考古学家
+    severity: error
+
+  - canonical: 王大勇
+    category: character
+    aliases:
+      - 老王
+      - 大勇
+    description: 经验丰富的向导
+    severity: warning
+
+  - canonical: 云隐市
+    category: location
+    aliases:
+      - 云隐
+      - 云隐城
+    description: 故事发生的主要城市
+    severity: error
+
+  - canonical: 苍梧山
+    category: location
+    aliases:
+      - 苍梧
+      - 苍梧山脉
+    description: 神秘的古老山脉
+    severity: warning
+
+  - canonical: 碧落湖
+    category: location
+    aliases:
+      - 碧落
+    description: 山脚下的碧蓝湖泊
+    severity: warning
+
+  - canonical: 龙渊古剑
+    category: proper_noun
+    aliases:
+      - 龙渊剑
+      - 龙渊
+    description: 传说中的古代神剑
+    severity: error
+
+  - canonical: 九天玄玉
+    category: proper_noun
+    aliases:
+      - 玄玉
+      - 九天玉
+    description: 蕴含神秘力量的玉石
+    severity: error
+
+  - canonical: 星辰之力
+    category: proper_noun
+    aliases:
+      - 星力
+    description: 来自星辰的神秘能量
+    severity: warning
+
+  - canonical: 古韵博物院
+    category: organization
+    aliases:
+      - 博物院
+      - 古韵博物馆
+    description: 收藏古代文物的研究机构
+    severity: warning
