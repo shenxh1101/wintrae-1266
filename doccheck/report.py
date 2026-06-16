@@ -30,6 +30,9 @@ from .utils import (
     ReportSnapshotIssue,
     ReportDiffResult,
     diff_report_snapshots,
+    DashboardData,
+    DashboardTrendPoint,
+    build_dashboard_trend,
 )
 
 
@@ -123,10 +126,12 @@ class ReportGenerator:
         config: Optional[CheckConfig] = None,
         task_store: Optional[TaskStateStore] = None,
         previous_snapshot: Optional[ReportSnapshot] = None,
+        dashboard_data: Optional[DashboardData] = None,
     ):
         self.config = config or CheckConfig()
         self.task_store = task_store
         self.previous_snapshot = previous_snapshot
+        self.dashboard_data = dashboard_data
         self._diff_result: Optional[ReportDiffResult] = None
         if previous_snapshot is not None:
             self._diff_result = None  # 延迟到有 CheckResult 时计算
@@ -377,6 +382,168 @@ class ReportGenerator:
 
         return new_html
 
+    # ==================== 看板渲染 ====================
+
+    def generate_dashboard(self, fmt: str = "console",
+                           output: Optional[Path] = None) -> str:
+        """生成进度看板。
+
+        Args:
+            fmt: 输出格式 (console/markdown/html/json)
+            output: 输出文件路径
+        """
+        if self.dashboard_data is None:
+            return "⚠️  没有可用的历史快照数据，无法生成看板"
+
+        fmt = fmt.lower()
+        generators = {
+            "console": self._render_dashboard_console,
+            "text": self._render_dashboard_console,
+            "markdown": self._render_dashboard_markdown,
+            "md": self._render_dashboard_markdown,
+            "html": self._render_dashboard_html,
+            "json": self._render_dashboard_json,
+        }
+        gen = generators.get(fmt, self._render_dashboard_console)
+        content = gen()
+
+        if output:
+            output.parent.mkdir(parents=True, exist_ok=True)
+            with open(output, "w", encoding="utf-8") as f:
+                f.write(content)
+        return content
+
+    def _render_dashboard_console(self) -> str:
+        """控制台格式的看板"""
+        if self.dashboard_data is None or not self.dashboard_data.points:
+            return "⚠️  没有可用的历史快照数据"
+
+        data = self.dashboard_data
+        lines = []
+        lines.append("=" * 70)
+        lines.append("📊 进度看板 - 问题趋势")
+        lines.append("=" * 70)
+        lines.append(f"📅 数据范围: {data.points[0].date} ~ {data.points[-1].date}")
+        lines.append(f"📈 共 {len(data.points)} 天数据")
+        lines.append("")
+
+        # 趋势表
+        max_total = max(p.total for p in data.points) if data.points else 1
+        bar_width = 30
+
+        lines.append(f"{'日期':<12} {'总量':>6} {'新增':>6} {'已解决':>6}  趋势")
+        lines.append("-" * 70)
+        for p in data.points:
+            filled = int(p.total / max_total * bar_width) if max_total > 0 else 0
+            bar = "█" * filled + "░" * (bar_width - filled)
+            lines.append(f"{p.date:<12} {p.total:>6} {p.new_count:>6} {p.resolved_count:>6}  {bar}")
+
+        lines.append("")
+        lines.append(f"🔴 错误: {data.points[-1].error_count if data.points else 0}")
+        lines.append(f"🟡 警告: {data.points[-1].warning_count if data.points else 0}")
+        lines.append(f"🔵 提示: {data.points[-1].info_count if data.points else 0}")
+
+        return "\n".join(lines)
+
+    def _render_dashboard_markdown(self) -> str:
+        """Markdown 格式的看板"""
+        if self.dashboard_data is None or not self.dashboard_data.points:
+            return "> ⚠️  没有可用的历史快照数据"
+
+        data = self.dashboard_data
+        lines = []
+        lines.append("# 📊 进度看板")
+        lines.append("")
+        lines.append(f"**数据范围**: {data.points[0].date} ~ {data.points[-1].date}")
+        lines.append(f"**统计天数**: {len(data.points)} 天")
+        lines.append("")
+
+        # 统计卡片
+        latest = data.points[-1]
+        lines.append("## 📈 当前概览")
+        lines.append("")
+        lines.append(f"- **问题总量**: {latest.total}")
+        lines.append(f"- **今日新增**: {latest.new_count}")
+        lines.append(f"- **今日已解决**: {latest.resolved_count}")
+        lines.append(f"- **错误数**: 🔴 {latest.error_count}")
+        lines.append(f"- **警告数**: 🟡 {latest.warning_count}")
+        lines.append(f"- **提示数**: 🔵 {latest.info_count}")
+        lines.append("")
+
+        # 趋势表
+        lines.append("## 📅 每日趋势")
+        lines.append("")
+        lines.append("| 日期 | 总量 | 新增 | 已解决 | 错误 | 警告 | 提示 |")
+        lines.append("|------|-----:|-----:|-------:|-----:|-----:|-----:|")
+        for p in reversed(data.points):
+            lines.append(f"| {p.date} | {p.total} | {p.new_count} | {p.resolved_count} | {p.error_count} | {p.warning_count} | {p.info_count} |")
+
+        return "\n".join(lines)
+
+    def _render_dashboard_html(self) -> str:
+        """HTML 格式的看板"""
+        if self.dashboard_data is None or not self.dashboard_data.points:
+            return "<p style='color:#9ca3af'>⚠️  没有可用的历史快照数据</p>"
+
+        data = self.dashboard_data
+        latest = data.points[-1]
+
+        # 统计卡片
+        html = f"""
+        <div class="dashboard-section">
+            <h2>📊 进度看板</h2>
+            <p style="color:#6b7280">数据范围: {data.points[0].date} ~ {data.points[-1].date} ({len(data.points)}天)</p>
+
+            <div class="stats-grid" style="grid-template-columns:repeat(3, 1fr)">
+                <div class="stat-card" style="background:#6366f1">
+                    <div class="num">{latest.total}</div>
+                    <div class="label">问题总量</div>
+                </div>
+                <div class="stat-card" style="background:#f59e0b">
+                    <div class="num">+{latest.new_count}</div>
+                    <div class="label">今日新增</div>
+                </div>
+                <div class="stat-card" style="background:#10b981">
+                    <div class="num">-{latest.resolved_count}</div>
+                    <div class="label">今日已解决</div>
+                </div>
+            </div>
+        """
+
+        # 趋势表
+        html += """
+            <h3>📅 每日趋势</h3>
+            <table>
+                <thead>
+                    <tr><th>日期</th><th>总量</th><th>新增</th><th>已解决</th><th>错误</th><th>警告</th><th>提示</th></tr>
+                </thead>
+                <tbody>
+        """
+        for p in reversed(data.points):
+            html += f"""
+                <tr>
+                    <td>{p.date}</td>
+                    <td><strong>{p.total}</strong></td>
+                    <td style="color:#f59e0b">+{p.new_count}</td>
+                    <td style="color:#10b981">-{p.resolved_count}</td>
+                    <td style="color:#ef4444">{p.error_count}</td>
+                    <td style="color:#f59e0b">{p.warning_count}</td>
+                    <td style="color:#3b82f6">{p.info_count}</td>
+                </tr>
+            """
+        html += """
+                </tbody>
+            </table>
+        </div>
+        """
+        return html
+
+    def _render_dashboard_json(self) -> str:
+        """JSON 格式的看板数据"""
+        if self.dashboard_data is None:
+            return json.dumps({"error": "no data"}, ensure_ascii=False, indent=2)
+        return json.dumps(self.dashboard_data.to_dict(), ensure_ascii=False, indent=2)
+
     def _to_console(self, result: CheckResult) -> str:
         """控制台格式输出"""
         lines = []
@@ -498,12 +665,22 @@ class ReportGenerator:
         return "\n".join(lines)
 
     def _to_json(self, result: CheckResult) -> str:
-        """JSON格式输出"""
-        return json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
+        """JSON格式输出（包含 diff 结果，如果有的话）"""
+        data = result.to_dict()
+        if self._diff_result is not None:
+            data["diff"] = self._diff_result.to_dict()
+        if self.task_store is not None:
+            data["task_states"] = self.task_store.to_dict()
+        return json.dumps(data, ensure_ascii=False, indent=2)
 
     def _to_yaml(self, result: CheckResult) -> str:
-        """YAML格式输出"""
-        return yaml.dump(result.to_dict(), allow_unicode=True, default_flow_style=False, sort_keys=False)
+        """YAML格式输出（包含 diff 结果，如果有的话）"""
+        data = result.to_dict()
+        if self._diff_result is not None:
+            data["diff"] = self._diff_result.to_dict()
+        if self.task_store is not None:
+            data["task_states"] = self.task_store.to_dict()
+        return yaml.dump(data, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
     def _to_markdown(self, result: CheckResult) -> str:
         """Markdown格式报告"""
@@ -808,8 +985,8 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                         tags.append(f"area:{v}")
 
             assignee = ""
-            status = "open"
-            status_label = ""
+            status = TaskStatus.PENDING.value
+            status_label = TASK_STATUS_LABELS[TaskStatus.PENDING]
 
             # 从任务状态存储中读取已有状态
             if self.task_store is not None:

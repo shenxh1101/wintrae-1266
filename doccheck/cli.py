@@ -28,6 +28,9 @@ from .config import (
     save_config,
     save_ignore_rules,
     save_snapshot as _save_snapshot_func,
+    save_snapshot_with_history as _save_snapshot_with_history,
+    load_snapshot_history,
+    DEFAULT_SNAPSHOT_DIR,
     save_task_states as _save_task_states_func,
     save_terms,
 )
@@ -35,7 +38,7 @@ from .refs import ReferenceChecker
 from .report import ReportGenerator
 from .scanner import BaseScanner
 from .terms import TermManager
-from .utils import ChapterFilter, ReportSnapshot, TaskStatus, TASK_STATUS_LABELS
+from .utils import ChapterFilter, ReportSnapshot, TaskStatus, TASK_STATUS_LABELS, build_dashboard_trend
 
 
 def _build_config(
@@ -201,9 +204,16 @@ def scan_cmd(
     if save_snapshot:
         current_snap = ReportSnapshot.from_result(result)
         snap_path = Path(snapshot_file) if snapshot_file else None
-        saved_path = _save_snapshot_func(current_snap, snap_path)
-        if not quiet:
-            click.echo(f"📸 已保存快照: {saved_path}")
+        if snap_path is None:
+            # 默认路径：同时保存最新快照和历史快照
+            last_path, hist_path = _save_snapshot_with_history(current_snap)
+            if not quiet:
+                click.echo(f"📸 已保存快照: {last_path}")
+                click.echo(f"   历史归档: {hist_path}")
+        else:
+            saved_path = _save_snapshot_func(current_snap, snap_path)
+            if not quiet:
+                click.echo(f"📸 已保存快照: {saved_path}")
 
     if out_path:
         click.echo(f"✅ 报告已写入: {out_path}")
@@ -873,8 +883,13 @@ def report_cmd(
     if save_snapshot:
         current_snap = ReportSnapshot.from_result(combined)
         snap_path = Path(snapshot_file) if snapshot_file else None
-        saved_path = _save_snapshot_func(current_snap, snap_path)
-        click.echo(f"📸 已保存快照: {saved_path}")
+        if snap_path is None:
+            last_path, hist_path = _save_snapshot_with_history(current_snap)
+            click.echo(f"📸 已保存快照: {last_path}")
+            click.echo(f"   历史归档: {hist_path}")
+        else:
+            saved_path = _save_snapshot_func(current_snap, snap_path)
+            click.echo(f"📸 已保存快照: {saved_path}")
 
     counts = combined.issue_count
     if counts["error"] > 0:
@@ -1038,6 +1053,148 @@ def tasks_progress_cmd(ctx: click.Context, stable_id: str, assignee: Optional[st
     if assignee:
         click.echo(f"   负责人: {assignee}")
     click.echo(f"   保存至: {path}")
+
+
+@tasks_group.command("summary", help="按负责人/状态汇总统计")
+@click.option("-g", "--group-by", type=click.Choice(["assignee", "status"]),
+              default="assignee", help="按什么分组 (默认: assignee)")
+@click.option("-f", "--format", "output_format",
+              type=click.Choice(["console", "json", "yaml"]),
+              default="console", help="输出格式")
+@click.pass_context
+def tasks_summary_cmd(ctx: click.Context, group_by: str, output_format: str):
+    """汇总任务统计"""
+    store, _ = _load_task_states_from_ctx(ctx)
+
+    if not store.states:
+        click.echo("ℹ️  暂无任务状态记录")
+        return
+
+    if group_by == "assignee":
+        data = store.summary_by_assignee()
+        if output_format == "json":
+            click.echo(json.dumps(data, ensure_ascii=False, indent=2))
+        elif output_format == "yaml":
+            click.echo(yaml.dump(data, allow_unicode=True, default_flow_style=False, sort_keys=False))
+        else:
+            click.echo(f"📊 任务统计（按负责人）- 共 {len(store.states)} 个任务")
+            click.echo()
+            for who, stats in sorted(data.items(), key=lambda x: -x[1]["total"]):
+                click.echo(f"👤 {who} ({stats['total']})")
+                parts = []
+                for st_key, label in [
+                    ("pending", "待处理"), ("in_progress", "处理中"),
+                    ("fixed", "已修复"), ("ignored", "已忽略")
+                ]:
+                    if stats.get(st_key, 0) > 0:
+                        parts.append(f"{label}: {stats[st_key]}")
+                if parts:
+                    click.echo(f"   {', '.join(parts)}")
+                click.echo()
+    else:
+        data = store.summary_by_status()
+        if output_format == "json":
+            click.echo(json.dumps(data, ensure_ascii=False, indent=2))
+        elif output_format == "yaml":
+            click.echo(yaml.dump(data, allow_unicode=True, default_flow_style=False, sort_keys=False))
+        else:
+            click.echo(f"📊 任务统计（按状态）- 共 {len(store.states)} 个任务")
+            click.echo()
+            for st, cnt in sorted(data.items(), key=lambda x: -x[1]):
+                label = TASK_STATUS_LABELS.get(TaskStatus(st), st)
+                click.echo(f"  {label}: {cnt}")
+
+
+@tasks_group.command("export", help="导出任务状态到文件")
+@click.argument("output_file", type=click.Path())
+@click.option("-f", "--format", "fmt",
+              type=click.Choice(["yaml", "json"]),
+              default=None, help="输出格式 (默认按文件扩展名推断)")
+@click.pass_context
+def tasks_export_cmd(ctx: click.Context, output_file: str, fmt: Optional[str]):
+    """导出任务状态到文件"""
+    store, _ = _load_task_states_from_ctx(ctx)
+
+    if fmt is None:
+        ext = Path(output_file).suffix.lower().lstrip(".")
+        fmt = ext if ext in ("yaml", "yml", "json") else "yaml"
+
+    data = store.to_dict()
+    out_path = Path(output_file)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if fmt == "json":
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    else:
+        with open(out_path, "w", encoding="utf-8") as f:
+            yaml.dump(data, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+    click.echo(f"✅ 已导出 {len(store.states)} 条任务状态到: {out_path}")
+
+
+@tasks_group.command("import", help="从文件导入/合并任务状态")
+@click.argument("input_file", type=click.Path(exists=True))
+@click.option("--overwrite/--no-overwrite", default=False,
+              help="是否覆盖已有相同 ID 的状态 (默认: 不覆盖)")
+@click.pass_context
+def tasks_import_cmd(ctx: click.Context, input_file: str, overwrite: bool):
+    """从文件导入/合并任务状态
+
+    支持 YAML 和 JSON 格式，自动识别。
+    """
+    store, _ = _load_task_states_from_ctx(ctx)
+    in_path = Path(input_file)
+
+    ext = in_path.suffix.lower().lstrip(".")
+    with open(in_path, "r", encoding="utf-8") as f:
+        if ext == "json":
+            data = json.load(f)
+        else:
+            data = yaml.safe_load(f) or {}
+
+    other = load_task_states(in_path)  # 用已有的加载函数也可以
+    merged_count = store.merge(other, overwrite=overwrite)
+
+    path = _save_task_states_from_ctx(store, ctx)
+    click.echo(f"✅ 已导入并合并 {len(other.states)} 条记录")
+    click.echo(f"   新增/更新: {merged_count} 条")
+    click.echo(f"   保存至: {path}")
+    click.echo(f"   当前总计: {len(store.states)} 条")
+
+
+# ==================== 进度看板 ====================
+
+@main.command("dashboard", help="📊 进度看板 - 按日期展示问题趋势")
+@click.option("-d", "--days", type=int, default=30, help="显示最近多少天的数据 (默认: 30)")
+@click.option("--snapshot-dir", type=click.Path(),
+              help=f"快照历史目录 (默认: {DEFAULT_SNAPSHOT_DIR})")
+@click.option("-f", "--format", "fmt",
+              type=click.Choice(["console", "markdown", "html", "json"]),
+              default="console", help="输出格式")
+@click.option("-o", "--output", type=click.Path(), help="输出文件路径")
+@click.pass_context
+def dashboard_cmd(ctx: click.Context, days: int, snapshot_dir: Optional[str],
+                  fmt: str, output: Optional[str]):
+    """展示进度看板，适合周会查看趋势"""
+    snap_dir = Path(snapshot_dir) if snapshot_dir else None
+    snapshots = load_snapshot_history(snap_dir, limit=days)
+
+    if not snapshots:
+        click.echo("⚠️  没有找到历史快照数据")
+        click.echo("   运行 scan 或 report 命令时会自动保存快照历史")
+        sys.exit(0)
+
+    dashboard_data = build_dashboard_trend(snapshots)
+    reporter = ReportGenerator(dashboard_data=dashboard_data)
+
+    out_path = Path(output) if output else None
+    content = reporter.generate_dashboard(fmt=fmt, output=out_path)
+
+    if out_path:
+        click.echo(f"✅ 看板已写入: {out_path}")
+    else:
+        click.echo(content)
 
 
 # ==================== 辅助命令 ====================

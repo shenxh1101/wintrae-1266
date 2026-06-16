@@ -5,7 +5,7 @@ import os
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import yaml
 
@@ -408,6 +408,8 @@ def save_task_states(store: TaskStateStore, path: Path) -> None:
 # ==================== 报告快照持久化 ====================
 
 DEFAULT_SNAPSHOT_FILENAME = ".doccheck-last-snapshot.json"
+DEFAULT_SNAPSHOT_DIR = ".doccheck-snapshots"
+DEFAULT_TASKSTATES_FILENAME = ".doccheck-taskstates.yaml"
 
 
 def load_snapshot(path: Optional[Path] = None) -> Optional[ReportSnapshot]:
@@ -436,6 +438,71 @@ def save_snapshot(snapshot: ReportSnapshot, path: Optional[Path] = None) -> Path
     with open(path, "w", encoding="utf-8") as f:
         _json.dump(snapshot.to_dict(), f, ensure_ascii=False, indent=2)
     return path
+
+
+def save_snapshot_with_history(snapshot: ReportSnapshot,
+                               history_dir: Optional[Path] = None,
+                               last_path: Optional[Path] = None) -> Tuple[Path, Path]:
+    """同时保存最新快照和历史快照（按日期归档）。
+
+    返回 (最新快照路径, 历史快照路径)
+    """
+    import json as _json
+    from datetime import datetime
+
+    if history_dir is None:
+        history_dir = Path.cwd() / DEFAULT_SNAPSHOT_DIR
+    if last_path is None:
+        last_path = Path.cwd() / DEFAULT_SNAPSHOT_FILENAME
+
+    last_path.parent.mkdir(parents=True, exist_ok=True)
+    history_dir.mkdir(parents=True, exist_ok=True)
+
+    data = snapshot.to_dict()
+
+    # 保存最新快照
+    with open(last_path, "w", encoding="utf-8") as f:
+        _json.dump(data, f, ensure_ascii=False, indent=2)
+
+    # 保存当天的历史快照（每天保留最新一份）
+    today = datetime.now().strftime("%Y-%m-%d")
+    history_path = history_dir / f"{today}.json"
+    with open(history_path, "w", encoding="utf-8") as f:
+        _json.dump(data, f, ensure_ascii=False, indent=2)
+
+    return last_path, history_path
+
+
+def load_snapshot_history(history_dir: Optional[Path] = None,
+                          limit: int = 30) -> List[ReportSnapshot]:
+    """加载历史快照（按日期从旧到新排序）。
+
+    Args:
+        history_dir: 快照历史目录
+        limit: 最多加载多少天的快照
+
+    Returns:
+        按日期升序排列的快照列表
+    """
+    if history_dir is None:
+        history_dir = Path.cwd() / DEFAULT_SNAPSHOT_DIR
+
+    if not history_dir.exists():
+        return []
+
+    files = sorted(history_dir.glob("*.json"))
+    if limit and len(files) > limit:
+        files = files[-limit:]
+
+    snapshots = []
+    for f in files:
+        try:
+            snap = load_snapshot(f)
+            if snap:
+                snapshots.append(snap)
+        except Exception:
+            continue
+    return snapshots
 
 
 # ==================== 示例配置生成 ====================

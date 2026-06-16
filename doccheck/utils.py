@@ -825,6 +825,58 @@ class TaskStateStore:
             states[sid] = TaskStateRecord.from_dict(rec_data)
         return cls(states=states)
 
+    def merge(self, other: "TaskStateStore", overwrite: bool = False) -> int:
+        """合并另一个状态存储。
+
+        Args:
+            other: 要合并的状态存储
+            overwrite: 是否覆盖已有状态（默认 False，保留已有状态）
+
+        Returns:
+            新增/更新的记录数
+        """
+        count = 0
+        for sid, rec in other.states.items():
+            if sid not in self.states or overwrite:
+                self.states[sid] = TaskStateRecord(
+                    status=rec.status,
+                    assignee=rec.assignee,
+                    note=rec.note,
+                    first_seen_at=rec.first_seen_at or self.states[sid].first_seen_at if sid in self.states else "",
+                    updated_at=rec.updated_at,
+                    metadata=dict(rec.metadata),
+                )
+                count += 1
+        return count
+
+    def summary_by_assignee(self) -> Dict[str, Dict[str, int]]:
+        """按负责人汇总统计。
+
+        返回: { assignee: { pending: N, in_progress: N, fixed: N, ignored: N, total: N }, ... }
+        """
+        summary: Dict[str, Dict[str, int]] = {}
+        for rec in self.states.values():
+            who = rec.assignee or "未分配"
+            if who not in summary:
+                summary[who] = {
+                    "pending": 0,
+                    "in_progress": 0,
+                    "fixed": 0,
+                    "ignored": 0,
+                    "total": 0,
+                }
+            status_key = rec.status if rec.status in summary[who] else "pending"
+            summary[who][status_key] += 1
+            summary[who]["total"] += 1
+        return summary
+
+    def summary_by_status(self) -> Dict[str, int]:
+        """按状态汇总统计。"""
+        counts: Dict[str, int] = {}
+        for rec in self.states.values():
+            counts[rec.status] = counts.get(rec.status, 0) + 1
+        return counts
+
 
 # ==================== 报告快照 & 对比 ====================
 
@@ -837,6 +889,16 @@ class ReportSnapshotIssue:
     message: str
     file_path: str = ""
     line_number: Optional[int] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "stable_id": self.stable_id,
+            "type": self.type,
+            "severity": self.severity,
+            "message": self.message,
+            "file_path": self.file_path,
+            "line_number": self.line_number,
+        }
 
 
 @dataclass
@@ -945,6 +1007,21 @@ class ReportDiffResult:
     def total_current(self) -> int:
         return len(self.unchanged_issues) + len(self.new_issues)
 
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": {
+                "new_count": self.new_count,
+                "resolved_count": self.resolved_count,
+                "unchanged_count": self.unchanged_count,
+                "total_current": self.total_current,
+            },
+            "previous": self.previous.to_dict() if self.previous else None,
+            "current": self.current.to_dict() if self.current else None,
+            "new_issues": [i.to_dict() for i in self.new_issues],
+            "resolved_issues": [i.to_dict() for i in self.resolved_issues],
+            "unchanged_issues": [i.to_dict() for i in self.unchanged_issues],
+        }
+
 
 def diff_report_snapshots(old: ReportSnapshot, new: ReportSnapshot) -> ReportDiffResult:
     """
@@ -971,3 +1048,91 @@ def diff_report_snapshots(old: ReportSnapshot, new: ReportSnapshot) -> ReportDif
         previous=old,
         current=new,
     )
+
+
+# ==================== 进度看板 ====================
+
+@dataclass
+class DashboardTrendPoint:
+    """看板上的一个数据点（某一天的快照）"""
+    date: str
+    total: int
+    new_count: int
+    resolved_count: int
+    error_count: int
+    warning_count: int
+    info_count: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "date": self.date,
+            "total": self.total,
+            "new_count": self.new_count,
+            "resolved_count": self.resolved_count,
+            "error_count": self.error_count,
+            "warning_count": self.warning_count,
+            "info_count": self.info_count,
+        }
+
+
+@dataclass
+class DashboardData:
+    """进度看板数据"""
+    points: List[DashboardTrendPoint] = field(default_factory=list)
+
+    @property
+    def latest_total(self) -> int:
+        return self.points[-1].total if self.points else 0
+
+    @property
+    def latest_new(self) -> int:
+        return self.points[-1].new_count if self.points else 0
+
+    @property
+    def latest_resolved(self) -> int:
+        return self.points[-1].resolved_count if self.points else 0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "points": [p.to_dict() for p in self.points],
+            "summary": {
+                "days": len(self.points),
+                "latest_total": self.latest_total,
+                "latest_new": self.latest_new,
+                "latest_resolved": self.latest_resolved,
+            }
+        }
+
+
+def build_dashboard_trend(snapshots: List[ReportSnapshot]) -> DashboardData:
+    """从历史快照构建看板趋势数据。
+
+    输入按日期升序排列的快照列表。
+    """
+    points: List[DashboardTrendPoint] = []
+    prev_ids: Set[str] = set()
+
+    for snap in snapshots:
+        curr_ids = {i.stable_id for i in snap.issues}
+        new_count = len(curr_ids - prev_ids)
+        resolved_count = len(prev_ids - curr_ids) if prev_ids else 0
+
+        error_count = snap.issue_count.get("error", 0)
+        warning_count = snap.issue_count.get("warning", 0)
+        info_count = snap.issue_count.get("info", 0) + snap.issue_count.get("suggestion", 0)
+
+        # 日期从 created_at 中提取
+        date_str = snap.created_at[:10] if snap.created_at else "unknown"
+
+        points.append(DashboardTrendPoint(
+            date=date_str,
+            total=len(curr_ids),
+            new_count=new_count,
+            resolved_count=resolved_count,
+            error_count=error_count,
+            warning_count=warning_count,
+            info_count=info_count,
+        ))
+        prev_ids = curr_ids
+
+    return DashboardData(points=points)
