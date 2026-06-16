@@ -9,7 +9,14 @@ from typing import Any, Dict, List, Optional
 
 import yaml
 
-from .utils import IgnoreRule, IgnoreRules, is_substring_of_canonical, TermVariantInfo
+from .utils import (
+    IgnoreRule,
+    IgnoreRules,
+    is_substring_of_canonical,
+    TermVariantInfo,
+    TaskStateStore,
+    ReportSnapshot,
+)
 
 
 DEFAULT_TERMS_FILENAME = "terms.yaml"
@@ -371,3 +378,102 @@ def add_ignore_rule(
     save_path = path or Path.cwd() / DEFAULT_IGNORE_FILENAME
     save_ignore_rules(rules, save_path)
     return rule
+
+
+# ==================== 任务状态持久化 ====================
+
+DEFAULT_TASKSTATES_FILENAME = ".doccheck-taskstates.yaml"
+
+
+def load_task_states(path: Optional[Path] = None) -> TaskStateStore:
+    """加载任务状态"""
+    if path is None:
+        candidate = Path.cwd() / DEFAULT_TASKSTATES_FILENAME
+        if candidate.exists():
+            path = candidate
+    if path and path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f) or {}
+        return TaskStateStore.from_dict(data)
+    return TaskStateStore()
+
+
+def save_task_states(store: TaskStateStore, path: Path) -> None:
+    """保存任务状态"""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.dump(store.to_dict(), f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+
+# ==================== 报告快照持久化 ====================
+
+DEFAULT_SNAPSHOT_FILENAME = ".doccheck-last-snapshot.json"
+
+
+def load_snapshot(path: Optional[Path] = None) -> Optional[ReportSnapshot]:
+    """加载上次报告快照"""
+    import json as _json
+    if path is None:
+        candidate = Path.cwd() / DEFAULT_SNAPSHOT_FILENAME
+        if candidate.exists():
+            path = candidate
+    if path and path.exists():
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = _json.load(f)
+            return ReportSnapshot.from_dict(data)
+        except (OSError, ValueError):
+            return None
+    return None
+
+
+def save_snapshot(snapshot: ReportSnapshot, path: Optional[Path] = None) -> Path:
+    """保存报告快照，返回保存路径"""
+    import json as _json
+    if path is None:
+        path = Path.cwd() / DEFAULT_SNAPSHOT_FILENAME
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        _json.dump(snapshot.to_dict(), f, ensure_ascii=False, indent=2)
+    return path
+
+
+# ==================== 示例配置生成 ====================
+
+def generate_sample_ignore_rules() -> IgnoreRules:
+    """
+    生成一份可用的示例忽略规则（用于 init-config --with-ignore）。
+    包含常见场景：附录文件术语跳过、已知过期链接、草稿章节检查跳过。
+    """
+    from datetime import datetime
+    now = datetime.now().isoformat(timespec="seconds")
+    return IgnoreRules(rules=[
+        IgnoreRule(
+            rule_type="term",
+            pattern="appendix/",
+            is_regex=False,
+            reason="附录属于参考资料，不检查术语一致性",
+            created_at=now,
+        ),
+        IgnoreRule(
+            rule_type="link",
+            pattern="external.example.com",
+            is_regex=False,
+            reason="外部示例域名链接，有效性由外部维护",
+            created_at=now,
+        ),
+        IgnoreRule(
+            rule_type="heading",
+            pattern="前言|序章|尾声",
+            is_regex=True,
+            reason="特殊章节标题允许重复",
+            created_at=now,
+        ),
+        IgnoreRule(
+            rule_type="chapter",
+            pattern="chapter_0[7-9]",
+            is_regex=True,
+            reason="第7-9章为草稿，跳过章节编号检查",
+            created_at=now,
+        ),
+    ])

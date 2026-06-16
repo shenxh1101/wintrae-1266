@@ -12,22 +12,30 @@ import yaml
 from . import __version__
 from .config import (
     DEFAULT_IGNORE_FILENAME,
+    DEFAULT_SNAPSHOT_FILENAME,
+    DEFAULT_TASKSTATES_FILENAME,
     CheckConfig,
     IgnoreRules,
     TermDefinition,
     TermList,
     add_ignore_rule,
+    generate_sample_ignore_rules,
     load_config,
     load_ignore_rules,
+    load_snapshot,
+    load_task_states,
     load_terms,
     save_config,
     save_ignore_rules,
+    save_snapshot as _save_snapshot_func,
+    save_task_states as _save_task_states_func,
     save_terms,
 )
 from .refs import ReferenceChecker
 from .report import ReportGenerator
 from .scanner import BaseScanner
 from .terms import TermManager
+from .utils import ChapterFilter, ReportSnapshot, TaskStatus, TASK_STATUS_LABELS
 
 
 def _build_config(
@@ -124,6 +132,11 @@ def main(ctx: click.Context, config_path: Optional[str], ignore_file: Optional[s
 @click.option("--exclude", help="排除目录模式，逗号分隔")
 @click.option("--no-dedup", is_flag=True, help="禁用问题去重")
 @click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
+@click.option("--diff/--no-diff", default=False, help="对比上次报告，显示新增/已解决/仍未处理")
+@click.option("--save-snapshot/--no-save-snapshot", default=True,
+              help="运行后是否保存快照（用于下次 diff 对比）")
+@click.option("--snapshot-file", type=click.Path(),
+              help=f"快照文件路径 (默认: {DEFAULT_SNAPSHOT_FILENAME})")
 @click.option("-q", "--quiet", is_flag=True, help="静默模式，只输出结果摘要")
 @click.pass_context
 def scan_cmd(
@@ -138,6 +151,9 @@ def scan_cmd(
     exclude: Optional[str],
     no_dedup: bool,
     no_ignore: bool,
+    diff: bool,
+    save_snapshot: bool,
+    snapshot_file: Optional[str],
     quiet: bool,
 ):
     """扫描文档并执行基础检查"""
@@ -151,16 +167,25 @@ def scan_cmd(
     ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
     ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
+    # 加载上次快照（用于diff）
+    previous_snap = None
+    if diff:
+        snap_path = Path(snapshot_file) if snapshot_file else None
+        previous_snap = load_snapshot(snap_path)
+        if previous_snap is None and not quiet:
+            click.echo("ℹ️  未找到上次快照，本次将生成基线快照")
+
     if not quiet:
         click.echo(f"📁 扫描目录: {root}")
         if cfg.chapter_filter_str:
-            from .utils import ChapterFilter
             cf = ChapterFilter.parse(cfg.chapter_filter_str)
             click.echo(f"📖 章节筛选: {cf.describe()}")
         if cfg.modified_within_days:
             click.echo(f"🕐 仅最近 {cfg.modified_within_days} 天修改的文件")
         if ignore_rules and ignore_path:
             click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
+        if diff and previous_snap:
+            click.echo(f"📸 对比快照: {previous_snap.created_at or '未知时间'}")
 
     terms = load_terms(cfg.terms_file)
     scanner = BaseScanner(config=cfg, terms=terms, ignore_rules=ignore_rules)
@@ -169,8 +194,16 @@ def scan_cmd(
     fmt = cfg.output_format or "console"
     out_path = cfg.output_path
 
-    reporter = ReportGenerator(cfg)
+    reporter = ReportGenerator(cfg, previous_snapshot=previous_snap)
     content = reporter.generate(result, fmt=fmt, output=out_path)
+
+    # 保存快照
+    if save_snapshot:
+        current_snap = ReportSnapshot.from_result(result)
+        snap_path = Path(snapshot_file) if snapshot_file else None
+        saved_path = _save_snapshot_func(current_snap, snap_path)
+        if not quiet:
+            click.echo(f"📸 已保存快照: {saved_path}")
 
     if out_path:
         click.echo(f"✅ 报告已写入: {out_path}")
@@ -669,6 +702,17 @@ def refs_cmd(
 @click.option("--include-refs/--no-refs", default=True, help="包含引用检查")
 @click.option("--no-dedup", is_flag=True, help="禁用问题去重")
 @click.option("--no-ignore", is_flag=True, help="禁用忽略规则")
+@click.option("--diff/--no-diff", default=False, help="对比上次报告，显示新增/已解决/仍未处理")
+@click.option("--save-snapshot/--no-save-snapshot", default=True,
+              help="运行后是否保存快照（用于下次 diff 对比）")
+@click.option("--snapshot-file", type=click.Path(),
+              help=f"快照文件路径 (默认: {DEFAULT_SNAPSHOT_FILENAME})")
+@click.option("--task-states/--no-task-states", default=True,
+              help="是否加载并使用任务状态存储（沿用编辑状态）")
+@click.option("--task-states-file", type=click.Path(),
+              help=f"任务状态文件路径 (默认: {DEFAULT_TASKSTATES_FILENAME})")
+@click.option("--sync-task-states/--no-sync-task-states", default=False,
+              help="生成报告时是否同步新问题到任务状态文件（新增为待处理）")
 @click.pass_context
 def report_cmd(
     ctx: click.Context,
@@ -687,6 +731,12 @@ def report_cmd(
     include_refs: bool,
     no_dedup: bool,
     no_ignore: bool,
+    diff: bool,
+    save_snapshot: bool,
+    snapshot_file: Optional[str],
+    task_states: bool,
+    task_states_file: Optional[str],
+    sync_task_states: bool,
 ):
     """生成综合报告"""
     root = _get_folder(folder)
@@ -699,13 +749,31 @@ def report_cmd(
     ignore_path = _resolve_ignore_file(ctx.obj.get("ignore_file"), cfg)
     ignore_rules = _load_ignore_safely(ignore_path) if cfg.enable_ignore else None
 
+    # 加载上次快照（用于diff）
+    previous_snap = None
+    if diff:
+        snap_path = Path(snapshot_file) if snapshot_file else None
+        previous_snap = load_snapshot(snap_path)
+        if previous_snap is None:
+            click.echo("ℹ️  未找到上次快照，本次将生成基线快照")
+
+    # 加载任务状态存储
+    task_store = None
+    task_states_path = None
+    if task_states:
+        task_states_path = Path(task_states_file) if task_states_file else None
+        task_store = load_task_states(task_states_path)
+        if task_store.states:
+            click.echo(f"📝 加载任务状态: {len(task_store.states)} 条记录")
+
     click.echo(f"📋 生成综合报告 - 目录: {root}")
     if cfg.chapter_filter_str:
-        from .utils import ChapterFilter
         cf = ChapterFilter.parse(cfg.chapter_filter_str)
         click.echo(f"📖 章节筛选: {cf.describe()}")
     if ignore_rules and ignore_path:
         click.echo(f"🔕 加载忽略规则: {ignore_path} ({len(ignore_rules.rules)} 条)")
+    if diff and previous_snap:
+        click.echo(f"📸 对比快照: {previous_snap.created_at or '未知时间'}")
 
     terms = load_terms(cfg.terms_file)
     from .utils import CheckResult, deduplicate_issues
@@ -761,7 +829,7 @@ def report_cmd(
     combined.sort_issues()
 
     fmt = cfg.output_format
-    reporter = ReportGenerator(cfg)
+    reporter = ReportGenerator(cfg, task_store=task_store, previous_snapshot=previous_snap)
     content = reporter.generate(combined, fmt=fmt, output=cfg.output_path)
 
     if cfg.output_path:
@@ -788,8 +856,25 @@ def report_cmd(
             combined,
             output=Path(task_list),
             assignees=assignee_map,
+            sync_to_store=False,
         )
         click.echo(f"✅ 任务清单已导出: {task_list} ({len(tasks)} 个任务)")
+
+    # 同步任务状态
+    if task_store and sync_task_states:
+        new_count = reporter.sync_issues_to_store(combined)
+        ts_path = Path(task_states_file) if task_states_file else None
+        if ts_path is None:
+            ts_path = Path.cwd() / DEFAULT_TASKSTATES_FILENAME
+        _save_task_states_func(task_store, ts_path)
+        click.echo(f"📝 任务状态已同步: {ts_path} ({len(task_store.states)} 条, 新增 {new_count} 条)")
+
+    # 保存快照
+    if save_snapshot:
+        current_snap = ReportSnapshot.from_result(combined)
+        snap_path = Path(snapshot_file) if snapshot_file else None
+        saved_path = _save_snapshot_func(current_snap, snap_path)
+        click.echo(f"📸 已保存快照: {saved_path}")
 
     counts = combined.issue_count
     if counts["error"] > 0:
@@ -808,6 +893,151 @@ def _merge_stats(base: Optional[dict], extra: dict) -> dict:
         else:
             base[k] = v
     return base
+
+
+# ==================== tasks 命令组 ====================
+
+@main.group("tasks", help="📝 管理编辑任务状态（待处理/处理中/已修复/已忽略）")
+@click.option("--task-states-file", type=click.Path(),
+              help=f"任务状态文件路径 (默认: {DEFAULT_TASKSTATES_FILENAME})")
+@click.pass_context
+def tasks_group(ctx: click.Context, task_states_file: Optional[str]):
+    """任务状态管理命令组"""
+    ctx.ensure_object(dict)
+    ctx.obj["task_states_file"] = task_states_file
+
+
+def _load_task_states_from_ctx(ctx: click.Context):
+    """从上下文加载任务状态存储"""
+    ts_file = ctx.obj.get("task_states_file")
+    path = Path(ts_file) if ts_file else None
+    store = load_task_states(path)
+    return store, path
+
+
+def _save_task_states_from_ctx(store, ctx: click.Context):
+    """保存任务状态到上下文指定路径"""
+    ts_file = ctx.obj.get("task_states_file")
+    path = Path(ts_file) if ts_file else Path.cwd() / DEFAULT_TASKSTATES_FILENAME
+    _save_task_states_func(store, path)
+    return path
+
+
+@tasks_group.command("list", help="列出所有任务状态")
+@click.option("-s", "--status", help="按状态筛选 (pending/in_progress/fixed/ignored)")
+@click.option("-f", "--format", "output_format",
+              type=click.Choice(["console", "json", "yaml"]),
+              default="console", help="输出格式")
+@click.pass_context
+def tasks_list_cmd(ctx: click.Context, status: Optional[str], output_format: str):
+    """列出任务状态"""
+    store, _ = _load_task_states_from_ctx(ctx)
+
+    if not store.states:
+        click.echo("ℹ️  暂无任务状态记录")
+        return
+
+    filtered = list(store.states.items())
+    if status:
+        filtered = [(sid, rec) for sid, rec in filtered if rec.status == status]
+
+    if output_format == "json":
+        click.echo(json.dumps(store.to_dict(), ensure_ascii=False, indent=2))
+    elif output_format == "yaml":
+        click.echo(yaml.dump(store.to_dict(), allow_unicode=True, default_flow_style=False, sort_keys=False))
+    else:
+        from collections import Counter
+        cnt = Counter(rec.status for rec in store.states.values())
+        click.echo(f"📝 共 {len(store.states)} 个任务")
+        for st, c in cnt.most_common():
+            label = TASK_STATUS_LABELS.get(TaskStatus(st), st)
+            click.echo(f"  {label}: {c}")
+        click.echo()
+
+        if filtered:
+            click.echo(f"--- 显示 {len(filtered)} 条 ---")
+            for sid, rec in sorted(filtered, key=lambda x: (x[1].status, x[0])):
+                label = TASK_STATUS_LABELS.get(TaskStatus(rec.status), rec.status)
+                assignee = f" [{rec.assignee}]" if rec.assignee else ""
+                updated = f" 更新: {rec.updated_at}" if rec.updated_at else ""
+                click.echo(f"  {sid} | {label}{assignee} |{updated}")
+
+
+@tasks_group.command("set-status", help="设置任务状态")
+@click.argument("stable_id")
+@click.argument("status")
+@click.option("--assignee", help="指定负责人")
+@click.option("--note", help="添加备注")
+@click.pass_context
+def tasks_set_status(ctx: click.Context, stable_id: str, status: str,
+                     assignee: Optional[str], note: Optional[str]):
+    """设置单个任务的状态
+
+    \b
+    STATUS 可选值:
+      pending     待处理
+      in_progress 处理中
+      fixed       已修复
+      ignored     已忽略
+    """
+    valid_statuses = {s.value for s in TaskStatus}
+    if status not in valid_statuses:
+        click.echo(f"❌ 无效状态: {status}")
+        click.echo(f"   有效值: {', '.join(sorted(valid_statuses))}")
+        sys.exit(1)
+
+    store, _ = _load_task_states_from_ctx(ctx)
+    store.set_status(stable_id, status, assignee=assignee, note=note)
+    path = _save_task_states_from_ctx(store, ctx)
+
+    label = TASK_STATUS_LABELS.get(TaskStatus(status), status)
+    click.echo(f"✅ 任务 {stable_id} 状态已更新为: {label}")
+    click.echo(f"   保存至: {path}")
+
+
+@tasks_group.command("ignore", help="将任务标记为已忽略")
+@click.argument("stable_id")
+@click.option("--reason", help="忽略原因")
+@click.pass_context
+def tasks_ignore_cmd(ctx: click.Context, stable_id: str, reason: Optional[str]):
+    """将指定任务标记为已忽略"""
+    store, _ = _load_task_states_from_ctx(ctx)
+    store.set_status(stable_id, TaskStatus.IGNORED.value, note=reason)
+    path = _save_task_states_from_ctx(store, ctx)
+    click.echo(f"✅ 任务 {stable_id} 已标记为「已忽略」")
+    if reason:
+        click.echo(f"   原因: {reason}")
+    click.echo(f"   保存至: {path}")
+
+
+@tasks_group.command("fix", help="将任务标记为已修复")
+@click.argument("stable_id")
+@click.option("--note", help="修复说明")
+@click.pass_context
+def tasks_fix_cmd(ctx: click.Context, stable_id: str, note: Optional[str]):
+    """将指定任务标记为已修复"""
+    store, _ = _load_task_states_from_ctx(ctx)
+    store.set_status(stable_id, TaskStatus.FIXED.value, note=note)
+    path = _save_task_states_from_ctx(store, ctx)
+    click.echo(f"✅ 任务 {stable_id} 已标记为「已修复」")
+    if note:
+        click.echo(f"   说明: {note}")
+    click.echo(f"   保存至: {path}")
+
+
+@tasks_group.command("progress", help="将任务标记为处理中")
+@click.argument("stable_id")
+@click.option("--assignee", help="指定负责人")
+@click.pass_context
+def tasks_progress_cmd(ctx: click.Context, stable_id: str, assignee: Optional[str]):
+    """将指定任务标记为处理中"""
+    store, _ = _load_task_states_from_ctx(ctx)
+    store.set_status(stable_id, TaskStatus.IN_PROGRESS.value, assignee=assignee)
+    path = _save_task_states_from_ctx(store, ctx)
+    click.echo(f"✅ 任务 {stable_id} 已标记为「处理中」")
+    if assignee:
+        click.echo(f"   负责人: {assignee}")
+    click.echo(f"   保存至: {path}")
 
 
 # ==================== 辅助命令 ====================
@@ -868,30 +1098,9 @@ def init_config(force: bool, with_terms: bool, with_ignore: bool):
         if ignore_path.exists() and not force:
             click.echo(f"⚠️  忽略规则文件已存在: {ignore_path}")
         else:
-            sample_ignore = IgnoreRules()
-            add_ignore_rule(
-                sample_ignore,
-                pattern="chapter_05.md",
-                rule_type="substring",
-                description="跳过第5章的所有链接检查（草稿未完成）",
-                issue_types=["broken_link", "missing_image_alt"],
-            )
-            add_ignore_rule(
-                sample_ignore,
-                pattern="^附件\\d+",
-                rule_type="regex",
-                description="忽略附件类文档的术语检查",
-                issue_types=["term_alias_found", "term_forbidden"],
-            )
-            add_ignore_rule(
-                sample_ignore,
-                pattern="旧版本链接",
-                rule_type="substring",
-                description="确认保留的历史引用",
-                issue_types=["broken_link"],
-            )
+            sample_ignore = generate_sample_ignore_rules()
             save_ignore_rules(sample_ignore, ignore_path)
-            click.echo(f"✅ 已创建示例忽略规则文件: {ignore_path}")
+            click.echo(f"✅ 已创建示例忽略规则: {ignore_path} ({len(sample_ignore.rules)} 条规则)")
 
 
 if __name__ == "__main__":

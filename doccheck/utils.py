@@ -697,3 +697,277 @@ def parse_chapter_range(range_str: str) -> List[int]:
         return [int(range_str.strip())]
     except ValueError:
         return []
+
+
+# ==================== 任务状态存储 ====================
+
+class TaskStatus(str, Enum):
+    """任务状态枚举"""
+    PENDING = "pending"          # 待处理
+    IN_PROGRESS = "in_progress"  # 处理中
+    IGNORED = "ignored"          # 已确认忽略
+    FIXED = "fixed"              # 已修复
+
+
+TASK_STATUS_LABELS = {
+    TaskStatus.PENDING: "待处理",
+    TaskStatus.IN_PROGRESS: "处理中",
+    TaskStatus.IGNORED: "已忽略",
+    TaskStatus.FIXED: "已修复",
+}
+
+
+@dataclass
+class TaskStateRecord:
+    """单条任务状态记录"""
+    status: str = TaskStatus.PENDING.value
+    assignee: str = ""
+    note: str = ""
+    first_seen_at: str = ""
+    updated_at: str = ""
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "status": self.status,
+            "assignee": self.assignee,
+            "note": self.note,
+            "first_seen_at": self.first_seen_at,
+            "updated_at": self.updated_at,
+            "metadata": self.metadata,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "TaskStateRecord":
+        return cls(
+            status=data.get("status", TaskStatus.PENDING.value),
+            assignee=data.get("assignee", ""),
+            note=data.get("note", ""),
+            first_seen_at=data.get("first_seen_at", ""),
+            updated_at=data.get("updated_at", ""),
+            metadata=dict(data.get("metadata", {})),
+        )
+
+
+@dataclass
+class TaskStateStore:
+    """
+    任务状态存储。
+    以 stable_id 为键，保存编辑生命周期状态，便于多次跑报告时沿用。
+    """
+    states: Dict[str, TaskStateRecord] = field(default_factory=dict)
+
+    def get(self, stable_id: str) -> Optional[TaskStateRecord]:
+        return self.states.get(stable_id)
+
+    def get_status(self, stable_id: str) -> str:
+        rec = self.states.get(stable_id)
+        return rec.status if rec else TaskStatus.PENDING.value
+
+    def set_status(self, stable_id: str, status: str,
+                   assignee: str = None, note: str = None,
+                   metadata: Dict[str, Any] = None) -> TaskStateRecord:
+        """设置任务状态，返回更新后的记录"""
+        from datetime import datetime
+        now = datetime.now().isoformat(timespec="seconds")
+
+        rec = self.states.get(stable_id)
+        if rec is None:
+            rec = TaskStateRecord(first_seen_at=now)
+            self.states[stable_id] = rec
+
+        rec.status = status
+        rec.updated_at = now
+        if assignee is not None:
+            rec.assignee = assignee
+        if note is not None:
+            rec.note = note
+        if metadata is not None:
+            rec.metadata.update(metadata)
+        return rec
+
+    def merge_with_current(self, result: CheckResult) -> List[Dict[str, Any]]:
+        """
+        将当前检查结果与存储的状态合并。
+        返回列表：每条包含 issue 基本信息 + status/assignee/note
+        """
+        merged = []
+        for issue in result.issues:
+            sid = issue.stable_id
+            rec = self.states.get(sid)
+            if rec:
+                status = rec.status
+                assignee = rec.assignee
+                note = rec.note
+            else:
+                status = TaskStatus.PENDING.value
+                assignee = ""
+                note = ""
+            merged.append({
+                "stable_id": sid,
+                "issue": issue,
+                "status": status,
+                "assignee": assignee,
+                "note": note,
+            })
+        return merged
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            sid: rec.to_dict()
+            for sid, rec in self.states.items()
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "TaskStateStore":
+        states = {}
+        for sid, rec_data in (data or {}).items():
+            states[sid] = TaskStateRecord.from_dict(rec_data)
+        return cls(states=states)
+
+
+# ==================== 报告快照 & 对比 ====================
+
+@dataclass
+class ReportSnapshotIssue:
+    """快照中保存的精简 Issue 信息"""
+    stable_id: str
+    type: str
+    severity: str
+    message: str
+    file_path: str = ""
+    line_number: Optional[int] = None
+
+
+@dataclass
+class ReportSnapshot:
+    """
+    报告快照，用于两次检查之间做对比。
+    只存精简信息，文件体积小，加载快。
+    """
+    created_at: str = ""
+    files_scanned: List[str] = field(default_factory=list)
+    issue_count: Dict[str, int] = field(default_factory=dict)
+    issues: List[ReportSnapshotIssue] = field(default_factory=list)
+    ignore_stats: Dict[str, Any] = field(default_factory=dict)
+    dedup_stats: Dict[str, Any] = field(default_factory=dict)
+
+    def issue_ids(self) -> Set[str]:
+        return {i.stable_id for i in self.issues}
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "created_at": self.created_at,
+            "files_scanned": self.files_scanned,
+            "issue_count": self.issue_count,
+            "issues": [
+                {
+                    "stable_id": i.stable_id,
+                    "type": i.type,
+                    "severity": i.severity,
+                    "message": i.message,
+                    "file_path": i.file_path,
+                    "line_number": i.line_number,
+                }
+                for i in self.issues
+            ],
+            "ignore_stats": self.ignore_stats,
+            "dedup_stats": self.dedup_stats,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ReportSnapshot":
+        issues = []
+        for item in data.get("issues", []):
+            issues.append(ReportSnapshotIssue(
+                stable_id=item.get("stable_id", ""),
+                type=item.get("type", ""),
+                severity=item.get("severity", ""),
+                message=item.get("message", ""),
+                file_path=item.get("file_path", ""),
+                line_number=item.get("line_number"),
+            ))
+        return cls(
+            created_at=data.get("created_at", ""),
+            files_scanned=list(data.get("files_scanned", [])),
+            issue_count=dict(data.get("issue_count", {})),
+            issues=issues,
+            ignore_stats=dict(data.get("ignore_stats", {})),
+            dedup_stats=dict(data.get("dedup_stats", {})),
+        )
+
+    @classmethod
+    def from_result(cls, result: CheckResult) -> "ReportSnapshot":
+        """从 CheckResult 生成快照"""
+        from datetime import datetime
+        issues = []
+        for issue in result.issues:
+            issues.append(ReportSnapshotIssue(
+                stable_id=issue.stable_id,
+                type=issue.type.value,
+                severity=issue.severity.value,
+                message=issue.message,
+                file_path=str(issue.file_path) if issue.file_path else "",
+                line_number=issue.line_number,
+            ))
+        return cls(
+            created_at=datetime.now().isoformat(timespec="seconds"),
+            files_scanned=[str(f) for f in result.files_scanned],
+            issue_count=dict(result.issue_count),
+            issues=issues,
+            ignore_stats=dict(result.ignore_stats or {}),
+            dedup_stats=dict(result.dedup_stats or {}),
+        )
+
+
+@dataclass
+class ReportDiffResult:
+    """报告对比结果"""
+    new_issues: List[ReportSnapshotIssue] = field(default_factory=list)
+    resolved_issues: List[ReportSnapshotIssue] = field(default_factory=list)
+    unchanged_issues: List[ReportSnapshotIssue] = field(default_factory=list)
+    previous: Optional[ReportSnapshot] = None
+    current: Optional[ReportSnapshot] = None
+
+    @property
+    def new_count(self) -> int:
+        return len(self.new_issues)
+
+    @property
+    def resolved_count(self) -> int:
+        return len(self.resolved_issues)
+
+    @property
+    def unchanged_count(self) -> int:
+        return len(self.unchanged_issues)
+
+    @property
+    def total_current(self) -> int:
+        return len(self.unchanged_issues) + len(self.new_issues)
+
+
+def diff_report_snapshots(old: ReportSnapshot, new: ReportSnapshot) -> ReportDiffResult:
+    """
+    对比两份报告快照，返回 diff 结果。
+    - new_issues: 本次新增（上次没有）
+    - resolved_issues: 本次已解决（上次有，本次没有）
+    - unchanged_issues: 两次都有（仍未处理）
+    """
+    old_ids = {i.stable_id: i for i in old.issues}
+    new_ids = {i.stable_id: i for i in new.issues}
+
+    new_issues = [new_ids[sid] for sid in new_ids if sid not in old_ids]
+    resolved_issues = [old_ids[sid] for sid in old_ids if sid not in new_ids]
+    unchanged_issues = [new_ids[sid] for sid in new_ids if sid in old_ids]
+
+    new_issues.sort(key=lambda i: (i.severity, i.stable_id))
+    resolved_issues.sort(key=lambda i: (i.severity, i.stable_id))
+    unchanged_issues.sort(key=lambda i: (i.severity, i.stable_id))
+
+    return ReportDiffResult(
+        new_issues=new_issues,
+        resolved_issues=resolved_issues,
+        unchanged_issues=unchanged_issues,
+        previous=old,
+        current=new,
+    )

@@ -14,7 +14,23 @@ from typing import Any, Dict, List, Optional
 import yaml
 
 from .config import CheckConfig
-from .utils import CheckResult, Issue, IssueType, Severity, FirstOccurrence, SuspectedSynonym, format_time, relative_path
+from .utils import (
+    CheckResult,
+    Issue,
+    IssueType,
+    Severity,
+    FirstOccurrence,
+    SuspectedSynonym,
+    format_time,
+    relative_path,
+    TaskStateStore,
+    TaskStatus,
+    TASK_STATUS_LABELS,
+    ReportSnapshot,
+    ReportSnapshotIssue,
+    ReportDiffResult,
+    diff_report_snapshots,
+)
 
 
 SEVERITY_ICONS = {
@@ -102,12 +118,33 @@ class TaskItem:
 class ReportGenerator:
     """报告生成器"""
 
-    def __init__(self, config: Optional[CheckConfig] = None):
+    def __init__(
+        self,
+        config: Optional[CheckConfig] = None,
+        task_store: Optional[TaskStateStore] = None,
+        previous_snapshot: Optional[ReportSnapshot] = None,
+    ):
         self.config = config or CheckConfig()
+        self.task_store = task_store
+        self.previous_snapshot = previous_snapshot
+        self._diff_result: Optional[ReportDiffResult] = None
+        if previous_snapshot is not None:
+            self._diff_result = None  # 延迟到有 CheckResult 时计算
 
-    def generate(self, result: CheckResult, fmt: str = "console", output: Optional[Path] = None) -> str:
+    def generate(
+        self,
+        result: CheckResult,
+        fmt: str = "console",
+        output: Optional[Path] = None,
+    ) -> str:
         """生成报告"""
         fmt = fmt.lower()
+
+        # 计算diff结果（如果有上次快照）
+        if self.previous_snapshot is not None and self._diff_result is None:
+            current_snap = ReportSnapshot.from_result(result)
+            self._diff_result = diff_report_snapshots(self.previous_snapshot, current_snap)
+
         generators = {
             "console": self._to_console,
             "text": self._to_console,
@@ -129,6 +166,10 @@ class ReportGenerator:
             with open(output, "w", encoding="utf-8") as f:
                 f.write(content)
         return content
+
+    @property
+    def diff_result(self) -> Optional[ReportDiffResult]:
+        return self._diff_result
 
     @staticmethod
     def _format_ignore_stats(result: CheckResult) -> Optional[str]:
@@ -168,6 +209,174 @@ class ReportGenerator:
             return f"🗑️  合并去重：减少 {removed} 条（共合并 {groups} 组）"
         return f"🗑️  合并去重：减少 {removed} 条"
 
+    def _format_diff_summary(self) -> Optional[str]:
+        """格式化 diff 概要（用于顶部统计行）"""
+        if self._diff_result is None:
+            return None
+        diff = self._diff_result
+        parts = [f"📈 对比上次：新增 {diff.new_count}，已解决 {diff.resolved_count}，仍未处理 {diff.unchanged_count}"]
+        if diff.previous and diff.previous.created_at:
+            parts.append(f"（上次快照: {diff.previous.created_at}）")
+        return "".join(parts)
+
+    def _render_diff_console(self) -> str:
+        """渲染控制台格式的 diff 视图"""
+        if self._diff_result is None:
+            return ""
+        diff = self._diff_result
+        lines = []
+        lines.append("-" * 70)
+        lines.append("📈 对比上次报告")
+        lines.append("-" * 70)
+        lines.append("")
+        lines.append(f"  新增问题: {diff.new_count} 条")
+        lines.append(f"  已解决: {diff.resolved_count} 条")
+        lines.append(f"  仍未处理: {diff.unchanged_count} 条")
+        lines.append("")
+
+        if diff.new_issues:
+            lines.append(f"🆕 新增问题（{len(diff.new_issues)}）：")
+            for i, issue in enumerate(diff.new_issues[:15], 1):
+                sev_icon = SEVERITY_ICONS.get(Severity(issue.severity), "  ")
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                lines.append(f"  {i}. {sev_icon} [{issue.stable_id}] [{type_label}] {issue.message[:60]}")
+            if len(diff.new_issues) > 15:
+                lines.append(f"  ... 还有 {len(diff.new_issues) - 15} 条")
+            lines.append("")
+
+        if diff.resolved_issues:
+            lines.append(f"✅ 已解决（{len(diff.resolved_issues)}）：")
+            for i, issue in enumerate(diff.resolved_issues[:10], 1):
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                lines.append(f"  {i}. [{issue.stable_id}] [{type_label}] {issue.message[:60]}")
+            if len(diff.resolved_issues) > 10:
+                lines.append(f"  ... 还有 {len(diff.resolved_issues) - 10} 条")
+            lines.append("")
+
+        return "\n".join(lines)
+
+    def _render_diff_markdown(self) -> str:
+        """渲染 Markdown 格式的 diff 视图"""
+        if self._diff_result is None:
+            return ""
+        diff = self._diff_result
+        lines = []
+
+        lines.append("## 📈 对比上次报告")
+        lines.append("")
+        lines.append("| 类别 | 数量 |")
+        lines.append("|------|------|")
+        lines.append(f"| 🆕 新增问题 | **{diff.new_count}** |")
+        lines.append(f"| ✅ 已解决 | **{diff.resolved_count}** |")
+        lines.append(f"| ⏳ 仍未处理 | **{diff.unchanged_count}** |")
+        lines.append("")
+        if diff.previous and diff.previous.created_at:
+            lines.append(f"> 上次快照生成时间: {diff.previous.created_at}")
+            lines.append("")
+
+        if diff.new_issues:
+            lines.append(f"### 🆕 新增问题（{len(diff.new_issues)}）")
+            lines.append("")
+            lines.append("| 稳定ID | 级别 | 类型 | 描述 |")
+            lines.append("|--------|------|------|------|")
+            for issue in diff.new_issues:
+                sev_icon = TYPE_EMOJI_MAP.get(issue.severity, "")
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                msg = issue.message.replace("|", "\\|")
+                lines.append(f"| `{issue.stable_id}` | {sev_icon} | {type_label} | {msg} |")
+            lines.append("")
+
+        if diff.resolved_issues:
+            lines.append(f"### ✅ 已解决（{len(diff.resolved_issues)}）")
+            lines.append("")
+            lines.append("| 稳定ID | 类型 | 描述 |")
+            lines.append("|--------|------|------|")
+            for issue in diff.resolved_issues:
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                msg = issue.message.replace("|", "\\|")
+                lines.append(f"| `{issue.stable_id}` | {type_label} | {msg} |")
+            lines.append("")
+
+        if diff.unchanged_issues:
+            lines.append(f"### ⏳ 仍未处理（{len(diff.unchanged_issues)}）")
+            lines.append("")
+            lines.append("| 稳定ID | 级别 | 类型 | 描述 |")
+            lines.append("|--------|------|------|------|")
+            for issue in diff.unchanged_issues[:20]:
+                sev_icon = TYPE_EMOJI_MAP.get(issue.severity, "")
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                msg = issue.message.replace("|", "\\|")
+                lines.append(f"| `{issue.stable_id}` | {sev_icon} | {type_label} | {msg} |")
+            if len(diff.unchanged_issues) > 20:
+                lines.append(f"| ... | | | 还有 {len(diff.unchanged_issues) - 20} 条 |")
+            lines.append("")
+
+        return "\n".join(lines)
+
+    def _render_diff_html(self) -> str:
+        """渲染 HTML 格式的 diff 视图"""
+        if self._diff_result is None:
+            return ""
+        diff = self._diff_result
+
+        def _issue_rows(issues, max_show=30):
+            rows = ""
+            for i, issue in enumerate(issues[:max_show]):
+                sev_label = SEVERITY_LABELS.get(Severity(issue.severity), issue.severity)
+                sev_class = f"sev-{issue.severity}"
+                type_label = ISSUE_TYPE_LABELS.get(IssueType(issue.type), issue.type)
+                rows += f"""
+                <tr class="{sev_class}">
+                    <td><code style='background:#eef2ff;color:#3730a3'>{_escape_html(issue.stable_id)}</code></td>
+                    <td><span class="badge badge-{issue.severity}">{sev_label}</span></td>
+                    <td>{type_label}</td>
+                    <td>{_escape_html(issue.message)}</td>
+                </tr>"""
+            if len(issues) > max_show:
+                rows += f"<tr><td colspan='4' style='text-align:center;color:#9ca3af'>... 还有 {len(issues) - max_show} 条</td></tr>"
+            return rows
+
+        prev_time = diff.previous.created_at if diff.previous else ""
+
+        new_html = f"""
+        <h2>📈 对比上次报告</h2>
+        <div class="stats-grid" style="grid-template-columns:repeat(3, 1fr)">
+            <div class="stat-card" style="background:#f59e0b"><div class="num">{diff.new_count}</div><div class="label">新增</div></div>
+            <div class="stat-card" style="background:#10b981"><div class="num">{diff.resolved_count}</div><div class="label">已解决</div></div>
+            <div class="stat-card" style="background:#6b7280"><div class="num">{diff.unchanged_count}</div><div class="label">仍未处理</div></div>
+        </div>
+        {f"<p style='color:#6b7280;text-align:right'>上次快照: {prev_time}</p>" if prev_time else ""}
+        """
+
+        if diff.new_issues:
+            new_html += f"""
+            <h3>🆕 新增问题（{len(diff.new_issues)}）</h3>
+            <table>
+                <thead><tr><th>稳定ID</th><th>级别</th><th>类型</th><th>描述</th></tr></thead>
+                <tbody>{_issue_rows(diff.new_issues)}</tbody>
+            </table>
+            """
+
+        if diff.resolved_issues:
+            new_html += f"""
+            <h3>✅ 已解决（{len(diff.resolved_issues)}）</h3>
+            <table>
+                <thead><tr><th>稳定ID</th><th>类型</th><th>描述</th></tr></thead>
+                <tbody>{_issue_rows(diff.resolved_issues)}</tbody>
+            </table>
+            """
+
+        if diff.unchanged_issues:
+            new_html += f"""
+            <h3>⏳ 仍未处理（{len(diff.unchanged_issues)}）</h3>
+            <table>
+                <thead><tr><th>稳定ID</th><th>级别</th><th>类型</th><th>描述</th></tr></thead>
+                <tbody>{_issue_rows(diff.unchanged_issues, max_show=15)}</tbody>
+            </table>
+            """
+
+        return new_html
+
     def _to_console(self, result: CheckResult) -> str:
         """控制台格式输出"""
         lines = []
@@ -194,6 +403,30 @@ class ReportGenerator:
             if cnt > 0:
                 lines.append(f"   {icon} {SEVERITY_LABELS[sev]:>4s}: {cnt}")
         lines.append("")
+
+        diff_summary = self._format_diff_summary()
+        if diff_summary:
+            lines.append(diff_summary)
+            lines.append("")
+
+        if self.task_store and self.task_store.states:
+            from collections import Counter
+            status_counter = Counter(
+                rec.status for rec in self.task_store.states.values()
+            )
+            status_parts = []
+            for st in [TaskStatus.PENDING, TaskStatus.IN_PROGRESS, TaskStatus.FIXED, TaskStatus.IGNORED]:
+                cnt = status_counter.get(st.value, 0)
+                if cnt > 0:
+                    status_parts.append(f"{TASK_STATUS_LABELS.get(st, st.value)}: {cnt}")
+            if status_parts:
+                lines.append("📝 任务状态: " + "  ".join(status_parts))
+                lines.append("")
+
+        diff_console = self._render_diff_console()
+        if diff_console:
+            lines.append(diff_console)
+            lines.append("")
 
         if result.issues:
             lines.append("-" * 70)
@@ -299,6 +532,29 @@ class ReportGenerator:
             lines.append(f"| {TYPE_EMOJI_MAP[sev.value]} {SEVERITY_LABELS[sev]} | {counts[sev.value]} |")
         lines.append(f"| **总计** | **{total}** |")
         lines.append("")
+
+        diff_summary = self._format_diff_summary()
+        if diff_summary:
+            lines.append(f"> {diff_summary}")
+            lines.append("")
+
+        if self.task_store and self.task_store.states:
+            from collections import Counter
+            status_counter = Counter(rec.status for rec in self.task_store.states.values())
+            status_parts = []
+            for st in [TaskStatus.PENDING, TaskStatus.IN_PROGRESS, TaskStatus.FIXED, TaskStatus.IGNORED]:
+                cnt = status_counter.get(st.value, 0)
+                label = TASK_STATUS_LABELS.get(st, st.value)
+                status_parts.append(f"**{label}**: {cnt}")
+            lines.append("## 📝 任务状态概览")
+            lines.append("")
+            lines.append(" | ".join(status_parts))
+            lines.append("")
+
+        diff_md = self._render_diff_markdown()
+        if diff_md:
+            lines.append(diff_md)
+            lines.append("")
 
         if result.issues:
             lines.append("## 🔍 问题详情")
@@ -465,6 +721,8 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
     </div>
     <p style="text-align: right; margin-top: 0.5rem;"><strong>总计: {total} 个问题</strong></p>
 
+    {self._render_diff_html() if self._diff_result else ''}
+
     <h2>🔍 问题详情</h2>
     {"<table><thead><tr><th>#</th><th>稳定ID</th><th>级别</th><th>类型</th><th>描述</th><th>位置</th><th>建议</th></tr></thead><tbody>" + issue_rows + "</tbody></table>" if result.issues else '<div class="empty">✅ 未发现任何问题</div>'}
 
@@ -508,8 +766,16 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         result: CheckResult,
         output: Optional[Path] = None,
         assignees: Optional[Dict[str, str]] = None,
+        sync_to_store: bool = False,
     ) -> List[TaskItem]:
-        """生成可分配给编辑的任务清单（使用稳定ID）"""
+        """生成可分配给编辑的任务清单（使用稳定ID）。
+
+        Args:
+            result: 检查结果
+            output: 输出文件路径
+            assignees: 负责人模式映射
+            sync_to_store: 是否将新问题同步写入 task_store（新增为 pending）
+        """
         assignees = assignees or {}
         tasks: List[TaskItem] = []
 
@@ -542,12 +808,36 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                         tags.append(f"area:{v}")
 
             assignee = ""
-            for pattern, person in assignees.items():
-                if issue.file_path and pattern in str(issue.file_path).lower():
-                    assignee = person
-                    break
+            status = "open"
+            status_label = ""
 
-            tasks.append(TaskItem(
+            # 从任务状态存储中读取已有状态
+            if self.task_store is not None:
+                rec = self.task_store.get(sid)
+                if rec:
+                    status = rec.status
+                    assignee = rec.assignee or assignee
+                    status_label = TASK_STATUS_LABELS.get(
+                        TaskStatus(status), status
+                    )
+
+            # 如果没有指定负责人，尝试从 assignees 自动分配
+            if not assignee:
+                for pattern, person in assignees.items():
+                    if issue.file_path and pattern in str(issue.file_path).lower():
+                        assignee = person
+                        break
+
+            # 同步到存储（新问题标记为 pending）
+            if sync_to_store and self.task_store is not None:
+                if not self.task_store.get(sid):
+                    self.task_store.set_status(
+                        sid,
+                        TaskStatus.PENDING.value,
+                        assignee=assignee or None,
+                    )
+
+            task = TaskItem(
                 id=sid,
                 stable_id=sid,
                 severity=issue.severity.value,
@@ -557,12 +847,15 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                 file_path=str(issue.file_path) if issue.file_path else "",
                 line_number=issue.line_number,
                 assignee=assignee,
-                status="open",
+                status=status,
                 priority=priority_map.get(issue.severity, "medium"),
                 suggestion=issue.suggestion,
                 context=issue.context,
                 tags=tags,
-            ))
+            )
+            if status_label:
+                task.tags = list(task.tags) + [f"status:{status}"]
+            tasks.append(task)
 
         if output:
             output.parent.mkdir(parents=True, exist_ok=True)
@@ -579,14 +872,15 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
                 with open(output, "w", encoding="utf-8", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
-                        "ID", "稳定ID", "优先级", "严重程度", "类型", "标题", "描述",
-                        "文件", "行号", "负责人", "状态", "建议", "标签",
+                        "ID", "稳定ID", "优先级", "严重程度", "类型", "状态", "标题", "描述",
+                        "文件", "行号", "负责人", "建议", "标签",
                     ])
                     for t in tasks:
                         writer.writerow([
-                            t.id, t.stable_id, t.priority, t.severity, t.type, t.title,
-                            t.description, t.file_path, t.line_number or "",
-                            t.assignee, t.status, t.suggestion, ",".join(t.tags),
+                            t.id, t.stable_id, t.priority, t.severity, t.type,
+                            t.status, t.title, t.description,
+                            t.file_path, t.line_number or "",
+                            t.assignee, t.suggestion, ",".join(t.tags),
                         ])
             else:
                 md_content = self._to_tasks_markdown(result, tasks)
@@ -595,8 +889,27 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
 
         return tasks
 
+    def sync_issues_to_store(self, result: CheckResult) -> int:
+        """将当前结果中的问题同步到任务状态存储。
+
+        新问题标记为 pending，已有问题保留原状态。
+        返回新增的任务数量。
+        """
+        if self.task_store is None:
+            return 0
+
+        new_count = 0
+        for issue in result.issues:
+            sid = issue.stable_id
+            if not sid:
+                continue
+            if not self.task_store.get(sid):
+                self.task_store.set_status(sid, TaskStatus.PENDING.value)
+                new_count += 1
+        return new_count
+
     def _to_tasks_markdown(self, result: CheckResult, tasks: Optional[List[TaskItem]] = None) -> str:
-        """任务清单的Markdown格式"""
+        """任务清单的Markdown格式（按状态分组，优先级排序）"""
         if tasks is None:
             tasks = self.generate_task_list(result)
 
@@ -609,68 +922,110 @@ ul.files-list li {{ padding: 0.5rem; border-bottom: 1px solid #f3f4f6; }}
         ignore_info = self._format_ignore_stats(result)
         if ignore_info:
             lines.append(f"> {ignore_info}")
+        dedup_info = self._format_dedup_stats(result)
+        if dedup_info:
+            lines.append(f"> {dedup_info}")
         lines.append("")
 
-        by_priority: Dict[str, List[TaskItem]] = defaultdict(list)
+        # 按状态分组
+        by_status: Dict[str, List[TaskItem]] = defaultdict(list)
         for t in tasks:
-            by_priority[t.priority].append(t)
+            by_status[t.status].append(t)
 
-        priority_labels = {"high": "🔴 高优先级", "medium": "🟡 中优先级", "low": "🟢 低优先级"}
-        priority_order = ["high", "medium", "low"]
+        # 显示顺序：待处理 → 处理中 → 已修复 → 已忽略 → 其他
+        status_order = [
+            TaskStatus.PENDING.value,
+            TaskStatus.IN_PROGRESS.value,
+            TaskStatus.FIXED.value,
+            TaskStatus.IGNORED.value,
+        ]
+        status_labels = {
+            TaskStatus.PENDING.value: "⏳ 待处理",
+            TaskStatus.IN_PROGRESS.value: "� 处理中",
+            TaskStatus.FIXED.value: "✅ 已修复",
+            TaskStatus.IGNORED.value: "🚫 已忽略",
+        }
 
-        for prio in priority_order:
-            if prio not in by_priority:
+        for st in status_order:
+            st_tasks = by_status.get(st, [])
+            if not st_tasks:
                 continue
-            prio_tasks = by_priority[prio]
-            lines.append(f"## {priority_labels[prio]} ({len(prio_tasks)})")
+            label = status_labels.get(st, st)
+            lines.append(f"## {label}（{len(st_tasks)}）")
             lines.append("")
 
-            by_assignee: Dict[str, List[TaskItem]] = defaultdict(list)
-            unassigned = []
-            for t in prio_tasks:
-                if t.assignee:
-                    by_assignee[t.assignee].append(t)
-                else:
-                    unassigned.append(t)
+            # 组内按优先级排序
+            st_tasks_sorted = sorted(
+                st_tasks,
+                key=lambda t: ({"high": 0, "medium": 1, "low": 2}.get(t.priority, 9), t.id)
+            )
 
-            for person, person_tasks in sorted(by_assignee.items()):
-                lines.append(f"### 👤 {person}")
-                lines.append("")
-                self._render_task_items(lines, person_tasks)
+            by_priority: Dict[str, List[TaskItem]] = defaultdict(list)
+            for t in st_tasks_sorted:
+                by_priority[t.priority].append(t)
 
-            if unassigned:
-                lines.append("### 📋 待分配")
-                lines.append("")
-                self._render_task_items(lines, unassigned)
+            priority_labels = {"high": "🔴 高优先级", "medium": "🟡 中优先级", "low": "🟢 低优先级"}
+            for prio in ["high", "medium", "low"]:
+                prio_tasks = by_priority.get(prio, [])
+                if not prio_tasks:
+                    continue
+                if len(st_tasks_sorted) > 10:
+                    lines.append(f"### {priority_labels[prio]}")
+                    lines.append("")
+                self._render_task_items(lines, prio_tasks, show_status=False)
+
+        # 其他未分类状态
+        known = set(status_order)
+        other_tasks = [t for t in tasks if t.status not in known]
+        if other_tasks:
+            lines.append(f"## 📋 其他（{len(other_tasks)}）")
+            lines.append("")
+            self._render_task_items(lines, other_tasks, show_status=True)
 
         return "\n".join(lines)
 
     @staticmethod
-    def _render_task_items(lines: List[str], tasks: List[TaskItem]) -> None:
+    def _render_task_items(lines: List[str], tasks: List[TaskItem], show_status: bool = False) -> None:
         """渲染任务列表项"""
         for t in tasks:
             sev_icon = SEVERITY_ICONS.get(Severity(t.severity), "")
             loc = f"`{t.file_path}:{t.line_number}`" if t.line_number else f"`{t.file_path}`"
             tags_str = ""
             if t.tags:
-                visible_tags = [x for x in t.tags if x in ("needs_edit",) or x.startswith("variant:")]
+                visible_tags = []
+                for tg in t.tags:
+                    if tg == "needs_edit":
+                        visible_tags.append("`[必须修改]`")
+                    elif tg.startswith("variant:"):
+                        vtype = tg.split(":", 1)[1]
+                        vmap = {"forbidden": "禁用", "allowed": "允许", "alias": "别名"}
+                        visible_tags.append(f"`[{vmap.get(vtype, vtype)}]`")
+                    elif tg.startswith("status:") and show_status:
+                        st = tg.split(":", 1)[1]
+                        smap = {"pending": "待处理", "in_progress": "处理中",
+                                "fixed": "已修复", "ignored": "已忽略"}
+                        visible_tags.append(f"`[{smap.get(st, st)}]`")
                 if visible_tags:
-                    tag_labels = []
-                    for tg in visible_tags:
-                        if tg == "needs_edit":
-                            tag_labels.append("`[必须修改]`")
-                        elif tg.startswith("variant:"):
-                            vtype = tg.split(":", 1)[1]
-                            vmap = {"forbidden": "禁用", "allowed": "允许", "alias": "别名"}
-                            tag_labels.append(f"`[{vmap.get(vtype, vtype)}]`")
-                    tags_str = " " + " ".join(tag_labels)
-            lines.append(f"- [ ] **{t.id}** {sev_icon} {t.title}{tags_str}")
+                    tags_str = " " + " ".join(visible_tags)
+            checkbox = " "
+            status_badge = ""
+            if t.status == "fixed":
+                checkbox = "x"
+            elif t.status == "ignored":
+                checkbox = "~"
+            elif t.status == "in_progress":
+                status_badge = " `[处理中]`"
+            elif t.status == "pending":
+                status_badge = " `[待处理]`"
+            lines.append(f"- [{checkbox}] **{t.id}** {sev_icon} {t.title}{tags_str}{status_badge}")
             lines.append(f"  - 📍 位置: {loc}")
             lines.append(f"  - 📝 描述: {t.description}")
             if t.suggestion:
                 lines.append(f"  - 💡 建议: {t.suggestion}")
             if t.assignee:
                 lines.append(f"  - 👤 负责人: {t.assignee}")
+            if hasattr(t, 'note') and t.note:
+                lines.append(f"  - 📌 备注: {t.note}")
             lines.append("")
 
 

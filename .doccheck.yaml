@@ -1,0 +1,15 @@
+check:
+  extensions:
+  - .md
+  - .markdown
+  - .txt
+  exclude_patterns:
+  - .git
+  - node_modules
+  - __pycache__
+  - .venv
+  - venv
+  encoding: utf-8
+  output_format: console
+  enable_dedup: true
+  enable_ignore: true
